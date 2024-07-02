@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "babel": "^6.23.0",
+    "dotenv": "^16.4.5",
+    "psn-api": "^2.10.1",
+    "typescript": "^5.5.3",
+    "webpack": "^5.92.1"
+  }
+}
