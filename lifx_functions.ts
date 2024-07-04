@@ -23,10 +23,10 @@ const get_lights = async () => {
 const set_light = async () => {
     const AuthStr = 'Bearer '.concat(`${process.env.ENV_LIFX}`)
 
-    axios.put('https://api.lifx.com/v1/lights/all/state', 
+    axios.put('https://api.lifx.com/v1/lights/d073d570cf38/state', 
         {
             "power": "on",
-            "color": "yellow saturation:0.8",
+            "color": "blue saturation:0.5",
             "brightness": 0.5,
             "duration": 2
           },
@@ -37,6 +37,6 @@ const set_light = async () => {
     })
 }
 
-//get_lights()
+get_lights()
 //color_info()
 set_light()
