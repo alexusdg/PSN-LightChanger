@@ -1,13 +1,11 @@
-require('dotenv').config();
-
 import { exchangeCodeForAccessToken } from "psn-api";
 import { getBasicPresence } from "psn-api";
 import {exchangeNpssoForCode} from "psn-api"
+require('dotenv').config();
 
 
 
-
-const currentlyPlaying = async () => {
+export const currentlyPlaying = async () => {
 
     const myNpsso = `${process.env.ENV_AUTH}`
 
