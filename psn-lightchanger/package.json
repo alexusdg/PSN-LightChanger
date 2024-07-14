@@ -2,33 +2,24 @@
   "name": "psn-lightchanger",
   "version": "0.1.0",
   "private": true,
-  "dist": "electron-builder",
   "main": "public/electron.js",
   "homepage": "./",
-  "build": {
-    "appId": "com.example.myapp",
-    "productName": "My Electron App",
-    "directories": {
-      "output": "dist"
-    }
-  },
   "dependencies": {
     "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "psn-api": "^2.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "ts-node": "^10.9.2"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dist": "electron-builder",
-    "build": "craco build",
-    "start": "npm run build && electron ."
+    "start-dev": "react-scripts start",
+    "build-dev": "react-scripts build",
+    "test-dev": "react-scripts test",
+    "eject-dev": "react-scripts eject",
+    "build-elect": "craco build",
+    "start-elect": "npm run build-elect && electron ."
   },
   "eslintConfig": {
     "extends": [
