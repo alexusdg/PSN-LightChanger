@@ -2,6 +2,11 @@ PSN-LightChanger
 
 Description:
 
+Application that changes the color of smart lights based on the game playing. 
 
-Requirements:
+
+Technologies used:
+    - Typescript
+    - JS + ReactJS
+    - Electron 
 
