@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { addListener } from 'process'
 import { useEffect, useState } from 'react'
 //TODO: List all lights
 
@@ -13,7 +12,7 @@ function setToken(token){
 
 export function IsAuth(){
 
-  const [auth, setAuth] = useState("no")
+  const [auth, setAuth] = useState("")
 
   var entered_lifx_code = document.getElementById("lifx_auth_code")
   entered_lifx_code = entered_lifx_code.value
@@ -29,8 +28,10 @@ export function IsAuth(){
         "Authorization" : authToken
       }
     }).then((response) => {
+      setToken(entered_lifx_code)
       setAuth("yes")
     }).catch((err) => {
+      setAuth("no")
     }).finally(() => {
     })
   })

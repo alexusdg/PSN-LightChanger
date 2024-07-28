@@ -1,13 +1,13 @@
 import { React, useState } from 'react'
 import { GetLights, IsAuth} from "../Functions/lifx_functions"
 import { userInfo } from 'os'
+import '../Style/style.css'
+import {Header} from '../Components/interface'
 
-function setToken(token){
+// <input id='lifx_auth_code' type="text" defaultValue=""/>
+// <button type="button" value="submit" onClick={handleInput}/>
+//{authComp}
 
-    localStorage.removeItem('lifx_token', token)
-    localStorage.setItem('lifx_token', token)
-
-}
 function LifxLights() {
 
     const [authComp, setAuthComp] = useState(<></>)
@@ -17,9 +17,8 @@ function LifxLights() {
         setAuthComp(<IsAuth/>)
     }
 
-    return(<div><input id='lifx_auth_code' type="text" defaultValue=""/>
-                <button type="button" value="submit" onClick={handleInput}/>
-                 {authComp}
+    return(<div className='full_page primary-color'>
+            <Header/> 
     </div>)
 }
 

@@ -1,0 +1,29 @@
+/*Shared*/
+
+.primary-color{
+
+    background-color: #0B132B;
+}
+
+.secondary-color{
+
+    background-color: #6FFFE9;
+}
+
+.tertiary-color{
+
+    background-color: #FFFFFF;
+}
+
+.full_page {
+
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#header {
+
+    height: 9%;
+}
+/**/
