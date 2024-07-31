@@ -10,7 +10,12 @@ export const Header = () => {
 }
 
 
-export const subHeader = ({title}) => {
+export function SubHeader({ title }) {
 
-    return (<div className='sub_section'>{title}</div>)
+    return (<>Verify {title} Account</>)
+}
+
+export function CircleStep( { number } ) {
+
+    return (<div className="circle_step">{number}</div>)
 }

@@ -20,19 +20,58 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    
 }
 
 .sub_section {
 
     background-color: white;
-    height: 100%;
-    width: 100%;
-    position: relative;
+    height: 10%;
+    width: 50%;
+    left: 25%;
+    top: 9%;
+    position: absolute;
+    color: black;
+    font-size: 150%;
+
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_content {
+
+    background-color: yellow;
+    height: 90%;
+    width: 50%;
+    left: 25%;
+    top: 18%;
+
+    position: absolute;
+}
+
+.circle_step {
+
+    background-color: #0B132B;
+    border: 2px solid wheat;
+    height: 10%;
+    width: 10%;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: wheat;
+
 }
 
 #header {
 
     height: 9%;
+    color: #0B132B;
     display: flex;
     justify-content: center;
     align-items: center;
