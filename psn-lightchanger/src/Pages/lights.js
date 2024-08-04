@@ -25,8 +25,16 @@ function LifxLights() {
                     <SubHeader title={"Lifx"}/>
                 </div>
                 <div className='sub_content'>
-                    <CircleStep number={1}/>
-                    <CircleStep number={2}/>
+                    <div  className='instructions'> 
+                        <CircleStep id='test' number={1}/>
+                            <p id='test'>test</p>
+                    </div>
+
+                    <div className='instructions'>
+                        <CircleStep id='test' number={2}/>
+                        <p id='test'>test</p>
+                    </div>
+
                 </div>
     </div>)
 }

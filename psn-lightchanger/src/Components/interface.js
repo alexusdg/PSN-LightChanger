@@ -17,5 +17,9 @@ export function SubHeader({ title }) {
 
 export function CircleStep( { number } ) {
 
-    return (<div className="circle_step">{number}</div>)
+    return (<div className="circle_step">
+                <div className="number">
+                    {number}
+                </div>
+            </div>)
 }

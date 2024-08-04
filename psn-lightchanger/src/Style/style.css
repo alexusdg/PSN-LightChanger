@@ -49,23 +49,46 @@
     left: 25%;
     top: 18%;
 
-    position: absolute;
+    position: fixed;
 }
 
 .circle_step {
 
     background-color: #0B132B;
     border: 2px solid wheat;
-    height: 10%;
-    width: 10%;
+    height: 5vw;
+    width: 5vw;
     border-radius: 50%;
 
-    display: flex;
+    color: wheat;
+    font-size: 200%;
+
+    display: inline-block;
+
+}
+
+.number{
+
+   height: 100%;
+   width: 100%;
+
+   display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
 
-    color: wheat;
+.instructions{
 
+    height: 10%;
+    width: 100%;
+
+    display: inline-block;
+    margin-bottom: 2%;
+}
+
+#test {
+    display: inline-block;
 }
 
 #header {
