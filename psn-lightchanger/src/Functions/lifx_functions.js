@@ -12,28 +12,37 @@ function setToken(token){
 
 export function IsAuth(){
 
-  const [auth, setAuth] = useState("")
+  const [auth, setAuth] = useState(" ")
 
-  var entered_lifx_code = document.getElementById("lifx_auth_code")
+  var entered_lifx_code = document.querySelector('.token_input')
   entered_lifx_code = entered_lifx_code.value
 
-  console.log(entered_lifx_code)
+  
+
+  console.log(entered_lifx_code + "here")
 
   const authToken = 'Bearer '.concat(entered_lifx_code)
 
   useEffect(() =>{
+    if (entered_lifx_code == ""){
+      setAuth("")
+    }
+    else{
 
-    axios.get('https://api.lifx.com/v1/lights/all', {
-      headers: {
-        "Authorization" : authToken
-      }
-    }).then((response) => {
-      setToken(entered_lifx_code)
-      setAuth("yes")
-    }).catch((err) => {
-      setAuth("no")
-    }).finally(() => {
-    })
+      axios.get('https://api.lifx.com/v1/lights/all', {
+        headers: {
+          "Authorization" : authToken
+        }
+      }).then((response) => {
+        setToken(entered_lifx_code)
+        console.log("yes")
+        setAuth("yes")
+      }).catch((err) => {
+        setAuth("no")
+        console.log("no")
+      }).finally(() => {
+      })
+    }
   })
 
   return <p>"verification is {auth}"</p>

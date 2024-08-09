@@ -1,7 +1,6 @@
 import React from "react"
 import '../Style/style.css'
 
-
 export const Header = () => {
 
     return (<div className='header' id='secondary_color'>
@@ -22,14 +21,14 @@ export function LoginInstruction({ account, link}){
 
 export function CircleStep( { number } ) {
 
-    return (<div className="circle_step">
+    return (<div className="circle_step"  id="primary_color">
                 <div className="number">
                     {number}
                 </div>
             </div>)
 }
 
-export function DoneButton(){
+export function DoneButton({authCheck}){
 
-    return (<div className='done_button'>Done</div>)
+    return (<div className='done_button' onClick={authCheck}>Done</div>)
 }

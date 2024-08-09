@@ -12,14 +12,15 @@ import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Co
 
 function LifxLights() {
 
-    const [authComp, setAuthComp] = useState(<></>)
+    const [Auth, setAuth] = useState(<IsAuth/>)
 
-    const handleInput = (event) => {
 
-        setAuthComp(<IsAuth/>)
+    function ToggleAuthCheck(){
+        
+        setAuth(<IsAuth/>)
     }
 
-    return(<div className='full_page primary-color'>
+    return(<div className='full_page' id='primary_color'>
             <Header/> 
                 <div className='sub_header'>
                     <SubHeader title={"Lifx"}/>
@@ -27,21 +28,22 @@ function LifxLights() {
                 <div className='sub_content'>
                     <div id='test2'>
                         <div  className='instructions'> 
-                            <CircleStep id='test' number={1}/>
-                                <div id='test'>
+                            <CircleStep number={1}/>
+                                <div className='sub_instruction'>
                                     <LoginInstruction account={"LIFX"} link={"https://cloud.lifx.com/sign_in"}/>
                                 </div>
                         </div>
                         <div className='instructions'>
-                            <CircleStep id='test' number={2}/>
-                            <div id='test'>Use exisistng or re-generate auth token. Enter the token below</div>
+                            <CircleStep number={2}/>
+                            <div className='sub_instruction'>Use exisistng or re-generate auth token. Enter the token below</div>
                         </div>
                         <div className='instructions'>
-                                <input className='input' type='text'></input>
+                                <input className='token_input' type='text'></input>
                         </div>
                         <div className='instructions'>
-                                <DoneButton/>  
+                                <DoneButton authCheck={ToggleAuthCheck}/>  
                         </div>
+                        {Auth}
                     </div>
                 </div>
     </div>)

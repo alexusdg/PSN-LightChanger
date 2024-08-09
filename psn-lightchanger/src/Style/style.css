@@ -1,6 +1,6 @@
 /*Shared*/
 
-.primary-color{
+#primary_color{
 
     background-color: #0B132B;
 }
@@ -54,7 +54,6 @@
 
 .circle_step {
 
-    background-color: #0B132B;
     border: 2px solid #6FFFE9;
     height: 4.25vw;
     width: 4.25vw;
@@ -88,7 +87,7 @@
     font-size: 1.75vh;
     
 }
-.input {
+.token_input {
 
     margin-left: 5.25vw; /* .circle_step width + #test margin-left*/
     height: 5vh;
@@ -112,7 +111,7 @@
     border-radius: 5%;
 }
 
-#test {
+.sub_instruction {
     display: inline-block;
     margin-left: 1vw;
     font-size: 150%;
@@ -125,8 +124,7 @@
 #test2 {
 
     width: 100%;
-    margin-top: 15%;
-    
+    margin-top: 15%;   
 }
 
 .header {
