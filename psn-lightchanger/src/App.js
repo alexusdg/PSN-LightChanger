@@ -8,7 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/lights" element={<LifxLights/>} />
+        <Route path="/lifx_verify" element={<LifxLights/>} />
+        <Route path="/lights" element={<>test</>} />
       </Routes>
     </BrowserRouter>
 );

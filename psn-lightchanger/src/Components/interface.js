@@ -28,7 +28,7 @@ export function CircleStep( { number } ) {
             </div>)
 }
 
-export function DoneButton({authCheck}){
+export function DoneButton({authCheck}){ 
 
     return (<div className='done_button' onClick={authCheck}>Done</div>)
 }

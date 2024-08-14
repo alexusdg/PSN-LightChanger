@@ -111,6 +111,17 @@
     border-radius: 5%;
 }
 
+.done_button:hover{
+    cursor: pointer;
+    background-color: #FFFFFF;
+}
+
+.done_button:active{
+
+    box-shadow: #FFFFFF;
+
+}
+
 .sub_instruction {
     display: inline-block;
     margin-left: 1vw;

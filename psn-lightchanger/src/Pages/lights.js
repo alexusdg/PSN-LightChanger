@@ -1,23 +1,23 @@
 import { React, useState } from 'react'
-import { GetLights, IsAuth} from "../Functions/lifx_functions"
-import { userInfo } from 'os'
+import { IsAuth } from "../Functions/lifx_functions"
 import '../Style/style.css'
 import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Components/interface'
-
-// <input id='lifx_auth_code' type="text" defaultValue=""/>
-// <button type="button" value="submit" onClick={handleInput}/>
-//{authComp}
-
-
 
 function LifxLights() {
 
     const [Auth, setAuth] = useState(<IsAuth/>)
 
-
     function ToggleAuthCheck(){
         
         setAuth(<IsAuth/>)
+    }
+
+    function ToggleAuthCheckFromEnter(e){
+
+        if(e.key === 'Enter'){
+
+            setAuth(<IsAuth/>)
+        } 
     }
 
     return(<div className='full_page' id='primary_color'>
@@ -38,7 +38,7 @@ function LifxLights() {
                             <div className='sub_instruction'>Use exisistng or re-generate auth token. Enter the token below</div>
                         </div>
                         <div className='instructions'>
-                                <input className='token_input' type='text'></input>
+                                <input className='token_input' type='text' onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}></input>
                         </div>
                         <div className='instructions'>
                                 <DoneButton authCheck={ToggleAuthCheck}/>  
