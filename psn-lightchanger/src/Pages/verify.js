@@ -1,9 +1,14 @@
 import { React, useState } from 'react'
 import { IsAuth } from "../Functions/lifx_functions"
-import '../Style/style.css'
 import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Components/interface'
+import '../Style/style.css'
 
-function LifxLights() {
+/**
+ *  
+ * @returns html that is used to authenticate Lifx user with token
+ */
+
+function LifxVerify() {
 
     const [Auth, setAuth] = useState(<IsAuth/>)
 
@@ -50,4 +55,4 @@ function LifxLights() {
 }
 
 
-export default LifxLights
+export default LifxVerify

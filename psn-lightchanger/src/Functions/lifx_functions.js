@@ -2,13 +2,14 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 
-function setToken(token){
-
-  localStorage.removeItem('lifx_token', token)
-  localStorage.setItem('lifx_token', token)
-
-}
-
+/**
+ * 
+ * @function isAuth will peform a get response to determine if
+ *           the code passed in is a valid token.
+ *           If the code is valid navigation to ListLights will occur
+ *           otherwise it will do nothing
+ * @returns nothing
+ */
 export function IsAuth(){
 
   const [auth, setAuth] = useState()
@@ -40,7 +41,7 @@ export function IsAuth(){
           "Authorization" : authToken
         }
       }).then((response) => {
-        setToken(entered_lifx_code)
+        localStorage.setItem('lifx_token', entered_lifx_code)
         console.log("yes")
         setRes(response)
         setAuth("yes")
