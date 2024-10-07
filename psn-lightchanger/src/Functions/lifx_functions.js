@@ -5,7 +5,7 @@ import { useLocation, Navigate } from 'react-router-dom'
 /**
  * 
  * @function isAuth will peform a get response to determine if
- *           the code passed in is a valid token.
+ *           the token passed in is a valid token.
  *           If the code is valid navigation to ListLights will occur
  *           otherwise it will do nothing
  * @returns nothing
