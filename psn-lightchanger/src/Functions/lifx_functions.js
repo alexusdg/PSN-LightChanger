@@ -2,6 +2,15 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 
+
+export function StoreAvailableLights(data){
+
+    localStorage.setItem('lights_avail', JSON.stringify(data))
+
+    //console.log(JSON.parse(localStorage.getItem('lights_avail')))
+
+}
+
 /**
  * 
  * @function isAuth will peform a get response to determine if
@@ -27,8 +36,6 @@ export function IsAuth(){
 
   const authToken = 'Bearer '.concat(entered_lifx_code)
 
-  console.log(entered_lifx_code)
-
   useEffect(() =>{
     
     if (entered_lifx_code === ""){
@@ -43,8 +50,9 @@ export function IsAuth(){
       }).then((response) => {
         localStorage.setItem('lifx_token', entered_lifx_code)
         console.log("yes")
-        setRes(response)
         setAuth("yes")
+        setRes(response["data"])
+        StoreAvailableLights(response["data"])
       }).catch((err) => {
         setAuth("no")
         console.log("no")
@@ -58,10 +66,10 @@ export function IsAuth(){
   if(auth === "yes"){
 
     return (
-      <Navigate
+      /*<Navigate
         to={{ pathname: `/lights/${res}`, state: { from: location } }}
         replace
-      />
+      />*/""
     );
   }
   return <p>""</p>
