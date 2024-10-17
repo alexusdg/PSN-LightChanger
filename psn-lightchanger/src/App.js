@@ -1,5 +1,5 @@
 import './App.css';
-import LifxLights from './Pages/lights'
+import LifxVerify from './Pages/verify'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -8,8 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/lifx_verify" element={<LifxLights/>} />
-        <Route path="/lights" element={<>test</>} />
+        <Route path="/lifx_verify" element={<LifxVerify/>} />
+        <Route path="/lights" element={<></>} />
       </Routes>
     </BrowserRouter>
 );
