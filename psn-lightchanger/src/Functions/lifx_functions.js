@@ -22,7 +22,6 @@ export function StoreAvailableLights(data){
 export function IsAuth(){
 
   const [auth, setAuth] = useState()
-  const [res, setRes] = useState()
   const location = useLocation()
 
   var entered_lifx_code = document.querySelector('.token_input')
@@ -51,7 +50,6 @@ export function IsAuth(){
         localStorage.setItem('lifx_token', entered_lifx_code)
         console.log("yes")
         setAuth("yes")
-        setRes(response["data"])
         StoreAvailableLights(response["data"])
       }).catch((err) => {
         setAuth("no")
@@ -66,10 +64,10 @@ export function IsAuth(){
   if(auth === "yes"){
 
     return (
-      /*<Navigate
-        to={{ pathname: `/lights/${res}`, state: { from: location } }}
+      <Navigate
+        to={{ pathname: `/lights_list/`, state: { from: location } }}
         replace
-      />*/""
+      />
     );
   }
   return <p>""</p>
