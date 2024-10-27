@@ -20,7 +20,7 @@ export const Header = () => {
  */
 export function SubHeader({ title }) {
 
-    return (<>Verify {title} Account</>)
+    return (<>{title}</>)
 }
 
 /**
@@ -59,4 +59,9 @@ export function CircleStep( { number } ) {
 export function DoneButton({authCheck}){ 
 
     return (<div className='done_button' onClick={authCheck}>Done</div>)
+}
+
+export function ListLights( {light_name} ){
+
+    return (<div className="lights_label">{light_name}</div>)
 }

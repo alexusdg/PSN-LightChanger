@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useLocation, Navigate } from 'react-router-dom'
 
-
+// * TODO: Update the function desc
 export function StoreAvailableLights(data){
 
     localStorage.setItem('lights_avail', JSON.stringify(data))
@@ -12,7 +12,7 @@ export function StoreAvailableLights(data){
 }
 
 /**
- * 
+ * TODO: Update the function desc
  * @function isAuth will peform a get response to determine if
  *           the token passed in is a valid token.
  *           If the code is valid navigation to ListLights will occur

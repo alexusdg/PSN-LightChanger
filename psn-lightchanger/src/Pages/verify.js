@@ -4,7 +4,8 @@ import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Co
 import '../Style/style.css'
 
 /**
- *  
+ * @function LifxVerify will implement a state hook to help determine 
+ *           if the user has a real token registered with Lifx.
  * @returns html that is used to authenticate Lifx user with token
  */
 
