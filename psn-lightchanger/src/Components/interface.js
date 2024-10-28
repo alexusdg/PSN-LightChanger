@@ -1,5 +1,6 @@
 import React from "react"
 import '../Style/style.css'
+import { LightChosen } from "../Functions/list_functions"
 
 /**
  * @returns the header used across most pages
@@ -63,5 +64,5 @@ export function DoneButton({authCheck}){
 
 export function ListLights( {light_name} ){
 
-    return (<div className="lights_label">{light_name}</div>)
+    return (<div className="lights_label" id={light_name} onClick={e => LightChosen(e)}>{light_name}</div>)
 }

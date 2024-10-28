@@ -29,7 +29,7 @@ function LifxVerify() {
     return(<div className='full_page' id='primary_color'>
             <Header/> 
                 <div className='sub_header'>
-                    <SubHeader title={"Lifx"}/>
+                    <SubHeader title={"Verify Lifx Account"}/>
                 </div>
                 <div className='sub_content'>
                     <div id='test2'>

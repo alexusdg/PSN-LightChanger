@@ -51,6 +51,13 @@
     overflow: scroll;
 
     position: fixed;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.sub_content::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 .circle_step {
@@ -165,6 +172,11 @@
     line-height: 7vh;
 
     border-radius: 1vh;
+}
+
+.lights_label_chosen {
+
+    background-color: #FFFFFF;
 }
 
 
