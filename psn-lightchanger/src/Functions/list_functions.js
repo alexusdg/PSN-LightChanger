@@ -1,3 +1,5 @@
+import { useLocation, Navigate } from 'react-router-dom'
+
 import { ListLights } from "../Components/interface"
 
 /**
@@ -30,4 +32,16 @@ export function ShowLights(){
 export function LightChosen(optionClicked) {
 
     optionClicked.target.classList.contains('lights_label_chosen') ? optionClicked.target.classList.remove('lights_label_chosen') : optionClicked.target.classList.add('lights_label_chosen');
+}
+
+export function IsSetupComplete(){
+    const location = useLocation()
+
+    return (
+        <Navigate
+          to={{ pathname: `/complete/`, state: { from: location } }}
+          replace
+        />
+      );
+
 }

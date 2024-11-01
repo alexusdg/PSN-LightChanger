@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { DoneButton, Header, SubHeader } from "../Components/interface"
-import { ShowLights } from "../Functions/list_functions"
+import { ShowLights, IsSetupComplete} from "../Functions/list_functions"
 
 /**
  * 
@@ -9,6 +10,14 @@ import { ShowLights } from "../Functions/list_functions"
  */
 
 function LifxList() {
+
+    const [Nav, setNav] = useState(<IsSetupComplete/>)
+
+    function NavigateToComplete(){
+
+        setNav(<IsSetupComplete/>)
+    }
+
     return(<div className='full_page' id='primary_color'>   
             <Header/> 
             <div className='sub_header'>
@@ -16,7 +25,8 @@ function LifxList() {
             </div>
             <div className='sub_content'>
                     <ShowLights/>
-                    <DoneButton/>
+                    <DoneButton authCheck={NavigateToComplete}/>
+                    {Nav}
             </div>
     </div>)
 }
