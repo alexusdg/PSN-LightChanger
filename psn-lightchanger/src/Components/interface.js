@@ -1,5 +1,6 @@
 import React from "react"
 import '../Style/style.css'
+import { LightChosen } from "../Functions/list_functions"
 
 /**
  * @returns the header used across most pages
@@ -20,7 +21,7 @@ export const Header = () => {
  */
 export function SubHeader({ title }) {
 
-    return (<>Verify {title} Account</>)
+    return (<>{title}</>)
 }
 
 /**
@@ -52,11 +53,21 @@ export function CircleStep( { number } ) {
 
 /**
  * 
- * @param {{ string }} title 
- * @returns html for the header used across pages
+ * @param {{ function }} authCheck - function to be ran when done button is clicked 
+ * @returns html for the done button used across pages
  * 
  */
 export function DoneButton({authCheck}){ 
 
     return (<div className='done_button' onClick={authCheck}>Done</div>)
+}
+
+/**
+ * 
+ * @param {{string}} light_name - name of light assigned 
+ * @returns html for the light, implementing expected design 
+ */
+export function ListLights( {light_name} ){
+
+    return (<div className="lights_label" id={light_name} onClick={e => LightChosen(e)}>{light_name}</div>)
 }

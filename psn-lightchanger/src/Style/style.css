@@ -48,8 +48,16 @@
     width: 50%;
     left: 25%;
     top: 18%;
+    overflow: scroll;
 
     position: fixed;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.sub_content::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
 }
 
 .circle_step {
@@ -104,11 +112,14 @@
     width: 20vh;
     font-size: 2.5vh;
     background-color: #6FFFE9;
+
+    margin-left: auto;
+    margin-right: auto;
   
     margin-top: 10%;
     line-height: 5vh;
     text-align: center;
-    border-radius: 5%;
+    border-radius: 1vh;
 }
 
 .done_button:hover{
@@ -147,6 +158,35 @@
     align-items: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 4vh;
+}
+
+.lights_label {
+
+    background-color: #6FFFE9;
+    color: #0B132B;
+    height: 7vh;
+    width: 30vh;
+    font-size: 2.5vh;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    text-align: center;
+    line-height: 7vh;
+
+    border-radius: 1vh;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.15,1.15);
+        transition: all .2s ease-in-out;
+    }
+}
+
+.lights_label_chosen {
+
+    background-color: #FFFFFF;
+
 }
 
 

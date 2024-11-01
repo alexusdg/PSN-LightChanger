@@ -4,6 +4,17 @@ import { useLocation, Navigate } from 'react-router-dom'
 
 /**
  * 
+ * @function StoreAvailableLights will store the list of lights returned 
+ *           in local storageS
+ * @returns nothing 
+ */
+export function StoreAvailableLights(data){
+
+    localStorage.setItem('lights_avail', JSON.stringify(data))
+}
+
+/**
+ *
  * @function isAuth will peform a get response to determine if
  *           the token passed in is a valid token.
  *           If the code is valid navigation to ListLights will occur
@@ -13,7 +24,6 @@ import { useLocation, Navigate } from 'react-router-dom'
 export function IsAuth(){
 
   const [auth, setAuth] = useState()
-  const [res, setRes] = useState()
   const location = useLocation()
 
   var entered_lifx_code = document.querySelector('.token_input')
@@ -26,8 +36,6 @@ export function IsAuth(){
   }
 
   const authToken = 'Bearer '.concat(entered_lifx_code)
-
-  console.log(entered_lifx_code)
 
   useEffect(() =>{
     
@@ -43,8 +51,8 @@ export function IsAuth(){
       }).then((response) => {
         localStorage.setItem('lifx_token', entered_lifx_code)
         console.log("yes")
-        setRes(response)
         setAuth("yes")
+        StoreAvailableLights(response["data"])
       }).catch((err) => {
         setAuth("no")
         console.log("no")
@@ -59,7 +67,7 @@ export function IsAuth(){
 
     return (
       <Navigate
-        to={{ pathname: `/lights/${res}`, state: { from: location } }}
+        to={{ pathname: `/lights_list/`, state: { from: location } }}
         replace
       />
     );

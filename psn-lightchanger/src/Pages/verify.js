@@ -4,7 +4,8 @@ import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Co
 import '../Style/style.css'
 
 /**
- *  
+ * @function LifxVerify will implement a state hook to help determine 
+ *           if the user has a real token registered with Lifx.
  * @returns html that is used to authenticate Lifx user with token
  */
 
@@ -28,7 +29,7 @@ function LifxVerify() {
     return(<div className='full_page' id='primary_color'>
             <Header/> 
                 <div className='sub_header'>
-                    <SubHeader title={"Lifx"}/>
+                    <SubHeader title={"Verify Lifx Account"}/>
                 </div>
                 <div className='sub_content'>
                     <div id='test2'>
