@@ -34,14 +34,41 @@ export function LightChosen(optionClicked) {
     optionClicked.target.classList.contains('lights_label_chosen') ? optionClicked.target.classList.remove('lights_label_chosen') : optionClicked.target.classList.add('lights_label_chosen');
 }
 
+export function CheckIfLightsChosen(){
+    localStorage.getItem()
+}
+
 export function IsSetupComplete(){
     const location = useLocation()
 
-    return (
-        <Navigate
-          to={{ pathname: `/complete/`, state: { from: location } }}
-          replace
-        />
-      );
+    var lights_avail = JSON.parse(localStorage.getItem('lights_avail'))
 
+    var lights_chosen = []
+
+    for(var i = 0; i < lights_avail.length; i++){
+        var current_label = lights_avail[i].label
+
+        try{
+            if (document.getElementById(`${current_label}`).classList.contains('lights_label_chosen'))
+                lights_chosen.push(lights_avail[i])
+        }
+        finally{
+            continue
+        }
+        
+    }
+
+    localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
+
+    if(lights_chosen.length > 0){
+        return (
+            <Navigate
+              to={{ pathname: `/complete/`, state: { from: location } }}
+              replace
+            />
+          );
+    }
+
+    
+    return(<></>)
 }

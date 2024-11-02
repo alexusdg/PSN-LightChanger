@@ -63,7 +63,7 @@ export function IsAuth(){
     }
   }, [entered_lifx_code, authToken])
 
-  if(auth === "yes"){
+  if(auth === "yes"){ 
 
     return (
       <Navigate
