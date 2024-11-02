@@ -189,5 +189,16 @@
 
 }
 
+.setup_complete{
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25%;
+    height: auto;
+    width: auto;
+    text-align: center;
+    font-size: 250%;
+    color: #FFFFFF;
+}
 
 /**/

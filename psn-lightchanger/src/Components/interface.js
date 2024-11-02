@@ -21,7 +21,7 @@ export const Header = () => {
  */
 export function SubHeader({ title }) {
 
-    return (<>{title}</>)
+    return (<div>{title}</div>)
 }
 
 /**
