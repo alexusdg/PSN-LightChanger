@@ -57,7 +57,6 @@ export function IsAuth(){
         setAuth("no")
         console.log("no")
       }).finally(() => {
-
         
       })
     }

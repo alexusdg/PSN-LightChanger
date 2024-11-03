@@ -34,17 +34,18 @@ export function LightChosen(optionClicked) {
     optionClicked.target.classList.contains('lights_label_chosen') ? optionClicked.target.classList.remove('lights_label_chosen') : optionClicked.target.classList.add('lights_label_chosen');
 }
 
+/**
+ * 
+ * @function CheckIfLightsChosen will use the list of available lights to determine
+ *           if the div that contains the respective label as an id contains "lights_label_chosen"
+ *           indicating it has been clicked.
+ * @returns a list of lights that were chosen, in their original object form
+ */
 export function CheckIfLightsChosen(){
-    localStorage.getItem()
-}
-
-export function IsSetupComplete(){
-    const location = useLocation()
-
     var lights_avail = JSON.parse(localStorage.getItem('lights_avail'))
-
+    
     var lights_chosen = []
-
+    
     for(var i = 0; i < lights_avail.length; i++){
         var current_label = lights_avail[i].label
 
@@ -58,9 +59,23 @@ export function IsSetupComplete(){
         
     }
 
-    localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
+    return lights_chosen
+}
+
+/**
+ * 
+ * @function IsSetupComplete will navigate to complete screen if the list of lights
+ *           chosen is greater than 0, indicating that there has been at least one light
+ *           to change.
+ * @returns nothing
+ */
+export function IsSetupComplete(){
+    const location = useLocation()
+
+    var lights_chosen = CheckIfLightsChosen()
 
     if(lights_chosen.length > 0){
+        localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
         return (
             <Navigate
               to={{ pathname: `/complete/`, state: { from: location } }}
@@ -68,7 +83,6 @@ export function IsSetupComplete(){
             />
           );
     }
-
-    
+       
     return(<></>)
 }
