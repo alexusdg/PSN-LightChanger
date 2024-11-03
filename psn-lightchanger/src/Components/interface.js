@@ -1,6 +1,7 @@
 import React from "react"
 import '../Style/style.css'
 import { LightChosen } from "../Functions/list_functions"
+import { useNavigate } from "react-router-dom"
 
 
 export const Title = () => {
@@ -25,8 +26,13 @@ export const Header = () => {
 }
 
 export const GetStartedButton = () => {
+    const navigate = useNavigate()
 
-    return(<div id="get_started"> Get Started </div>)
+    const handleClick = () => {
+        navigate("/lights_verify")
+    }
+
+    return(<div id="get_started" onClick={handleClick}> Get Started </div>)
 }
 
 

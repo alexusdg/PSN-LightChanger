@@ -1,4 +1,4 @@
-import {Header, SubHeader, Welcome, Title, GetStartedButton} from "../Components/interface"
+import {Welcome, Title, GetStartedButton} from "../Components/interface"
 
 
 function Home(){
@@ -8,6 +8,7 @@ function Home(){
                         <Title/>
                         <Welcome/>
                         <GetStartedButton/>
+                 
                     </div>
             </div>)
 }
