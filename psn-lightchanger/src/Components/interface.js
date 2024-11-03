@@ -2,6 +2,17 @@ import React from "react"
 import '../Style/style.css'
 import { LightChosen } from "../Functions/list_functions"
 
+
+export const Title = () => {
+
+    return(<div id="title"> PSN Light Changer</div>)
+}
+
+export const Welcome = () => {
+
+    return(<div id="welcome"> Welcome </div>)
+}
+
 /**
  * @returns the header used across most pages
  */
@@ -12,6 +23,12 @@ export const Header = () => {
         PSN Light Changer
     </div>)
 }
+
+export const GetStartedButton = () => {
+
+    return(<div id="get_started"> Get Started </div>)
+}
+
 
 /**
  * 
