@@ -5,7 +5,7 @@ import { useLocation, Navigate } from 'react-router-dom'
 /**
  * 
  * @function StoreAvailableLights will store the list of lights returned 
- *           in local storageS
+ *           in local storage
  * @returns nothing 
  */
 export function StoreAvailableLights(data){

@@ -20,6 +20,66 @@
     height: 100%;
     width: 100%;
     position: absolute;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+}
+
+.welcome_content{
+
+    height: 100%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title {
+  
+    text-align: center;
+    color: #6FFFE9;
+    height: 10%;
+    width: 100%;
+    font-size: 6vh;
+    text-align: center;
+    padding-top: 20%;
+    position: relative;
+}
+
+#welcome{
+
+    position: relative;
+    background-color: #0B132B;
+    height: 10vh;
+    line-height: 10vh;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 5vh;
+
+}
+
+
+#get_started{
+
+    position: relative;
+    background-color: #6FFFE9;
+    height: 8vh;
+    color: #0B132B;
+    text-align: center;
+    font-size: 3vh;
+    margin-top: 35%;
+    line-height: 8vh;
+
+
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2vh;
+
+    &:hover{
+
+        background-color: #FFFFFF;
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
     
 }
 
