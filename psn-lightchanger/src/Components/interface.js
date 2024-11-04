@@ -4,11 +4,17 @@ import { LightChosen } from "../Functions/list_functions"
 import { useNavigate } from "react-router-dom"
 
 
+/**
+ * @returns the Title component
+ */
 export const Title = () => {
 
     return(<div id="title"> PSN Light Changer</div>)
 }
 
+/**
+ * @returns the Welcome component
+ */
 export const Welcome = () => {
 
     return(<div id="welcome"> Welcome </div>)
@@ -17,7 +23,6 @@ export const Welcome = () => {
 /**
  * @returns the header used across most pages
  */
-
 export const Header = () => {
 
     return (<div className='header' id='secondary_color'>
@@ -25,16 +30,22 @@ export const Header = () => {
     </div>)
 }
 
-export const GetStartedButton = () => {
+/**
+ * 
+ * @param {{ string }} page - page to direct user to after clicking button
+ * @returns the get started button, with onclick functionality to navigate to 
+ *          the requested page
+ */
+
+export const GetStartedButton = ( { page } ) => {
     const navigate = useNavigate()
 
     const handleClick = () => {
-        navigate("/lights_verify")
+        navigate(page)
     }
 
     return(<div id="get_started" onClick={handleClick}> Get Started </div>)
 }
-
 
 /**
  * 
@@ -49,7 +60,7 @@ export function SubHeader({ title }) {
 
 /**
  * 
- * @param {{ string, }} account - account type to verify login
+ * @param {{ string }} account - account type to verify login
  * @param {{ string }} link - link to account
  * @returns html for Login instructions to be followed
  * 
