@@ -13,7 +13,7 @@ function Home(){
                 <div className="welcome_content">
                         <Title/>
                         <Welcome/>
-                        <GetStartedButton page={"/lights_verify"}/>
+                        <GetStartedButton page={"/psn_verify"}/>
                     </div>
             </div>)
 }
