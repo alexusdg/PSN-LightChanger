@@ -26,6 +26,7 @@
     "http-proxy-middleware": "^3.0.3",
     "isomorphic-fetch": "^3.0.0",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.7",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "process": "^0.11.10",
@@ -39,12 +40,12 @@
     "vm": "^0.1.0"
   },
   "scripts": {
-    "start-dev": "react-scripts start",
+    "start-dev": "react-scripts start && nodemon backend.js",
     "build-dev": "react-scripts build",
     "test-dev": "react-scripts test",
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
-    "start-elect": "npm run build-elect && electron ."
+    "start-elect": "nodemon backend.js && npm run build-elect && electron ."
   },
   "eslintConfig": {
     "extends": [

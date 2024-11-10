@@ -4,6 +4,7 @@ import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Co
 import axios from 'axios'
 import '../Style/style.css'
 import 'isomorphic-fetch';
+import { useLocation, Navigate } from 'react-router-dom'
 
 
 /**
@@ -61,6 +62,8 @@ export function LifxVerify() {
 
 export function PSNVerify(){
 
+    const [nav, setNav] = useState(<></>)
+    const location = useLocation()
 
     function ToggleAuthCheck(){
         
@@ -69,6 +72,11 @@ export function PSNVerify(){
         }).then((res) => {
 
             console.log(res.data)
+            setNav(<Navigate
+                to={{ pathname: `/lights_verify/`, state: { from: location } }}
+                replace
+              />)
+            
         }).catch((err) => {
 
             console.log(err.data)
@@ -99,6 +107,7 @@ export function PSNVerify(){
                         </div>
                         <div className='instructions'>
                                 <DoneButton authCheck={ToggleAuthCheck}/>
+                                {nav}
                         </div>
                     </div>
                 </div>
