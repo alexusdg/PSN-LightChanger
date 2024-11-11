@@ -1,11 +1,9 @@
 import { React, useState } from 'react'
 import { IsAuth } from "../Functions/lifx_functions.js"
 import {Header, SubHeader, CircleStep, LoginInstruction, DoneButton} from '../Components/interface.js'
-import axios from 'axios'
 import '../Style/style.css'
 import 'isomorphic-fetch';
-import { useLocation, Navigate } from 'react-router-dom'
-
+import { VerifyPsnUser } from '../Functions/psn_functions.js';
 
 /**
  * @function LifxVerify will implement a state hook to help determine 
@@ -59,29 +57,27 @@ export function LifxVerify() {
     </div>)
 }
 
+/**
+ * @function PSNVerify will implement a state hook to help determine 
+ *           if the user has a real account registed with Sony PlayStation
+ * @returns html that is used to authenticate PSN user with nppso cookie
+ */
 
 export function PSNVerify(){
 
     const [nav, setNav] = useState(<></>)
-    const location = useLocation()
 
     function ToggleAuthCheck(){
         
-        var entered_lifx_code = document.querySelector('.token_input').value
-        axios.get(`http://localhost:3100/psinfo/${entered_lifx_code}`, {
-        }).then((res) => {
+        setNav(<VerifyPsnUser/>)
+    }
 
-            console.log(res.data)
-            setNav(<Navigate
-                to={{ pathname: `/lights_verify/`, state: { from: location } }}
-                replace
-              />)
-            
-        }).catch((err) => {
+    function ToggleAuthCheckFromEnter(e){
 
-            console.log(err.data)
-        })
-        
+        if(e.key === 'Enter'){
+
+            setNav(<VerifyPsnUser/>)
+        } 
     }
 
     return(<div className='full_page' id='primary_color'>
@@ -103,7 +99,7 @@ export function PSNVerify(){
                                     https://ca.account.sony.com/api/v1/ssocookie</div>
                         </div>
                         <div className='instructions'>
-                                <input className='token_input' type='text'></input>
+                                <input className='token_input' type='text' onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}></input>
                         </div>
                         <div className='instructions'>
                                 <DoneButton authCheck={ToggleAuthCheck}/>
