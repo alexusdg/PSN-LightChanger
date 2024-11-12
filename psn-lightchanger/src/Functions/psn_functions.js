@@ -25,7 +25,7 @@ export function VerifyPsnUser(){
             
         }).catch((err) => {
     
-            setAuth("np")
+            setAuth("no")
         }) 
     })
 
