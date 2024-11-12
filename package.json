@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "psn-api": "^2.10.1"
+  }
+}

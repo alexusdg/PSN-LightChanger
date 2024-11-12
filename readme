@@ -6,7 +6,7 @@ Application that changes the color of smart lights based on the game playing.
 
 
 Technologies used:
-    - Typescript
+    - Node.js 
     - JS + ReactJS
     - Electron 
 
