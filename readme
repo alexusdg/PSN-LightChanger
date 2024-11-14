@@ -9,4 +9,6 @@ Technologies used:
     - Node.js 
     - JS + ReactJS
     - Electron 
+    - Mocha (Testing Framework) + Chai (Assertion Library)
 
+Understand npm and webpack
