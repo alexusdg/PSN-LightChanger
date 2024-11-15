@@ -1,9 +1,11 @@
+/*Shared*/
+
 #primary_color {
 
     background-color: #0B132B;
 }
 
-#secondary_color {
+#secondary_color{
 
     background-color: #6FFFE9;
 }
@@ -81,7 +83,7 @@
     
 }
 
-.sub_header {
+#sub_header {
 
     background-color: #0B132B;
     height: 10%;

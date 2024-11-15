@@ -53,7 +53,7 @@ export const GetStartedButton = ( { page } ) => {
  */
 export function SubHeader({ title }) {
 
-    return (<div>{title}</div>)
+    return (<div id="sub_header">{title}</div>)
 }
 
 /**
@@ -65,7 +65,7 @@ export function SubHeader({ title }) {
  */
 export function LoginInstruction({ account, link}){
 
-    return (<>Login to {account} : {link} </>)
+    return (<div className="sub_instruction">Login to {account} : {link}</div>)
 }
 
 /**
