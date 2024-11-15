@@ -1,5 +1,5 @@
 import { cleanup, screen, render } from "@testing-library/react"
-import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights } from "../../src/Components/interface.js"
+import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 
 afterEach(cleanup)
@@ -52,6 +52,13 @@ describe("Done Button Renders", () => {
     const elem = document.querySelector(".done_button")
 
     test("Done Button Rendering", () => {expect(elem.textContent).toBe("Done")})
+})
+
+describe("Circle Step Renders", () => {
+    render(<CircleStep number={"nan"} />)
+    const elem = document.querySelector(".circle_step")
+
+    test("Done Button Rendering", () => {expect(elem.textContent).toBe("nan")})
 })
 
 describe("List Lights Renders", () => {
