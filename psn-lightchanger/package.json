@@ -45,7 +45,8 @@
     "test-dev": "react-scripts test",
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
-    "start-elect": "npm run build-elect && electron ."
+    "start-elect": "npm run build-elect && electron .",
+    "test": "jest --env=jsdom"
   },
   "eslintConfig": {
     "extends": [
@@ -66,8 +67,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "babel-jest": "^29.7.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-react": "^6.24.1",
     "electron": "^31.2.0",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "jest": "^27.5.1",
+    "mocha-jsdom": "^2.0.0",
+    "react-test-renderer": "^18.3.1",
     "webpack-node-externals": "^3.0.0"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",

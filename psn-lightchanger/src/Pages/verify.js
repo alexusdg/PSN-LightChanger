@@ -30,16 +30,12 @@ export function LifxVerify() {
 
     return(<div className='full_page' id='primary_color'>
             <Header/> 
-                <div className='sub_header'>
-                    <SubHeader title={"Verify Lifx Account"}/>
-                </div>
+                <SubHeader title={"Verify Lifx Account"}/>
                 <div className='sub_content'>
                     <div id='test2'>
                         <div  className='instructions'> 
                             <CircleStep number={1}/>
-                                <div className='sub_instruction'>
-                                    <LoginInstruction account={"LIFX"} link={"https://cloud.lifx.com/sign_in"}/>
-                                </div>
+                            <LoginInstruction account={"LIFX"} link={"https://cloud.lifx.com/sign_in"}/>
                         </div>
                         <div className='instructions'>
                             <CircleStep number={2}/>
@@ -82,16 +78,12 @@ export function PSNVerify(){
 
     return(<div className='full_page' id='primary_color'>
             <Header/> 
-                <div className='sub_header'>
-                    <SubHeader title={"Verify PSN Account"}/>
-                </div>
+                <SubHeader title={"Verify PSN Account"}/>
                 <div className='sub_content'>
                     <div id='test2'>
                         <div  className='instructions'> 
                             <CircleStep number={1}/>
-                                <div className='sub_instruction'>
-                                    <LoginInstruction account={"PSN"} link={"https://www.playstation.com/en-us/"}/>
-                                </div>
+                            <LoginInstruction account={"PSN"} link={"https://www.playstation.com/en-us/"}/>
                         </div>
                         <div className='instructions'>
                             <CircleStep number={2}/>

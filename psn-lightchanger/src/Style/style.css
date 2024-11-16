@@ -1,6 +1,6 @@
 /*Shared*/
 
-#primary_color{
+#primary_color {
 
     background-color: #0B132B;
 }
@@ -83,7 +83,7 @@
     
 }
 
-.sub_header {
+#sub_header {
 
     background-color: #0B132B;
     height: 10%;
@@ -143,6 +143,8 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    position: relative;
 }
 
 .instructions{

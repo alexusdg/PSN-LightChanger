@@ -1,15 +1,13 @@
 import React from "react"
-import '../Style/style.css'
 import { LightChosen } from "../Functions/list_functions"
 import { useNavigate } from "react-router-dom"
-
 
 /**
  * @returns the Title component
  */
 export const Title = () => {
 
-    return(<div id="title"> PSN Light Changer</div>)
+    return(<div id="title">PSN Light Changer</div>)
 }
 
 /**
@@ -17,7 +15,7 @@ export const Title = () => {
  */
 export const Welcome = () => {
 
-    return(<div id="welcome"> Welcome </div>)
+    return(<div id="welcome">Welcome</div>)
 }
 
 /**
@@ -44,7 +42,7 @@ export const GetStartedButton = ( { page } ) => {
         navigate(page)
     }
 
-    return(<div id="get_started" onClick={handleClick}> Get Started </div>)
+    return(<div id="get_started" onClick={handleClick}>Get Started</div>)
 }
 
 /**
@@ -55,7 +53,7 @@ export const GetStartedButton = ( { page } ) => {
  */
 export function SubHeader({ title }) {
 
-    return (<div>{title}</div>)
+    return (<div id="sub_header">{title}</div>)
 }
 
 /**
@@ -67,7 +65,7 @@ export function SubHeader({ title }) {
  */
 export function LoginInstruction({ account, link}){
 
-    return (<>Login to {account} : {link} </>)
+    return (<div className="sub_instruction">Login to {account} : {link}</div>)
 }
 
 /**
