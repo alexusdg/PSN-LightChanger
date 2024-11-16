@@ -99,7 +99,7 @@ export function DoneButton({authCheck}){
  * @param {{string}} light_name - name of light assigned 
  * @returns html for the light, implementing expected design 
  */
-export function ListLights( {light_name} ){
+export function ListLights( {light_name}  ){
 
     return (<div className="lights_label" id={light_name} onClick={e => LightChosen(e)}>{light_name}</div>)
 }
