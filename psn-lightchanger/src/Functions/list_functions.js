@@ -1,6 +1,7 @@
 import { useLocation, Navigate } from 'react-router-dom'
 
 import { ListLights } from "../Components/interface"
+import axios from 'axios'
 
 /**
  * 
@@ -35,11 +36,11 @@ export function LightChosen(optionClicked) {
 }
 
 /**
- * 
+ * @todo for each json that gets pushed, that will get passed into the c++ fucntion to create a thread
  * @function CheckIfLightsChosen will use the list of available lights to determine
  *           if the div that contains the respective label as an id contains "lights_label_chosen"
  *           indicating it has been clicked.
- * @returns a list of lights that were chosen, in their original object form
+ * @returns a list of lights that were chosen, in their original object form 
  */
 export function CheckIfLightsChosen(){
     var lights_avail = JSON.parse(localStorage.getItem('lights_avail'))
@@ -52,6 +53,13 @@ export function CheckIfLightsChosen(){
         try{
             if (document.getElementById(`${current_label}`).classList.contains('lights_label_chosen'))
                 lights_chosen.push(lights_avail[i])
+
+                //var data = JSON.stringify(lights_avail[i])
+
+                axios.put(`http://localhost:3100/${lights_avail[i].label}`, {
+
+
+                })
         }
         finally{
             continue
@@ -76,6 +84,8 @@ export function IsSetupComplete(){
 
     if(lights_chosen.length > 0){
         localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
+        var data = JSON.stringify(lights_chosen)
+
         return (
             <Navigate
               to={{ pathname: `/complete/`, state: { from: location } }}
