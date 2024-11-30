@@ -52,20 +52,23 @@ export function CheckIfLightsChosen(){
 
         try{
             if (document.getElementById(`${current_label}`).classList.contains('lights_label_chosen'))
-                lights_chosen.push(lights_avail[i])
+                lights_chosen.push(JSON.stringify(`${lights_avail[i].id}`))
+                console.log(lights_avail[i].id)
 
                 //var data = JSON.stringify(lights_avail[i])
-
-                axios.put(`http://localhost:3100/${lights_avail[i].label}`, {
-
-
-                })
         }
         finally{
             continue
         }
         
     }
+
+    console.log(lights_chosen)
+    
+    axios.put(`http://localhost:3100/create_thread/${localStorage.getItem('lifx_token')}/[${lights_chosen}]`, {
+
+
+    })
 
     return lights_chosen
 }

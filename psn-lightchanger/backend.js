@@ -49,42 +49,34 @@ app.get("/psinfo/:npsso", (req, res, next) => {
 })
 
 
-app.get("/create_thread/:token/:label", (req, res) => {
+app.put("/create_thread/:token/:label", (req, res) => {
 
     const authToken = 'Bearer '.concat(req.params.token)
 
-    var label = req.params.label
+    //var label = JSON.parse(req.params.label)
 
-    axios.get(`https://api.lifx.com/v1/lights/${label}`, {
-        headers: {
-          "Authorization" : authToken
-        }
-    }).then((resp) => {
+    //console.log(label)
 
-        //console.log(resp)
+    const pyProg = spawn('python', ['createThread.py'].concat(authToken, req.params.label));
 
-        const pyProg = spawn('python', ['createThread.py'].concat(authToken, label));
+    // Collect data from script and print to console
+    var data = ''
+    pyProg.stdout.on('data', (stdout) => {
+        data += stdout.toString()
+    });
 
-                // Collect data from script and print to console
-        var data = ''
-        pyProg.stdout.on('data', (stdout) => {
-            data += stdout.toString()
-        });
+    // Print errors to console, if any
+    pyProg.stderr.on('data', (stderr) => {
+        console.log(`stderr: ${stderr}`)
+    });
 
-        // Print errors to console, if any
-        pyProg.stderr.on('data', (stderr) => {
-            console.log(`stderr: ${stderr}`)
-        });
+    // When script is finished, print collected data
+    pyProg.on('close', (code) => {
+        console.log(`child process exited with code ${code}`)
+        console.log(data)
+    });
 
-        // When script is finished, print collected data
-        pyProg.on('close', (code) => {
-            console.log(`child process exited with code ${code}`)
-            console.log(data)
-        });
-
-    })
-
-    res.send(label)
+    return res.status(200)
 
 })
 
