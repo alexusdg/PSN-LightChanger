@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { spawn } = require('child_process');
 const express = require('express')
 const cors = require('cors')
 const psnapi = require('psn-api')
@@ -50,10 +51,6 @@ app.get("/psinfo/:npsso", (req, res, next) => {
 
 app.get("/create_thread/:token/:label", (req, res) => {
 
-    //console.log(`${process.env.PSN_TOKEN}`)
-
-    var key = 'c798e0d43f3f5caa33d52c3f92909f9948a661eacf4edc2357a293a728f4df7d'
-
     const authToken = 'Bearer '.concat(req.params.token)
 
     var label = req.params.label
@@ -64,7 +61,27 @@ app.get("/create_thread/:token/:label", (req, res) => {
         }
     }).then((resp) => {
 
-        console.log(resp)
+        //console.log(resp)
+
+        const pyProg = spawn('python', ['createThread.py'].concat(authToken, label));
+
+                // Collect data from script and print to console
+        var data = ''
+        pyProg.stdout.on('data', (stdout) => {
+            data += stdout.toString()
+        });
+
+        // Print errors to console, if any
+        pyProg.stderr.on('data', (stderr) => {
+            console.log(`stderr: ${stderr}`)
+        });
+
+        // When script is finished, print collected data
+        pyProg.on('close', (code) => {
+            console.log(`child process exited with code ${code}`)
+            console.log(data)
+        });
+
     })
 
     res.send(label)
