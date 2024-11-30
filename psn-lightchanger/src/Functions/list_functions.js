@@ -64,8 +64,10 @@ export function CheckIfLightsChosen(){
     }
 
     console.log(lights_chosen)
+
+    var psn_token = localStorage.getItem('psn_user_info')
     
-    axios.put(`http://localhost:3100/create_thread/${localStorage.getItem('lifx_token')}/[${lights_chosen}]`, {
+    axios.put(`http://localhost:3100/create_thread/${localStorage.getItem('lifx_token')}/${psn_token}/${lights_chosen}`, {
 
 
     })

@@ -1,0 +1,2 @@
+"Marvel's Spider-Man 2" / {"hue":238.29,"saturation":1,"kelvin":2500}
+"Ultimate Chicken Horse" / {"hue":181.88,"saturation":0.8842,"kelvin":2500}

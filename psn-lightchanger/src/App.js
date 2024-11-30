@@ -9,7 +9,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<LifxList/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/psn_verify/" element={<PSNVerify/>}/>
         <Route path="/lights_verify/" element={<LifxVerify/>} />
         <Route path="/lights_list/" element={<LifxList/>} />

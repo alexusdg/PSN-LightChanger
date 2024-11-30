@@ -18,7 +18,7 @@ export function VerifyPsnUser(){
         axios.get(`http://localhost:3100/psinfo/${entered_lifx_code}`, {
         }).then((res) => {
     
-            localStorage.setItem("psn_user_info", JSON.stringify(res.data))
+            localStorage.setItem("psn_user_info", entered_lifx_code)
     
             setAuth("yes")
             
