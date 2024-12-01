@@ -65,12 +65,15 @@ export function CheckIfLightsChosen(){
 
     console.log(lights_chosen)
 
-    var psn_token = localStorage.getItem('psn_user_info')
-    
-    axios.put(`http://localhost:3100/create_thread/${localStorage.getItem('lifx_token')}/${psn_token}/${lights_chosen}`, {
+    var dt = {
+        
+        data: {
+            lifx_token : localStorage.getItem('lifx_token'),
+            psn_token : localStorage.getItem('psn_user_info')
+    }}
 
 
-    })
+     axios.put(`http://localhost:3100/create_thread/${lights_chosen}`, dt)
 
     return lights_chosen
 }
@@ -89,7 +92,6 @@ export function IsSetupComplete(){
 
     if(lights_chosen.length > 0){
         localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
-        var data = JSON.stringify(lights_chosen)
 
         return (
             <Navigate

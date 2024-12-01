@@ -1,13 +1,13 @@
-const axios = require('axios')
-const { spawn } = require('child_process');
-const express = require('express')
+const { spawn } = require('child_process')
 const cors = require('cors')
 const psnapi = require('psn-api')
-const { env } = require('process')
+const axios = require('axios')
+const express = require('express'), bodyParser = require('body-parser');
 const app = express()
 
 
 app.use(cors())
+app.use(bodyParser.json())
 
 app.get('/', (req, res, next) => {
     throw new Error('BROKEN');
@@ -23,6 +23,8 @@ app.get("/psinfo/:npsso", (req, res, next) => {
 
     const npssoCookie = req.params.npsso
 
+    //console.log(npssoCookie)
+
     async function playerInfo() {
         
         const myNpsso = npssoCookie
@@ -33,28 +35,63 @@ app.get("/psinfo/:npsso", (req, res, next) => {
 
             const authorization = await psnapi.exchangeCodeForAccessToken(accessCode)
 
-            const response = await psnapi.getBasicPresence(authorization, "me") 
+            //const response = await psnapi.getBasicPresence(authorization, "me") 
 
-            res.send(response.basicPresence.gameTitleInfoList[0].titleName)
+            console.log(authorization.refreshToken)
+
+            res.send({"access_code" : authorization.refreshToken})
         }
-        catch{
+        catch(err){
 
-            res.status(500).send({})
+            res.status(500).send({ err })
         }
     }
     
     playerInfo()
 })
 
+app.get("/ps_game_playing/:access_code", (req, res) => {
 
-app.put("/create_thread/:token/:psn_token/:label", (req, res) => {
+    const code = req.params.access_code //this is refreshtokedn
 
-    const authToken = 'Bearer '.concat(req.params.token)
-    const psn_token = req.params.psn_token
+    async function currentGame(){
+
+        try{
+            //console.log(code, "HERE")
+
+            const authorization = await psnapi.exchangeRefreshTokenForAuthTokens(code)
+
+            //console.log(authorization)
+
+            const response = await psnapi.getBasicPresence(authorization, "me")
+
+            //console.log(response)
+
+            res.send(response.basicPresence.gameTitleInfoList[0].titleName)
+
+        }catch(err){
+
+
+            res.status(500).send(err)
+
+        }
+
+    }
+
+    currentGame()
+})
+
+
+app.put("/create_thread/:label", (req, res) => {
+
+    console.log(req.params.label)
+    console.log("In create Thread")
+    const authToken = 'Bearer '.concat(req.body.data.lifx_token)
+    const psn_token = req.body.data.psn_token
 
     //var label = JSON.parse(req.params.label)
 
-    const pyProg = spawn('python', ['createThread.py'].concat(req.params.token, psn_token, req.params.label));
+    const pyProg = spawn('python', ['createThread.py'].concat(req.body.data.lifx_token, psn_token, req.params.label));
 
     // Collect data from script and print to console
     var data = ''
@@ -114,7 +151,9 @@ app.put("/update_light/:token/:id/:color_req/", (req, res) => {
           'content-type': 'application/json',
           Authorization: authToken
         },
-        data: {"color" : `hue:${color_req.hue} saturation:${color_req.saturation} kelvin:${color_req.kelvin}`}
+        data: {"color" : `hue:${color_req.hue} saturation:${color_req.saturation} kelvin:${color_req.kelvin}`,
+                "duration" : "0.5"    
+            }
       };
       
       axios
