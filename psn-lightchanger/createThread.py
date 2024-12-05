@@ -4,6 +4,9 @@ import requests
 import time
 import sys
 import json
+import os 
+
+BACKEND_PORT = os.environ.get('REACT_APP_BACKEND_PORT')
 
 def get_color(response):
 
@@ -55,7 +58,7 @@ def update_light(token, psn_token, light_id):
     
     print(games_dict)
 
-    psn_url = f"http://localhost:3100/ps_game_playing/{psn_token}"
+    psn_url = f"http://localhost:{BACKEND_PORT}/ps_game_playing/{psn_token}"
     print(psn_url)
     time.sleep(1)
     sys.stdout.flush()
@@ -66,16 +69,16 @@ def update_light(token, psn_token, light_id):
         response = requests.get(psn_url)
         response = response.text
 
-        print(response)
+        print(games_dict)
 
         ##get info from text file 
 
         color = games_dict[f"{response}"]
-        post_url = f"http://localhost:3100/update_light/{token}/{light_id}/{color}"
+        post_url = f"http://localhost:{BACKEND_PORT}/update_light/{token}/{light_id}/{color}"
 
         requests.put(post_url)
 
-        time.sleep(2)
+        time.sleep(1)
     #time.sleep(15)
         
     ##run code here 
@@ -101,7 +104,6 @@ def update_light_temp(token, psn_token, games_dict, light_id):
     post_url = f"http://localhost:3100/update_light/{token}/{light_id}/{color}"
 
     requests.put(post_url)
-
     time.sleep(1)
 
 def main():
@@ -124,24 +126,24 @@ def main():
     
     print(games_dict)
     procs = []
-    while(True):
+    while True:
         for x in label:
             print(x)
             proc = Process(target=update_light_temp , args=(token, psn_token, games_dict, x))
             proc.start()
-            procs.append(proc)
-
-        time.sleep(4)
-
-        for p in procs:
-            p.terminate()
-
-        
-        procs.clear()
+            
 
         # thread = threading.Thread(target=update_light , args=(token, psn_token, x))
             #threads.append(thread)
         # thread.start()
+        #TODO: Update time, LIFX allows a refresh rate of 120 req / 60 sec, time will need larger for greater #
+        # of lights
+        time.sleep(len(label)/2)
+        for p in procs:
+            print("Entering Here")
+            p.join()
+            p.terminate()
+            
 
 
 if __name__ == "__main__":
