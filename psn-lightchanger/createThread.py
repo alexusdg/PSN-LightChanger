@@ -1,5 +1,6 @@
-import threading
 from multiprocessing import Process
+import httpx
+import threading
 import requests
 import time
 import sys
@@ -8,109 +9,42 @@ import os
 
 BACKEND_PORT = os.environ.get('REACT_APP_BACKEND_PORT')
 
-def get_color(response):
+LIFX_REQUESTS = 120
+LIFX_SECONDS = 60
+LIFX_REFRESH_RATE = LIFX_REQUESTS/LIFX_SECONDS
 
-    try:
-        with open('games_lights.txt', 'r') as file:
-            for line in file:
-                if line.startswith(f'"{response}"'):
-                    color_to_change = line.split('/')[1]
-                    return color_to_change
-        file.seek(0)
-    except FileNotFoundError:
-        print(FileNotFoundError)
-        
+def update_light_temp(token, psn_token, games_dict, light_id, tim):
+    t_end = time.time() + 60 * 0.25
+    while time.time() < t_end:
+        psn_url = f"http://localhost:3100/ps_game_playing/{psn_token}"
 
-
-
-def update_light(token, psn_token, light_id):
-
-    print(light_id)
-    sys.stdout.flush()
-
-    t_end = time.time() + 60 * 1
-
-    #url = f"https://api.lifx.com/v1/lights/{light_id}"
-
-    #headers = {
-    #    "accept": "application/json",
-    #    "Authorization": token
-    #}
-
-    #response = requests.get(url, headers=headers)
-
-    #url = f"http://localhost:3100/light_color/{token}/{light_id}"
-
-    #response = requests.get(url)
-
-    #get current game being played
-
-    #color_to_change = ""
-
-    print("before opening file")
-
-    games_dict = {}
-
-    with open('games_lights.txt', 'r') as file:
-            for line in file:
-                games_dict[line.split('/')[0]] = line.split('/')[1].strip()
-                
-    
-    print(games_dict)
-
-    psn_url = f"http://localhost:{BACKEND_PORT}/ps_game_playing/{psn_token}"
-    print(psn_url)
-    time.sleep(1)
-    sys.stdout.flush()
-
-    time.sleep(2)
-    while(1):
 
         response = requests.get(psn_url)
         response = response.text
 
-        print(games_dict)
+        #print(games_dict)
 
-        ##get info from text file 
+        if response == {} or response == "{}":
+            continue
 
-        color = games_dict[f"{response}"]
-        post_url = f"http://localhost:{BACKEND_PORT}/update_light/{token}/{light_id}/{color}"
+        print(response)
+        #get color info from games dict
 
-        requests.put(post_url)
+        color = json.dumps(games_dict[f"{response}"])
 
-        time.sleep(1)
-    #time.sleep(15)
+        #This API requests prevents the while loop from working continuosly 
+        #with httpx.Client() as client:
+        post_url = f"http://localhost:3100/update_light/{token}/{light_id}/{color}"
+            #client.post(post_url)
         
-    ##run code here 
-
-
-    ##sleep for 10 seconds
-
-    #return to original
-
-#will take in the token 
-
-def update_light_temp(token, psn_token, games_dict, light_id):
-    psn_url = f"http://localhost:3100/ps_game_playing/{psn_token}"
-
-    response = requests.get(psn_url)
-    response = response.text
-
-    print(games_dict)
-
-    ##get info from text file 
-
-    color = games_dict[f"{response}"]
-    post_url = f"http://localhost:3100/update_light/{token}/{light_id}/{color}"
-
-    requests.put(post_url)
-    time.sleep(1)
+       
+        requests.put(post_url)
+        time.sleep(tim)
 
 def main():
     token = sys.argv[1]
     psn_token = str(sys.argv[2])
     label = sys.argv[3]
-    games_dict = {}
 
     print(label)
 
@@ -118,33 +52,22 @@ def main():
 
     processes = []
 
-    #pool = multiprocessing.Pool()
-    with open('games_lights.txt', 'r') as file:
-            for line in file:
-                games_dict[line.split('/')[0]] = line.split('/')[1].strip()
+    file = open('games.json')
+    games_dict = json.load(file)
+    json.dumps(games_dict)
                 
     
     print(games_dict)
     procs = []
-    while True:
-        for x in label:
-            print(x)
-            proc = Process(target=update_light_temp , args=(token, psn_token, games_dict, x))
-            proc.start()
-            
+    #while True:
+    for x in label:
+        print(x)
+        proc = Process(target=update_light_temp , args=(token, psn_token, games_dict, x, len(label)/LIFX_REFRESH_RATE))
+        proc.start()
 
-        # thread = threading.Thread(target=update_light , args=(token, psn_token, x))
-            #threads.append(thread)
-        # thread.start()
-        #TODO: Update time, LIFX allows a refresh rate of 120 req / 60 sec, time will need larger for greater #
-        # of lights
-        time.sleep(len(label)/2)
-        for p in procs:
-            print("Entering Here")
-            p.join()
-            p.terminate()
-            
-
+    for p in procs:
+        print("Entering Here")
+        p.join()            
 
 if __name__ == "__main__":
     main()

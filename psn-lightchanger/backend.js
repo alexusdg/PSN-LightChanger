@@ -88,7 +88,6 @@ app.put("/create_thread/:label", (req, res) => {
     const authToken = 'Bearer '.concat(req.body.data.lifx_token)
     const psn_token = req.body.data.psn_token
 
-    //var label = JSON.parse(req.params.label)
 
     const pyProg = spawn('python', ['createThread.py'].concat(req.body.data.lifx_token, psn_token, req.params.label));
 
@@ -138,9 +137,9 @@ app.put("/update_light/:token/:id/:color_req/", (req, res) => {
 
     color_req = JSON.parse(req.params.color_req)
 
-    id = JSON.parse(id)
+    console.log(color_req)
 
-    // "color" : `hue:${color_req.hue} saturation:${color_req.saturation} kelvin:${color_req.kelvin}`
+    id = JSON.parse(id)
 
     const options = {
         method: 'PUT',
@@ -158,7 +157,9 @@ app.put("/update_light/:token/:id/:color_req/", (req, res) => {
       axios
         .request(options)
         .then(res => console.log(res.data))
-        .catch(err => console.error(err));
+        .catch(err => console.error(err))
+
+    res.status(200).send("ok")
 })
 
 app.listen(3100, () => {
