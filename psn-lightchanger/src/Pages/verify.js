@@ -13,7 +13,7 @@ import { VerifyPsnUser } from '../Functions/psn_functions.js';
 
 export function LifxVerify() {
 
-    const [Auth, setAuth] = useState(<IsAuth/>)
+    const [Auth, setAuth] = useState(<></>)
 
     function ToggleAuthCheck(){
         

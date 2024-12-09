@@ -6,9 +6,10 @@ Application that changes the color of smart lights based on the game playing.
 
 
 Technologies used:
-    - Node.js 
     - JS + ReactJS
+    - Node.js
+    - Python
     - Electron 
-    - Mocha (Testing Framework) + Chai (Assertion Library)
+    - Jest (Testing Framework)
 
 Understand npm and webpack
