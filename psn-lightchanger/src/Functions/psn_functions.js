@@ -14,6 +14,12 @@ export function VerifyPsnUser() {
 
   var entered_lifx_code = document.querySelector(".token_input").value
 
+  try {
+    entered_lifx_code = entered_lifx_code.replace(/\s/g, "")
+  } catch (e) {
+    void 0
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:${PORT}/psinfo/${entered_lifx_code}`, {})
