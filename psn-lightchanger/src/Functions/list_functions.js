@@ -69,7 +69,7 @@ export function CheckIfLightsChosen(){
         
         data: {
             lifx_token : localStorage.getItem('lifx_token'),
-            psn_token : localStorage.getItem('psn_user_info')
+            psn_token : localStorage.getItem('psn_refresh_token')
     }}
 
 
