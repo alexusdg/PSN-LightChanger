@@ -47,8 +47,7 @@
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --env=jsdom",
-    "pretty" : "npx prettier -w --no-semi"
+    "test": "jest --env=jsdom --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
   "eslintConfig": {
     "extends": [

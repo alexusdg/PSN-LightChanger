@@ -1,4 +1,4 @@
-import { cleanup, screen, render } from "@testing-library/react"
+import { cleanup, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 
@@ -19,8 +19,6 @@ describe("Title Renders", () => {
         expect(elem.textContent).toBe("PSN Light Changer")
     }) 
 })
-
-
 
 describe("Welcome Renders", () => {
     test(`${RENDERS_TEST}`, () => {
@@ -132,11 +130,3 @@ describe("List Lights Renders", () => {
         expect(elem.textContent).toBe("Fake Light Name")
     })
 })
-
-
-
-
-
-
-
-
