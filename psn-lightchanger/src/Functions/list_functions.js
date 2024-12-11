@@ -1,105 +1,99 @@
-import { useLocation, Navigate } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom"
 import { ListLights } from "../Components/interface"
-import axios from 'axios'
+import axios from "axios"
+
+const PORT = process.env.REACT_APP_BACKEND_PORT
 
 /**
- * 
- * @function ShowLights will use the lights available stored in 
- *           local storage to create an html that will display 
- *           to users the available lights with the design 
+ * @function ShowLights will use the lights available stored in
+ *           local storage to create an html that will display
+ *           to users the available lights with the design
  * @returns an html 9f the available lights
  */
-export function ShowLights(){
+export function ShowLights() {
+  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
 
-    var lights_avail = JSON.parse(localStorage.getItem('lights_avail'))
+  var lights_avail_names = []
 
-    var lights_avail_names = []
+  for (var i = 0; i < lights_avail.length; i++) {
+    lights_avail_names.push(
+      <ListLights
+        key={lights_avail[i].label}
+        light_name={lights_avail[i].label}
+      />
+    )
+  }
 
-    for(var i = 0; i < lights_avail.length; i++){
-
-            lights_avail_names.push(<ListLights key={lights_avail[i].label} light_name={lights_avail[i].label}/>)
-    }
-
-    return(<>{lights_avail_names}</>)
+  return <>{lights_avail_names}</>
 }
 
 /**
- * 
- * @function LightChosen will update the color of div clicked 
+ * @function LightChosen will update the color of div clicked
  *           If light clicked add color, else/or remove the color
  * @returns nothing
  */
 export function LightChosen(optionClicked) {
-
-    optionClicked.target.classList.contains('lights_label_chosen') ? optionClicked.target.classList.remove('lights_label_chosen') : optionClicked.target.classList.add('lights_label_chosen');
+  optionClicked.target.classList.contains("lights_label_chosen")
+    ? optionClicked.target.classList.remove("lights_label_chosen")
+    : optionClicked.target.classList.add("lights_label_chosen")
 }
 
 /**
- * @todo for each json that gets pushed, that will get passed into the c++ fucntion to create a thread
  * @function CheckIfLightsChosen will use the list of available lights to determine
  *           if the div that contains the respective label as an id contains "lights_label_chosen"
  *           indicating it has been clicked.
- * @returns a list of lights that were chosen, in their original object form 
+ * @returns a list of lights that were chosen, in their original object form
  */
-export function CheckIfLightsChosen(){
-    var lights_avail = JSON.parse(localStorage.getItem('lights_avail'))
-    
-    var lights_chosen = []
-    
-    for(var i = 0; i < lights_avail.length; i++){
-        var current_label = lights_avail[i].label
+export function CheckIfLightsChosen() {
+  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
 
-        try{
-            if (document.getElementById(`${current_label}`).classList.contains('lights_label_chosen'))
-                lights_chosen.push(JSON.stringify(`${lights_avail[i].id}`))
-                console.log(lights_avail[i].id)
+  var lights_chosen = []
 
-                //var data = JSON.stringify(lights_avail[i])
-        }
-        finally{
-            continue
-        }
-        
+  for (var i = 0; i < lights_avail.length; i++) {
+    var current_label = lights_avail[i].label
+
+    try {
+      if (
+        document
+          .getElementById(`${current_label}`)
+          .classList.contains("lights_label_chosen")
+      )
+        lights_chosen.push(JSON.stringify(`${lights_avail[i].id}`))
+    } finally {
+      continue
     }
+  }
 
-    console.log(lights_chosen)
-
-    var dt = {
-        
-        data: {
-            lifx_token : localStorage.getItem('lifx_token'),
-            psn_token : localStorage.getItem('psn_user_info')
-    }}
-
-
-     axios.put(`http://localhost:3100/create_thread/${lights_chosen}`, dt)
-
-    return lights_chosen
+  return lights_chosen
 }
 
 /**
- * 
  * @function IsSetupComplete will navigate to complete screen if the list of lights
  *           chosen is greater than 0, indicating that there has been at least one light
  *           to change.
- * @returns nothing
+ *           Before navigating the functions will make the api requests to create the processes
+ *           for the lights
+ * @returns an empty html
  */
-export function IsSetupComplete(){
-    const location = useLocation()
+export function IsSetupComplete() {
+  const navigate = useNavigate()
 
-    var lights_chosen = CheckIfLightsChosen()
+  var lights_chosen = CheckIfLightsChosen()
 
-    if(lights_chosen.length > 0){
-        localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
+  if (lights_chosen.length > 0) {
+    localStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
 
-        return (
-            <Navigate
-              to={{ pathname: `/complete/`, state: { from: location } }}
-              replace
-            />
-          );
+    var dt = {
+      data: {
+        lifx_token: localStorage.getItem("lifx_token"),
+        psn_token: localStorage.getItem("psn_refresh_token"),
+      },
     }
-       
-    return(<></>)
+
+    axios.put(`http://localhost:${PORT}/create_process/${lights_chosen}`, dt)
+
+    navigate("/complete/")
+  }
+
+  return <></>
 }
