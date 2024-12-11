@@ -12,6 +12,10 @@ Technologies used:
     - Electron 
     - Jest (Testing Framework)
 
-Linters: Prettier 
+Linters: Prettier and Pylint
+
+NOTES: 
+
+    User has to be ONLINE to read game data
 
 Understand npm and webpack
