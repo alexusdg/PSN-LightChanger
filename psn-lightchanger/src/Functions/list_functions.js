@@ -1,5 +1,4 @@
-import { useLocation, Navigate } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom'
 import { ListLights } from "../Components/interface"
 import axios from 'axios'
 
@@ -54,26 +53,11 @@ export function CheckIfLightsChosen(){
             if (document.getElementById(`${current_label}`).classList.contains('lights_label_chosen'))
                 lights_chosen.push(JSON.stringify(`${lights_avail[i].id}`))
                 console.log(lights_avail[i].id)
-
-                //var data = JSON.stringify(lights_avail[i])
         }
         finally{
             continue
-        }
-        
+        } 
     }
-
-    console.log(lights_chosen)
-
-    var dt = {
-        
-        data: {
-            lifx_token : localStorage.getItem('lifx_token'),
-            psn_token : localStorage.getItem('psn_refresh_token')
-    }}
-
-
-     axios.put(`http://localhost:3100/create_thread/${lights_chosen}`, dt)
 
     return lights_chosen
 }
@@ -86,19 +70,25 @@ export function CheckIfLightsChosen(){
  * @returns nothing
  */
 export function IsSetupComplete(){
-    const location = useLocation()
+    const navigate = useNavigate()
 
     var lights_chosen = CheckIfLightsChosen()
 
     if(lights_chosen.length > 0){
         localStorage.setItem('lights_chosen', JSON.stringify(lights_chosen))
+        console.log(lights_chosen.length)
 
-        return (
-            <Navigate
-              to={{ pathname: `/complete/`, state: { from: location } }}
-              replace
-            />
-          );
+        var dt = {
+        
+            data: {
+                lifx_token : localStorage.getItem('lifx_token'),
+                psn_token : localStorage.getItem('psn_refresh_token')
+        }}
+    
+    
+        axios.put(`http://localhost:3100/create_thread/${lights_chosen}`, dt)
+
+        navigate("/complete/")
     }
        
     return(<></>)
