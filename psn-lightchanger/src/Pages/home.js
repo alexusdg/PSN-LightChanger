@@ -1,7 +1,6 @@
 import { Welcome, Title, GetStartedButton } from "../Components/interface"
 
 /**
- *
  * @function Home will return an HTML of home layout
  *
  * @returns an HTML

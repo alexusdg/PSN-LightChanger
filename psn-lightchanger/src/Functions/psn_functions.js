@@ -6,6 +6,7 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
 
 /**
  * @function VerifyPsnUser Title component
+ * 
  * @returns an html that changes navigation to /lights_verify
  */
 export function VerifyPsnUser() {

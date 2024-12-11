@@ -81,7 +81,7 @@ app.get("/ps_game_playing/:access_code", (req, res) => {
 })
 
 
-app.put("/create_thread/:label", (req, res) => {
+app.put("/create_process/:label", (req, res) => {
 
     console.log(req.params.label)
     console.log("In create Thread")
@@ -89,7 +89,7 @@ app.put("/create_thread/:label", (req, res) => {
     const psn_token = req.body.data.psn_token
 
 
-    const pyProg = spawn('python', ['createThread.py'].concat(req.body.data.lifx_token, psn_token, req.params.label));
+    const pyProg = spawn('python', ['createProcess.py'].concat(req.body.data.lifx_token, psn_token, req.params.label));
 
     // Collect data from script and print to console
     var data = ''
