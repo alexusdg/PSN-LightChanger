@@ -57,7 +57,7 @@ app.get("/ps_game_playing/:access_code", (req, res) => {
   currentGame()
 })
 
-app.put("/create_process/:label", (req, res) => {
+app.put("/create_process/:lifx_id", (req, res) => {
   //console.log("In create Thread")
   const authToken = "Bearer ".concat(req.body.data.lifx_token)
   const psn_token = req.body.data.psn_token
@@ -67,7 +67,7 @@ app.put("/create_process/:label", (req, res) => {
     ["create_process.py"].concat(
       req.body.data.lifx_token,
       psn_token,
-      req.params.label,
+      req.params.lifx_id,
     ),
   )
 
@@ -107,9 +107,9 @@ app.get("/light_color/:token/:id", (req, res) => {
     })
 })
 
-app.put("/update_light/:token/:id/:color_req/", (req, res) => {
+app.put("/update_light/:token/:lifx_id/:color_req/", (req, res) => {
   const authToken = "Bearer ".concat(req.params.token)
-  var id = req.params.id
+  var id = req.params.lifx_id
   const state = req.data
 
   color_req = JSON.parse(req.params.color_req)
