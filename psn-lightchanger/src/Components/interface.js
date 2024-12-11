@@ -28,7 +28,6 @@ export const Header = () => {
 }
 
 /**
- *
  * @param {{ string }} page - page to direct user to after clicking button
  * @returns the get started button, with onclick functionality to navigate to
  *          the requested page
@@ -49,21 +48,17 @@ export const GetStartedButton = ({ page }) => {
 }
 
 /**
- *
  * @param {{ string }} title - title used for subheader
  * @returns html for the sub header used across pages
- *
  */
 export function SubHeader({ title }) {
   return <div id="sub_header">{title}</div>
 }
 
 /**
- *
  * @param {{ string }} account - account type to verify login
  * @param {{ string }} link - link to account
  * @returns html for Login instructions to be followed
- *
  */
 export function LoginInstruction({ account, link }) {
   return (
@@ -74,7 +69,6 @@ export function LoginInstruction({ account, link }) {
 }
 
 /**
- *
  * @param {{ string }} number - number for next instruction step
  * @returns html for the number associated with step in instructions
  *
@@ -88,10 +82,8 @@ export function CircleStep({ number }) {
 }
 
 /**
- *
  * @param {{ function }} authCheck - function to be ran when done button is clicked
  * @returns html for the done button used across pages
- *
  */
 export function DoneButton({ authCheck }) {
   return (
@@ -102,7 +94,6 @@ export function DoneButton({ authCheck }) {
 }
 
 /**
- *
  * @param {{string}} light_name - name of light assigned
  * @returns html for the light, implementing expected design
  */
