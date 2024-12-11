@@ -1,5 +1,5 @@
-import { useLocation, Navigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 import axios from "axios"
 
 /**
@@ -21,8 +21,7 @@ export function StoreAvailableLights(data) {
  * @returns nothing
  */
 export function IsAuth() {
-  const [auth, setAuth] = useState()
-  const location = useLocation()
+  const navigate = useNavigate()
 
   var entered_lifx_code = document.querySelector(".token_input").value
 
@@ -35,9 +34,7 @@ export function IsAuth() {
   const authToken = "Bearer ".concat(entered_lifx_code)
 
   useEffect(() => {
-    if (entered_lifx_code === "") {
-      setAuth("no")
-    } else {
+    if (entered_lifx_code !== "") {
       axios
         .get("https://api.lifx.com/v1/lights/all", {
           headers: {
@@ -46,25 +43,15 @@ export function IsAuth() {
         })
         .then((response) => {
           localStorage.setItem("lifx_token", entered_lifx_code)
-          console.log("yes")
-          setAuth("yes")
           StoreAvailableLights(response["data"])
+          navigate("/lights_list/")
         })
         .catch((err) => {
-          setAuth("no")
-          console.log("no")
+          console.log(err)
         })
         .finally(() => {})
     }
-  }, [entered_lifx_code, authToken])
+  }, [entered_lifx_code, authToken, navigate])
 
-  if (auth === "yes") {
-    return (
-      <Navigate
-        to={{ pathname: `/lights_list/`, state: { from: location } }}
-        replace
-      />
-    )
-  }
   return <p>""</p>
 }

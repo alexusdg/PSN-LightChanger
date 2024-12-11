@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import axios from "axios"
 
@@ -9,7 +9,6 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
  * @returns an html that changes navigation to /lights_verify
  */
 export function VerifyPsnUser() {
-  const location = useLocation()
   const navigate = useNavigate()
 
   var entered_lifx_code = document.querySelector(".token_input").value
@@ -31,7 +30,7 @@ export function VerifyPsnUser() {
       .catch((err) => {
         console.log(err)
       })
-  }, [entered_lifx_code])
+  }, [entered_lifx_code, navigate])
 
   return <></>
 }

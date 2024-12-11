@@ -12,4 +12,6 @@ Technologies used:
     - Electron 
     - Jest (Testing Framework)
 
+Linters: Prettier 
+
 Understand npm and webpack
