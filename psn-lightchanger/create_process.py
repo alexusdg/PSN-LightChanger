@@ -45,7 +45,7 @@ def main():
     file = open('games.json')
     games_dict = json.load(file)
     json.dumps(games_dict)
-                
+              
     procs = []
     for id in light_ids:
         print(id)

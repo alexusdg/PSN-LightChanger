@@ -14,12 +14,12 @@ app.get("/", (req, res, next) => {
 })
 
 /**
- * @api /psinfo is used to gather psn user information
+ * @api /psinfo will GET psn user information
  *
- * @returns a json contain psn user info upon success otherwise
+ * @sends a json contain psn user info upon success otherwise
  *          it will return nothing
  */
-app.get("/psinfo/:npsso", (req, res, next) => {
+app.get("/psinfo/:npsso", (req, res) => {
   const npssoCookie = req.params.npsso
 
   async function playerInfo() {
@@ -39,6 +39,11 @@ app.get("/psinfo/:npsso", (req, res, next) => {
   playerInfo()
 })
 
+/**
+ * @api /ps_game_playing will GET the title of the game currently
+ *      being played
+ * @sends the title of the game being played
+ */
 app.get("/ps_game_playing/:access_code", (req, res) => {
   const code = req.params.access_code //this is the refresh token
 
@@ -57,7 +62,12 @@ app.get("/ps_game_playing/:access_code", (req, res) => {
   currentGame()
 })
 
-app.put("/create_process/:lifx_id", (req, res) => {
+/**
+ * @api /create_process PUTS lifx ids through the create_procees python script
+ *      to create separate process for the list of lights passed in respectivelys
+ * @sends the title of the game being played
+ */
+app.put("/create_process/:lifx_ids", (req, res) => {
   //console.log("In create Thread")
   const authToken = "Bearer ".concat(req.body.data.lifx_token)
   const psn_token = req.body.data.psn_token
@@ -67,7 +77,7 @@ app.put("/create_process/:lifx_id", (req, res) => {
     ["create_process.py"].concat(
       req.body.data.lifx_token,
       psn_token,
-      req.params.lifx_id,
+      req.params.lifx_ids,
     ),
   )
 
@@ -91,6 +101,11 @@ app.put("/create_process/:lifx_id", (req, res) => {
   return res.status(200)
 })
 
+/**
+ * @api /light_color is used to GET the current Light color information of the LIFX
+ *      light
+ * @sends a json containing the color data
+ */
 app.get("/light_color/:token/:id", (req, res) => {
   const authToken = req.params.token
   const id = req.params.id
@@ -107,6 +122,11 @@ app.get("/light_color/:token/:id", (req, res) => {
     })
 })
 
+/**
+ * @api /update_light will update the color of the lifx light based on 
+ *      requests
+ * @sends a response code
+ */
 app.put("/update_light/:token/:lifx_id/:color_req/", (req, res) => {
   const authToken = "Bearer ".concat(req.params.token)
   var id = req.params.lifx_id
