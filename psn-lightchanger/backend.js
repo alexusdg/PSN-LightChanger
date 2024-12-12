@@ -14,13 +14,13 @@ app.get("/", (req, res, next) => {
 })
 
 /**
- * @api /psinfo will GET psn user information
- *
- * @sends a json contain psn user info upon success otherwise
- *          it will return nothing
+ * @api /psinfo will verrify psn user
+ * @param {string} npsso psn cookie provided by psn 
+ * @sends status 200 along with a json containing the refresh token
+ *        status 500 when user can't be authenticated
  */
-app.get("/psinfo/:npsso", (req, res) => {
-  const npssoCookie = req.params.npsso
+app.get("/ps_auth/", (req, res) => {
+  const npssoCookie = req.query.npsso
 
   async function playerInfo() {
     const myNpsso = npssoCookie
@@ -30,7 +30,7 @@ app.get("/psinfo/:npsso", (req, res) => {
 
       const authorization = await psnapi.exchangeCodeForAccessToken(accessCode)
 
-      res.send({ access_code: authorization.refreshToken })
+      res.status(200).send({ refresh_token: authorization.refreshToken })
     } catch (err) {
       res.status(500).send({ err })
     }
@@ -53,7 +53,7 @@ app.get("/ps_game_playing/:access_code", (req, res) => {
 
       const response = await psnapi.getBasicPresence(authorization, "me")
 
-      res.send(response.basicPresence.gameTitleInfoList[0].titleName)
+      res.status(200).send(response.basicPresence.gameTitleInfoList[0].titleName)
     } catch (err) {
       res.status(500).send(err)
     }
@@ -63,7 +63,7 @@ app.get("/ps_game_playing/:access_code", (req, res) => {
 })
 
 /**
- * @api /create_process PUTS lifx ids through the create_procees python script
+ * @api /create_process PUTS lifx ids through the create_process python script
  *      to create separate process for the list of lights passed in respectivelys
  * @sends the title of the game being played
  */

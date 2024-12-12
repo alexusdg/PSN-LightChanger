@@ -22,9 +22,12 @@ export function VerifyPsnUser() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:${PORT}/psinfo/${entered_lifx_code}`, {})
+      .get(`http://localhost:${PORT}/ps_auth/`, {
+
+        params: {"npsso" : `${entered_lifx_code}`}
+      })
       .then((res) => {
-        localStorage.setItem("psn_refresh_token", res.data.access_code)
+        localStorage.setItem("psn_refresh_token", res.data.refresh_token)
 
         navigate("/lights_verify/")
       })
