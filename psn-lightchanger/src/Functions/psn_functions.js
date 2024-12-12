@@ -6,7 +6,7 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
 
 /**
  * @function VerifyPsnUser Title component
- * 
+ *
  * @returns an html that changes navigation to /lights_verify
  */
 export function VerifyPsnUser() {
@@ -23,8 +23,7 @@ export function VerifyPsnUser() {
   useEffect(() => {
     axios
       .get(`http://localhost:${PORT}/ps_auth/`, {
-
-        params: {"npsso" : `${entered_lifx_code}`}
+        params: { npsso: `${entered_lifx_code}` },
       })
       .then((res) => {
         localStorage.setItem("psn_refresh_token", res.data.refresh_token)

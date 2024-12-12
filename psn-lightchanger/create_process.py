@@ -16,16 +16,18 @@ LIFX_REFRESH_RATE = LIFX_REQUESTS/LIFX_SECONDS
 def update_light_temp(token, psn_token, games_dict, light_id, nap_time):
     t_end = time.time() + 60 * 0.5
     while time.time() < t_end:
-        psn_url = f"http://localhost:3100/ps_game_playing/{psn_token}"
 
+        psn_url = f"http://localhost:3100/ps_game_playing/"
 
-        game_title = requests.get(psn_url)
-        game_title = game_title.text
-
-        if game_title == {} or game_title == "{}":
-            continue
+        game_title = requests.get(psn_url, params={"refresh_token" : psn_token}, headers={'Accept': 'application/json'})
+     
+        game_title = json.loads(game_title.text)
+        game_title = game_title["title"]
 
         print(game_title)
+
+        if game_title == {} or game_title == "{}" or game_title == "":
+            continue
         #get color info from games dict
 
         color = json.dumps(games_dict[f"{game_title}"])

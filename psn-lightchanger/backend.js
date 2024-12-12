@@ -14,8 +14,8 @@ app.get("/", (req, res, next) => {
 })
 
 /**
- * @api /psinfo will verrify psn user
- * @param {string} npsso psn cookie provided by psn 
+ * @api /psinfo will verify if user is a valid psn user
+ * @param {string} npsso psn cookie provided by psn
  * @sends status 200 along with a json containing the refresh token
  *        status 500 when user can't be authenticated
  */
@@ -42,20 +42,30 @@ app.get("/ps_auth/", (req, res) => {
 /**
  * @api /ps_game_playing will GET the title of the game currently
  *      being played
- * @sends the title of the game being played
+ * @param {string} refresh_token token provied by psn from /ps_auth
+ * @sends status 200 along with the title of the game being played
+ *        status 500 
  */
-app.get("/ps_game_playing/:access_code", (req, res) => {
-  const code = req.params.access_code //this is the refresh token
+app.get("/ps_game_playing/", (req, res) => {
+  const code = req.query.refresh_token //this is the refresh token
 
   async function currentGame() {
+    var response
     try {
       const authorization = await psnapi.exchangeRefreshTokenForAuthTokens(code)
 
-      const response = await psnapi.getBasicPresence(authorization, "me")
+      response = await psnapi.getBasicPresence(authorization, "me")
 
-      res.status(200).send(response.basicPresence.gameTitleInfoList[0].titleName)
+      res.status(200)
+        .send({"title" : response.basicPresence.gameTitleInfoList[0].titleName})
     } catch (err) {
-      res.status(500).send(err)
+        
+        if("basicPresence" in response)
+          res.status(200)
+              .send({"title" : ""})
+        else {
+          res.status(500).send(err)
+        }
     }
   }
 
@@ -114,16 +124,15 @@ app.get("/light_color/:token/:id", (req, res) => {
     .get(`https://api.lifx.com/v1/lights/${id}`, {
       headers: {
         Authorization: authToken,
-      },
+      }
     })
     .then((response) => {
-
       res.status(200).send({ color: response.data[0].color })
     })
 })
 
 /**
- * @api /update_light will update the color of the lifx light based on 
+ * @api /update_light will update the color of the lifx light based on
  *      requests
  * @sends a response code
  */
@@ -149,7 +158,6 @@ app.put("/update_light/:token/:lifx_id/:color_req/", (req, res) => {
       duration: "1",
     }
   }
-
   axios
     .request(options)
     .then((res) => {})
