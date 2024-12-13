@@ -119,11 +119,13 @@ app.put("/create_process/", (req, res) => {
  * @todo - update this when it gets used
  * @api /light_color is used to GET the current Light color information of the LIFX
  *      light
+ * @param {string} lifx_token lifx access token
+ * @param {string} id lifx light id
  * @sends a json containing the color data
  */
-app.get("/light_color/:token/:id", (req, res) => {
-  const authToken = req.params.token
-  const id = req.params.id
+app.get("/light_color/", (req, res) => {
+  const authToken = req.query.lifx_token
+  const id = req.query.id
 
   axios
     .get(`https://api.lifx.com/v1/lights/${id}`, {
@@ -139,6 +141,8 @@ app.get("/light_color/:token/:id", (req, res) => {
 /**
  * @api /update_light will update the color of the lifx light based on
  *      requests
+ * @param {string} light_id - lifx light ids
+ * @param {json} color_data - json containing the color data 
  * @sends a response code
  */
 app.put("/update_light/", (req, res) => {
