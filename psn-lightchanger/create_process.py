@@ -8,10 +8,11 @@ import json
 import os
 import requests
 
+from dotenv import load_dotenv
 from multiprocessing import Process
 
-
-BACKEND_PORT = os.environ.get('REACT_APP_BACKEND_PORT')
+load_dotenv()
+BACKEND_PORT = os.getenv('REACT_APP_BACKEND_PORT')
 
 LIFX_REQUESTS = 120
 LIFX_SECONDS = 60
@@ -37,7 +38,7 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
     t_end = time.time() + 60 * 0.5
     while time.time() < t_end:
 
-        psn_url = f"http://localhost:3100/ps_game_playing/"
+        psn_url = f"http://localhost:{BACKEND_PORT}/ps_game_playing/"
 
         game_title = requests.get(psn_url, params={"refresh_token" : psn_token})
     
@@ -53,7 +54,7 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
         color = json.dumps(games_dict[f"{game_title}"])
 
         #This API requests prevents the while loop from working continuosly
-        post_url = f"http://localhost:3100/update_light/"
+        post_url = f"http://localhost:{BACKEND_PORT}/update_light/"
  
         requests.put(post_url, params={"lifx_token" : lifx_token, 
                                        "light_id" : light_id,
