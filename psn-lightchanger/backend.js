@@ -9,7 +9,7 @@ const app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get("/", (req, res, next) => {
+app.get("/", () => {
   throw new Error("BROKEN")
 })
 
@@ -74,20 +74,24 @@ app.get("/ps_game_playing/", (req, res) => {
 
 /**
  * @api /create_process PUTS lifx ids through the create_process python script
- *      to create separate process for the list of lights passed in respectivelys
- * @sends the title of the game being played
+ *      to create separate process for the list of lights passed in respectively
+ * @param {string} lifx_token lifx_token
+ * @param {string} psn_token psn refresh token
+ * @param {array} lifx_ids list of the ids of lights to change the color of
+ * @sends status 200 - ok
  */
-app.put("/create_process/:lifx_ids", (req, res) => {
+app.put("/create_process/", (req, res) => {
   //console.log("In create Thread")
-  const authToken = "Bearer ".concat(req.body.data.lifx_token)
-  const psn_token = req.body.data.psn_token
+  const lifx_token = req.query.lifx_token
+  const psn_token = req.query.psn_token
+  const lifx_ids = req.query.lifx_ids
 
   const pyProg = spawn(
     "python",
     ["create_process.py"].concat(
-      req.body.data.lifx_token,
+      lifx_token,
       psn_token,
-      req.params.lifx_ids,
+      lifx_ids
     ),
   )
 
@@ -108,10 +112,11 @@ app.put("/create_process/:lifx_ids", (req, res) => {
     console.log(data)
   })
 
-  return res.status(200)
+  res.status(200)
 })
 
 /**
+ * @todo - update this when it gets used
  * @api /light_color is used to GET the current Light color information of the LIFX
  *      light
  * @sends a json containing the color data
@@ -136,15 +141,15 @@ app.get("/light_color/:token/:id", (req, res) => {
  *      requests
  * @sends a response code
  */
-app.put("/update_light/:token/:lifx_id/:color_req/", (req, res) => {
-  const authToken = "Bearer ".concat(req.params.token)
-  var id = req.params.lifx_id
-  const state = req.data
+app.put("/update_light/", (req, res) => {
+  const authToken = "Bearer ".concat(req.query.lifx_token)
+  var id = req.query.light_id
+  var color_data = req.query.color_data
 
-  color_req = JSON.parse(req.params.color_req)
-
+  color_data = JSON.parse(color_data)
   id = JSON.parse(id)
 
+  
   const options = {
     method: "PUT",
     url: `https://api.lifx.com/v1/lights/${id}/state`,
@@ -154,7 +159,7 @@ app.put("/update_light/:token/:lifx_id/:color_req/", (req, res) => {
       Authorization: authToken,
     },
     data: {
-      color: `hue:${color_req.hue} saturation:${color_req.saturation} kelvin:${color_req.kelvin}`,
+      color: `hue:${color_data.hue} saturation:${color_data.saturation} kelvin:${color_data.kelvin}`,
       duration: "1",
     }
   }

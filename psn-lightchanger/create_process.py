@@ -13,7 +13,7 @@ LIFX_REQUESTS = 120
 LIFX_SECONDS = 60
 LIFX_REFRESH_RATE = LIFX_REQUESTS/LIFX_SECONDS
 
-def update_light_temp(token, psn_token, games_dict, light_id, nap_time):
+def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
     t_end = time.time() + 60 * 0.5
     while time.time() < t_end:
 
@@ -26,15 +26,18 @@ def update_light_temp(token, psn_token, games_dict, light_id, nap_time):
 
         print(game_title)
 
-        if game_title == {} or game_title == "{}" or game_title == "":
+        if game_title == "":
             continue
         #get color info from games dict
 
         color = json.dumps(games_dict[f"{game_title}"])
 
         #This API requests prevents the while loop from working continuosly
-        post_url = f"http://localhost:3100/update_light/{token}/{light_id}/{color}"  
-        requests.put(post_url)
+        post_url = f"http://localhost:3100/update_light/"
+ 
+        requests.put(post_url, params={"lifx_token" : lifx_token, 
+                                       "light_id" : light_id,
+                                       "color_data" : color})
         time.sleep(nap_time)
 
 def main():
@@ -47,10 +50,9 @@ def main():
     file = open('games.json')
     games_dict = json.load(file)
     json.dumps(games_dict)
-              
+
     procs = []
     for id in light_ids:
-        print(id)
         proc = Process(target=update_light_temp,
                        args=(token,
                              psn_token,
