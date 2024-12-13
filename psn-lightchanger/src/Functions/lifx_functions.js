@@ -39,7 +39,7 @@ export function IsAuth() {
         .get("https://api.lifx.com/v1/lights/all", {
           headers: {
             Authorization: authToken,
-          },
+          }
         })
         .then((response) => {
           localStorage.setItem("lifx_token", entered_lifx_code)

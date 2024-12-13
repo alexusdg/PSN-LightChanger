@@ -1,3 +1,7 @@
+'''
+create_process.py will create the processes to update the color 
+of lights simultaneously 
+'''
 import sys
 import time
 import json
@@ -35,8 +39,8 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
 
         psn_url = f"http://localhost:3100/ps_game_playing/"
 
-        game_title = requests.get(psn_url, params={"refresh_token" : psn_token}, headers={'Accept': 'application/json'})
-     
+        game_title = requests.get(psn_url, params={"refresh_token" : psn_token})
+    
         game_title = json.loads(game_title.text)
         game_title = game_title["title"]
 
@@ -64,7 +68,7 @@ def main():
         lifx_token (string) : lifx access token
         psn_token (string) : psn refresh token
         light_ids (array) : string array containg light ids
-        
+
     Returns:     
         nothing
     '''

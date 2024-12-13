@@ -84,9 +84,10 @@ export function IsSetupComplete() {
     localStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
 
     axios.put(`http://localhost:${PORT}/create_process/`, null, {
-      params: { lifx_token : `${localStorage.getItem("lifx_token")}`,
-                psn_token : `${localStorage.getItem("psn_refresh_token")}`,
-                lifx_ids : `${lights_chosen}`
+      params: {
+        lifx_token: `${localStorage.getItem("lifx_token")}`,
+        psn_token: `${localStorage.getItem("psn_refresh_token")}`,
+        lifx_ids: `${lights_chosen}`,
       }
     })
 
