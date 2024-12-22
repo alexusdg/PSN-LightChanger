@@ -35,6 +35,7 @@
     "react": "^18.3.1",
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
+    "save-dev": "^0.0.1-security",
     "stream": "^0.0.3",
     "ts-node": "^10.9.2",
     "unfetch": "^5.0.0",
@@ -47,7 +48,7 @@
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --env=jsdom --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "jest --coverage --env=jsdom --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
   "eslintConfig": {
     "extends": [

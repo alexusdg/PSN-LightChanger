@@ -1,9 +1,22 @@
 import { cleanup, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
-import { createMemoryRouter, RouterProvider } from "react-router-dom"
+import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
+import { Simulate } from "react-dom/test-utils"
 
 const RENDERS_TEST = "Renders"
 const CORRECT_TEXT_TEST = "Renders with Correct Text"
+const NAVIGATE_TEXT_TEST = "Navigates to The Correct Route"
+
+const mockedUsedNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: jest.fn(),
+  }));
+
+  beforeEach(() => {
+    mockedUsedNavigate.mockReset();
+  });
 
 afterEach(cleanup)
 
@@ -49,8 +62,7 @@ describe("Header Renders", () => {
 })
 
 describe("Get Started Button Renders", () => {
-    const router = createMemoryRouter([{path: '*',element:<GetStartedButton/>}])
-    
+    const router = createMemoryRouter([{path: '/',element:<GetStartedButton page='/test'/>}])
     test(`${RENDERS_TEST}`, () => {
         
         render(<RouterProvider router={router}/>)
@@ -61,6 +73,18 @@ describe("Get Started Button Renders", () => {
         const elem = document.getElementById("get_started")
 
         expect(elem.textContent).toBe("Get Started")
+    })
+
+    test(`${NAVIGATE_TEXT_TEST}`, () => {
+        render(<RouterProvider router={router} />)
+    
+        useNavigate.mockReturnValue(mockedUsedNavigate);
+        const elem = document.getElementById("get_started")
+        elem.click()
+        
+        expect(useNavigate).toHaveBeenCalledTimes(1)    
+        expect(useNavigate).toHaveBeenCalledWith('/test')
+
     })
     
 })
