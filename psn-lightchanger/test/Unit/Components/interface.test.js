@@ -2,21 +2,28 @@ import { cleanup, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
 import { Simulate } from "react-dom/test-utils"
+import { LightChosen } from "../../../src/Functions/list_functions.js"
 
 const RENDERS_TEST = "Renders"
 const CORRECT_TEXT_TEST = "Renders with Correct Text"
 const NAVIGATE_TEXT_TEST = "Navigates to The Correct Route"
+const CORRECT_FUNCITON_CALLED = "Onclick Triggers Correct Function"
 
 const mockedUsedNavigate = jest.fn();
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: jest.fn(),
-  }));
+  }))
 
-  beforeEach(() => {
+jest.mock('../../../src/Functions/list_functions.js', () => ({
+    ...jest.requireActual('../../../src/Functions/list_functions.js'),
+    LightChosen: jest.fn(),
+}))
+
+beforeEach(() => {
     mockedUsedNavigate.mockReset();
-  });
+})
 
 afterEach(cleanup)
 
@@ -152,5 +159,13 @@ describe("List Lights Renders", () => {
         const elem = document.querySelector(".lights_label")
 
         expect(elem.textContent).toBe("Fake Light Name")
+    })
+
+    test(`${CORRECT_FUNCITON_CALLED}`, () => {
+        render(<ListLights light_name={"Fake Light Name"}/>)
+        const elem = document.querySelector(".lights_label")
+        elem.click()
+
+        expect(LightChosen).toHaveBeenCalledTimes(1)
     })
 })
