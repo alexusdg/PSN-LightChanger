@@ -1,7 +1,6 @@
 import { cleanup, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
-import { Simulate } from "react-dom/test-utils"
 import { LightChosen } from "../../../src/Functions/list_functions.js"
 
 const RENDERS_TEST = "Renders"
