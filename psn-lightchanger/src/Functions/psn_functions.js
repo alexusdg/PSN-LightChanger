@@ -26,7 +26,7 @@ export function VerifyPsnUser() {
         params: { npsso: `${entered_lifx_code}` },
       })
       .then((res) => {
-        localStorage.setItem("psn_refresh_token", res.data.refresh_token)
+        sessionStorage.setItem("psn_refresh_token", res.data.refresh_token)
 
         navigate("/lights_verify/")
       })

@@ -34,7 +34,7 @@ export const Header = () => {
  */
 
 export const GetStartedButton = ({ page }) => {
-  
+
   const handleClick = () => {
     useNavigate(page)
   }

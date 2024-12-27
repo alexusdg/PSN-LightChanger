@@ -9,7 +9,7 @@ import axios from "axios"
  * @returns nothing
  */
 export function StoreAvailableLights(data) {
-  localStorage.setItem("lights_avail", JSON.stringify(data))
+  sessionStorage.setItem("lights_avail", JSON.stringify(data))
 }
 
 /**
@@ -42,7 +42,7 @@ export function IsAuth() {
           }
         })
         .then((response) => {
-          localStorage.setItem("lifx_token", entered_lifx_code)
+          sessionStorage.setItem("lifx_token", entered_lifx_code)
           StoreAvailableLights(response["data"])
           navigate("/lights_list/")
         })

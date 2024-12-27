@@ -11,7 +11,7 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
  * @returns an html 9f the available lights
  */
 export function ShowLights() {
-  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
+  var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
 
   var lights_avail_names = []
 
@@ -45,7 +45,7 @@ export function LightChosen(optionClicked) {
  * @returns a list of lights that were chosen, in their original object form
  */
 export function CheckIfLightsChosen() {
-  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
+  var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
 
   var lights_chosen = []
 
@@ -81,12 +81,12 @@ export function IsSetupComplete() {
   var lights_chosen = CheckIfLightsChosen()
 
   if (lights_chosen.length > 0) {
-    localStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
+    sessionStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
 
     axios.put(`http://localhost:${PORT}/create_process/`, null, {
       params: {
-        lifx_token: `${localStorage.getItem("lifx_token")}`,
-        psn_token: `${localStorage.getItem("psn_refresh_token")}`,
+        lifx_token: `${sessionStorage.getItem("lifx_token")}`,
+        psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
         lifx_ids: `${lights_chosen}`,
       }
     })
