@@ -7,11 +7,11 @@ const CORRECT_TEXT_TEST = "Renders with Correct Text"
 const NAVIGATE_TEXT_TEST = "Navigates to The Correct Route"
 const CORRECT_FUNCITON_CALLED = "Onclick Triggers Correct Function"
 
-const mockedUsedNavigate = jest.fn();
+const mockedNavigate = jest.fn()
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockedUsedNavigate
+    useNavigate: () => mockedNavigate
   }))
 
 jest.mock('../../../src/Functions/list_functions.js', () => ({
@@ -20,7 +20,7 @@ jest.mock('../../../src/Functions/list_functions.js', () => ({
 }))
 
 beforeEach(() => {
-    mockedUsedNavigate.mockReset();
+    mockedNavigate.mockReset();
 })
 
 afterEach(cleanup)
@@ -87,8 +87,8 @@ describe("Get Started Button Renders", () => {
         const elem = document.getElementById("get_started")
         elem.click()
         
-        expect(mockedUsedNavigate).toHaveBeenCalledTimes(1)    
-        expect(mockedUsedNavigate).toHaveBeenCalledWith('/test')
+        expect(mockedNavigate).toHaveBeenCalledTimes(1)    
+        expect(mockedNavigate).toHaveBeenCalledWith('/test')
 
     })
 })

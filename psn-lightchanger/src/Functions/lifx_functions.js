@@ -5,7 +5,7 @@ import axios from "axios"
 /**
  *
  * @function StoreAvailableLights will store the list of lights returned
- *           in local storage
+ *           in sessionstorage
  * @returns nothing
  */
 export function StoreAvailableLights(data) {
@@ -20,10 +20,10 @@ export function StoreAvailableLights(data) {
  *           otherwise it will do nothing
  * @returns nothing
  */
-export function IsAuth() {
+export function IsAuth({ entered_lifx_code }) {
   const navigate = useNavigate()
 
-  var entered_lifx_code = document.querySelector(".token_input").value
+  //var entered_lifx_code = document.querySelector(".token_input").value
 
   try {
     entered_lifx_code = entered_lifx_code.replace(/\s/g, "")

@@ -18,14 +18,15 @@ import { VerifyPsnUser } from "../Functions/psn_functions.js"
 
 export function LifxVerify() {
   const [Auth, setAuth] = useState(<></>)
+  const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setAuth(<IsAuth />)
+    setAuth(<IsAuth entered_lifx_code={code}/>)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setAuth(<IsAuth />)
+      setAuth(<IsAuth entered_lifx_code={code}/>)
     }
   }
 
@@ -52,6 +53,7 @@ export function LifxVerify() {
             <input
               className="token_input"
               type="text"
+              onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}
             ></input>
           </div>
@@ -73,14 +75,15 @@ export function LifxVerify() {
 
 export function PSNVerify() {
   const [nav, setNav] = useState(<></>)
+  const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setNav(<VerifyPsnUser />)
+    setNav(<VerifyPsnUser entered_psn_code={code}/>)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setNav(<VerifyPsnUser />)
+      setNav(<VerifyPsnUser entered_psn_code={code}/>)
     }
   }
 
@@ -108,6 +111,7 @@ export function PSNVerify() {
             <input
               className="token_input"
               type="text"
+              onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}
             ></input>
           </div>
