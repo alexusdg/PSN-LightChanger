@@ -115,6 +115,25 @@ app.put("/create_process/", (req, res) => {
   res.status(200)
 })
 
+app.get("/lifx_auth/", (req, res) => {
+  const authToken =  req.query.lifx_token
+
+  axios
+    .get("https://api.lifx.com/v1/lights/all", {
+      headers: {
+        Authorization: authToken,
+      }
+    })
+    .then((response) => {
+      res.send(response.data).status(200)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {})
+
+})
+
 /**
  * @todo - update this when it gets used
  * @api /light_color is used to GET the current Light color information of the LIFX

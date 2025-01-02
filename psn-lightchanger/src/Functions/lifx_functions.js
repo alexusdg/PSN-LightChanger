@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import axios from "axios"
 
+const PORT = process.env.REACT_APP_BACKEND_PORT
+
 /**
  *
  * @function StoreAvailableLights will store the list of lights returned
@@ -36,10 +38,8 @@ export function IsAuth({ entered_lifx_code }) {
   useEffect(() => {
     if (entered_lifx_code !== "") {
       axios
-        .get("https://api.lifx.com/v1/lights/all", {
-          headers: {
-            Authorization: authToken,
-          }
+        .get(`http://localhost:${PORT}/lifx_auth/`, {
+          params: { lifx_token: `${authToken}`}
         })
         .then((response) => {
           sessionStorage.setItem("lifx_token", entered_lifx_code)
