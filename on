@@ -1,0 +1,53 @@
+[33mcommit 34f8e59c6642809daeb2fc725d9f62f935e6bf37[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Sun Dec 22 01:17:04 2024 -0500
+
+    Using jest coverage, added in navigation test in interface.test.js
+
+[33mcommit fd459e280e966d96ad5e737cb4af51f705b901e0[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Mon Dec 9 22:44:46 2024 -0500
+
+    cleaned up home page
+
+[33mcommit a8bca84faaa378839240a0f7f9c7ca2cca15c916[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Wed Nov 13 23:15:21 2024 -0500
+
+    Implemented some test for react components
+
+[33mcommit 0b4e52491f654c8338cd8939f05357f41baf84c1[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Sun Nov 10 00:56:32 2024 -0500
+
+    Added navigation to lifx verify after psn cookie entry.
+
+[33mcommit d866456145d1e5f9b2972f28497c7601817fbac4[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Fri Nov 8 23:46:11 2024 -0500
+
+    Resolved weird issue with not being able to fetch data. Implemented backend server since node was what I needed to be able to recieve the psn information
+
+[33mcommit fb05b6e9dcd343aa15c2a976469da3066ce4c93b[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Wed Aug 14 21:56:54 2024 -0400
+
+    added in comments for functions
+
+[33mcommit 70b30cab7c8ee2077dc2129a400c310409eb5a26[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Thu Jul 25 23:20:50 2024 -0400
+
+    Worked on implmeenting the functons and componets to handle auth code entered
+
+[33mcommit fcb638f9141ff6ba5d6924e84bc25e0e0f59e3fd[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Mon Jul 15 13:02:04 2024 -0400
+
+    Complete initial setup of envrionment
+
+[33mcommit 3b7044d4c1a0223b702f65a50bf2f0d3169066f0[m
+Author: Alexus Gore <alexusd12@gmail.com>
+Date:   Sun Jul 14 00:03:36 2024 -0400
+
+    Restructured and reconfigured everything. Build can be completed with react or craco. While writing code react will be used until the code is completed craco wil be used to test it as a desktop app
