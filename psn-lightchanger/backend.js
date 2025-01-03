@@ -115,6 +115,12 @@ app.put("/create_process/", (req, res) => {
   res.status(200)
 })
 
+/**
+ * @api /lifx_auth is used to verify token and send light data
+ *        back to user
+ * @param {string} lifx_token lifx access token
+ * @sends a json containing lifx light data
+ */
 app.get("/lifx_auth/", (req, res) => {
   const authToken =  req.query.lifx_token
 

@@ -103,7 +103,7 @@ export function PSNVerify() {
           <div className="instructions">
             <CircleStep number={2} />
             <div className="sub_instruction">
-              Enter Auth token found at the link below
+              Enter Auth token found at this link: 
               https://ca.account.sony.com/api/v1/ssocookie
             </div>
           </div>
