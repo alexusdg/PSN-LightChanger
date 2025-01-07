@@ -3,6 +3,7 @@
 
 body {
     margin: 0;
+    background-color: #0B132B;
 }
 
 #primary_color {
@@ -217,11 +218,14 @@ body {
 .header {
 
     height: 9%;
+    width: 100%;
+    
     color: #0B132B;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: calc(1vh + 2.5vw)
+    font-size: calc(1vh + 2.5vw);
+    position: fixed;
 }
 
 .lights_label {

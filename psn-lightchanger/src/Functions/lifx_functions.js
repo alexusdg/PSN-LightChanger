@@ -33,7 +33,7 @@ export function IsAuth({ entered_lifx_code }) {
     void 0
   }
 
-  const authToken = "Bearer ".concat(entered_lifx_code)
+  const authToken = entered_lifx_code
 
   useEffect(() => {
     if (entered_lifx_code !== "") {

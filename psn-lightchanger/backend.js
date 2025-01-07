@@ -122,7 +122,7 @@ app.put("/create_process/", (req, res) => {
  * @sends a json containing lifx light data
  */
 app.get("/lifx_auth/", (req, res) => {
-  const authToken =  req.query.lifx_token
+  const authToken = "Bearer ".concat(req.query.lifx_token)
 
   axios
     .get("https://api.lifx.com/v1/lights/all", {
@@ -134,7 +134,7 @@ app.get("/lifx_auth/", (req, res) => {
       res.send(response.data).status(200)
     })
     .catch((err) => {
-      console.log(err)
+      res.status(500).send({err})
     })
     .finally(() => {})
 
@@ -203,3 +203,5 @@ app.put("/update_light/", (req, res) => {
 app.listen(3100, () => {
   console.log("Server is Running")
 })
+
+module.exports = app
