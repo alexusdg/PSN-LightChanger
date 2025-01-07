@@ -59,8 +59,8 @@ app.get("/ps_game_playing/", (req, res) => {
       res.status(200)
         .send({"title" : response.basicPresence.gameTitleInfoList[0].titleName})
     } catch (err) {
-        
-        if("basicPresence" in response)
+
+        if(response !== undefined && "basicPresence" in response)
           res.status(200)
               .send({"title" : ""})
         else {
