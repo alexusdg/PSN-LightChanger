@@ -1,9 +1,10 @@
-const app = require('../../backend')
+const app = require('../../route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
 require('dotenv').config()
 
-jest.mock('axios')
+const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
+const LIFX_CODE = process.env.REACT_APP_LIFX
 
 afterAll(cleanup)
 
@@ -12,11 +13,12 @@ describe('PSN APIs', () => {
     var res1_2
 
     describe('GET /psn_auth', () => {
+        const url = "/ps_auth/"
 
         test('500 err response', async () => {
 
             await request(app)
-                .get("/ps_auth/")
+                .get(url)
                 .query({ npsso: ""})
                 .expect(500)
         })
@@ -24,21 +26,21 @@ describe('PSN APIs', () => {
         test('200 OK response', async () => {
 
             res1 = await request(app)
-                .get("/ps_auth/")
-                .query({ npsso: process.env.REACT_APP_PSN_TOKEN})
+                .get(url)
+                .query({ npsso: PSN_TOKEN})
 
             expect(res1.statusCode).toBe(200)
         })
-
-      })
+    })
 
     
-    describe('GET /ps_game_playing', () => {
+    describe('GET /ps_game_playing/', () => {
+        const url = "/ps_game_playing/"
 
         test('500 err response', async () => {
 
             await request(app)
-                .get("/ps_game_playing/")
+                .get(url)
                 .query({ refresh_token: ""})
                 .expect(500)
         })
@@ -46,7 +48,7 @@ describe('PSN APIs', () => {
         test('200 OK response', async () => {
 
             res1_2 = await request(app)
-                .get("/ps_game_playing/")
+                .get(url)
                 .query({ refresh_token: res1.body.refresh_token})
     
             
@@ -56,25 +58,24 @@ describe('PSN APIs', () => {
      })
   })
 
-describe('The router', () => {
-    test('The get route', async () => {
-      const res = await request(app).get('/lifx_auth/', {
-        params: {
-            lifx_token: ""
-        }
-      })
-      .then(expect(500))
-    })
+describe('LIFX APIs', () => {
+   
+    describe('GET /lifx_auth', () => {
+        const url = "/lifx_auth/"
 
-    test('The get route', async () => {
-        var code = ""
-        
-        request(app).get('/lifx_auth/', {
-          params: {
-              lifx_token: process.env.REACT_APP_LIFX
-          }
+        test('500 err response', async () => {
+
+            await request(app)
+                .get(url)
+                .query({ lifx_token : ""})
+                .expect(500)
         })
-        .then(expect(200))
-    
-      })
-  })
+
+        test('200 OK response', async () => {
+
+            await request(app)
+                .get(url)
+                .query({ lifx_token: LIFX_CODE})
+        })
+    })
+})

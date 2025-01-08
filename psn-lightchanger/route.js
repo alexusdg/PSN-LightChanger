@@ -200,8 +200,4 @@ app.put("/update_light/", (req, res) => {
   res.status(200).send("ok")
 })
 
-app.listen(3100, () => {
-  console.log("Server is Running")
-})
-
 module.exports = app
