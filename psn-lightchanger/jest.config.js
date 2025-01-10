@@ -6,6 +6,6 @@ module.exports = {
     ],
   "collectCoverageFrom": [
       "src/**/*.js",
-      "backend.js"
+      "route.js"
     ]
 };

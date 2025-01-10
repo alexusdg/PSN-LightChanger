@@ -1,10 +1,16 @@
+//jest.setTimeout(7000)
+
 const app = require('../../route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
+const child_process = require('child_process');
+const { procFunc } = require('../../route_functions')
+
 require('dotenv').config()
 
 const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 const LIFX_CODE = process.env.REACT_APP_LIFX
+
 
 afterAll(cleanup)
 
@@ -50,11 +56,33 @@ describe('PSN APIs', () => {
             res1_2 = await request(app)
                 .get(url)
                 .query({ refresh_token: res1.body.refresh_token})
-    
             
-            expect(res1.statusCode).toBe(200)
+            console.log(res1_2.body)
+            
+            expect(res1_2.statusCode).toBe(200)
 
           })
+     })
+
+     //@todo check fo valid id
+     describe('PUT /create_process', () => {
+        const url = "/create_process/"
+        const fake_id = "[fake_id]"
+
+        test('200 OK response', async () => {
+            const spy = jest.spyOn(procFunc, 'createProcess').mockImplementation(jest.fn())
+
+            const res =  await request(app)
+                .put(url)
+                .send({
+                    lifx_token : res1.body.refresh_token,
+                    psn_token : PSN_TOKEN,
+                    lifx_ids : fake_id
+                }).expect(200)
+
+            expect(spy).toHaveBeenCalled()
+            expect(spy).toHaveBeenCalledTimes(1)
+        })
      })
   })
 
@@ -73,9 +101,15 @@ describe('LIFX APIs', () => {
 
         test('200 OK response', async () => {
 
-            await request(app)
-                .get(url)
-                .query({ lifx_token: LIFX_CODE})
+            console.log(LIFX_CODE)
+
+            await process.nextTick(() => {});
+           const des =  await request(app)
+                .get("/lifx_auth/")
+                .query({ lifx_token: `${LIFX_CODE}`})
+                .expect(200)
+
+            console.log(des.body.error)
         })
     })
 })

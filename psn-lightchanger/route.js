@@ -1,10 +1,10 @@
-const { spawn } = require("child_process")
 const cors = require("cors")
 const psnapi = require("psn-api")
 const axios = require("axios")
 const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
+const { procFunc } =  require("./route_functions")
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -86,33 +86,9 @@ app.put("/create_process/", (req, res) => {
   const psn_token = req.query.psn_token
   const lifx_ids = req.query.lifx_ids
 
-  const pyProg = spawn(
-    "python",
-    ["create_process.py"].concat(
-      lifx_token,
-      psn_token,
-      lifx_ids
-    ),
-  )
+  procFunc.createProcess(lifx_token, psn_token, lifx_ids)
 
-  // Collect data from script and print to console
-  var data = ""
-  pyProg.stdout.on("data", (stdout) => {
-    data += stdout.toString()
-  })
-
-  // Print errors to console, if any
-  pyProg.stderr.on("data", (stderr) => {
-    console.log(`stderr: ${stderr}`)
-  })
-
-  // When script is finished, print collected data
-  pyProg.on("close", (code) => {
-    console.log(`child process exited with code ${code}`)
-    console.log(data)
-  })
-
-  res.status(200)
+  res.status(200).send("ok")
 })
 
 /**
@@ -123,7 +99,7 @@ app.put("/create_process/", (req, res) => {
  */
 app.get("/lifx_auth/", (req, res) => {
   const authToken = "Bearer ".concat(req.query.lifx_token)
-
+  console.log(authToken)
   axios
     .get("https://api.lifx.com/v1/lights/all", {
       headers: {

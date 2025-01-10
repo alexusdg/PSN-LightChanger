@@ -12,8 +12,6 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
 export function VerifyPsnUser({entered_psn_code}) {
   const navigate = useNavigate()
 
-  var entered_psn_code = document.querySelector(".token_input").value
-
   try {
     entered_psn_code = entered_psn_code.replace(/\s/g, "")
   } catch (e) {

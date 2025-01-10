@@ -42,7 +42,7 @@
     "vm": "^0.1.0"
   },
   "scripts": {
-    "start-dev": "react-scripts start",
+    "start-dev": "react-scripts start && node server.js",
     "build-dev": "react-scripts build",
     "test-dev": "react-scripts test",
     "eject-dev": "react-scripts eject",
