@@ -14,7 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "child_process": "^1.0.2",
     "crypto": "^1.0.1",
@@ -37,18 +37,19 @@
     "react-scripts": "^5.0.1",
     "save-dev": "^0.0.1-security",
     "stream": "^0.0.3",
+    "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
     "unfetch": "^5.0.0",
     "vm": "^0.1.0"
   },
   "scripts": {
-    "start-dev": "react-scripts start && node server.js",
+    "start-dev": "react-scripts start",
     "build-dev": "react-scripts build",
     "test-dev": "react-scripts test",
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --coverage --env=jsdom --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
   "eslintConfig": {
     "extends": [

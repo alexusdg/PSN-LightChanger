@@ -1,9 +1,8 @@
-//jest.setTimeout(7000)
+jest.setTimeout(10000);
 
 const app = require('../../route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
-const child_process = require('child_process');
 const { procFunc } = require('../../route_functions')
 
 require('dotenv').config()
@@ -56,9 +55,7 @@ describe('PSN APIs', () => {
             res1_2 = await request(app)
                 .get(url)
                 .query({ refresh_token: res1.body.refresh_token})
-            
-            console.log(res1_2.body)
-            
+    
             expect(res1_2.statusCode).toBe(200)
 
           })
@@ -72,7 +69,7 @@ describe('PSN APIs', () => {
         test('200 OK response', async () => {
             const spy = jest.spyOn(procFunc, 'createProcess').mockImplementation(jest.fn())
 
-            const res =  await request(app)
+            await request(app)
                 .put(url)
                 .send({
                     lifx_token : res1.body.refresh_token,
@@ -101,15 +98,11 @@ describe('LIFX APIs', () => {
 
         test('200 OK response', async () => {
 
-            console.log(LIFX_CODE)
-
-            await process.nextTick(() => {});
-           const des =  await request(app)
-                .get("/lifx_auth/")
-                .query({ lifx_token: `${LIFX_CODE}`})
+            await request(app)
+                .get(url)
+                .query({ lifx_token : LIFX_CODE})
                 .expect(200)
-
-            console.log(des.body.error)
         })
     })
 })
+

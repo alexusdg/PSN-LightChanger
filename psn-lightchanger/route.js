@@ -1,6 +1,6 @@
 const cors = require("cors")
 const psnapi = require("psn-api")
-const axios = require("axios")
+const axios = require('axios').default
 const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
@@ -99,21 +99,18 @@ app.put("/create_process/", (req, res) => {
  */
 app.get("/lifx_auth/", (req, res) => {
   const authToken = "Bearer ".concat(req.query.lifx_token)
-  console.log(authToken)
-  axios
-    .get("https://api.lifx.com/v1/lights/all", {
+
+  axios.get("https://api.lifx.com/v1/lights/all", {
       headers: {
-        Authorization: authToken,
+        Authorization: authToken
       }
     })
     .then((response) => {
-      res.send(response.data).status(200)
+      res.status(200).send(response.data)
     })
     .catch((err) => {
-      res.status(500).send({err})
+      res.status(500).send({error : err})
     })
-    .finally(() => {})
-
 })
 
 /**
