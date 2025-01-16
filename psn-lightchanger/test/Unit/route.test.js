@@ -72,7 +72,7 @@ describe('PSN APIs', () => {
             await request(app)
                 .put(url)
                 .send({
-                    lifx_token : res1.body.refresh_token,
+                    lifx_token : LIFX_CODE,
                     psn_token : PSN_TOKEN,
                     lifx_ids : fake_id
                 }).expect(200)
@@ -104,5 +104,28 @@ describe('LIFX APIs', () => {
                 .expect(200)
         })
     })
+
+    describe('PUT /update_light', () => {
+        const url = "/update_light/"
+
+        test('200 OK response', async () => {
+
+            await request(app)
+                .put(url)
+                .type('json')
+                .query({
+                    lifx_token : LIFX_CODE,
+                    light_id : 'd073d56553a2'
+                })
+                .send({
+                    color_data : {hue :181.88, saturation : 0.8842, kelvin : 2500}
+                })
+                .expect(200)
+        
+        })
+
+    })
+
+    
 })
 

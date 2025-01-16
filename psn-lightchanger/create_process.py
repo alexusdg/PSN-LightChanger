@@ -57,8 +57,8 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
         post_url = f"http://localhost:{BACKEND_PORT}/update_light/"
  
         requests.put(post_url, params={"lifx_token" : lifx_token, 
-                                       "light_id" : light_id,
-                                       "color_data" : color})
+                                       "light_id" : light_id}, 
+                                       json={"color_data" : color})
         time.sleep(nap_time)
 
 def main():

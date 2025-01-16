@@ -146,31 +146,9 @@ app.get("/light_color/", (req, res) => {
 app.put("/update_light/", (req, res) => {
   const authToken = "Bearer ".concat(req.query.lifx_token)
   var id = req.query.light_id
-  var color_data = req.query.color_data
+  var color_data = req.body.color_data
 
-  color_data = JSON.parse(color_data)
-  id = JSON.parse(id)
-
-  
-  const options = {
-    method: "PUT",
-    url: `https://api.lifx.com/v1/lights/${id}/state`,
-    headers: {
-      accept: "text/plain",
-      "content-type": "application/json",
-      Authorization: authToken,
-    },
-    data: {
-      color: `hue:${color_data.hue} saturation:${color_data.saturation} kelvin:${color_data.kelvin}`,
-      duration: "1",
-    }
-  }
-  axios
-    .request(options)
-    .then((res) => {})
-    .catch((err) => console.error(err))
-
-  res.status(200).send("ok")
+  procFunc.updateLight(res, authToken, id, color_data)  
 })
 
 module.exports = app
