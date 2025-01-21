@@ -5,12 +5,13 @@ const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
 const { procFunc } =  require("./route_functions")
+const { cloneElement } = require("react")
 
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get("/", () => {
-  throw new Error("BROKEN")
+app.get("/", (req, res) => {
+  res.status(500).send("BROKEN")
 })
 
 /**
@@ -121,7 +122,7 @@ app.get("/lifx_auth/", (req, res) => {
  * @param {string} id lifx light id
  * @sends a json containing the color data
  */
-app.get("/light_color/", (req, res) => {
+/**app.get("/light_color/", (req, res) => {
   const authToken = req.query.lifx_token
   const id = req.query.id
 
@@ -134,7 +135,7 @@ app.get("/light_color/", (req, res) => {
     .then((response) => {
       res.status(200).send({ color: response.data[0].color })
     })
-})
+})*/
 
 /**
  * @api /update_light will update the color of the lifx light based on
@@ -148,6 +149,12 @@ app.put("/update_light/", (req, res) => {
   var id = req.query.light_id
   var color_data = req.body.color_data
 
+  console.log(color_data)
+
+  //color_data = JSON.parse(color_data)
+  console.log(color_data["hue"])
+  res.status(200)
+  //console.log(color_data["hue"])
   procFunc.updateLight(res, authToken, id, color_data)  
 })
 
