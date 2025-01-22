@@ -21,7 +21,7 @@ jest.mock('../../../src/Functions/list_functions.js', () => ({
 }))
 
 beforeEach(() => {
-    mockedNavigate.mockReset();
+    mockedNavigate.mockReset()
 })
 
 afterEach(cleanup)

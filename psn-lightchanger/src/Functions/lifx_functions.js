@@ -25,6 +25,7 @@ export function StoreAvailableLights(data) {
 export function IsAuth({ entered_lifx_code }) {
   const navigate = useNavigate()
 
+  console.log(entered_lifx_code)
   //var entered_lifx_code = document.querySelector(".token_input").value
 
   try {

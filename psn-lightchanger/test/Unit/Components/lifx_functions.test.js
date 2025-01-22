@@ -1,13 +1,10 @@
-import { cleanup, render } from "@testing-library/react"
+import { cleanup, render, waitFor } from "@testing-library/react"
 import { IsAuth, StoreAvailableLights } from "../../../src/Functions/lifx_functions.js"
-import { use } from "react"
-import { createMemoryRouter, Route, RouterProvider, useNavigate } from "react-router-dom"
 
-import axios from "axios"
+require('dotenv').config()
 
-const lifx_code = process.env.REACT_APP_LIFX
-
-jest.mock('axios')
+const LIFX_CODE = process.env.REACT_APP_LIFX
+const PORT = process.env.REACT_APP_BACKEND_PORT
 
 const mockedNavigate = jest.fn()
 
@@ -15,6 +12,7 @@ jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => mockedNavigate
 }))
+
 
 beforeEach(() => {
     mockedNavigate.mockReset()
@@ -31,24 +29,25 @@ describe("Test StoreAvailableLights", () => {
         expect(sessionStorage.getItem("lights_avail")).toBe(JSON.stringify(test_lights_list))
     })
 })
-/*
+
 describe("Test Authentication isAuth", () => {
-    //Not Working
-    test("Test authentication failure", () => {
-        const router = createMemoryRouter([{path: '/', element:<IsAuth/>}])
-        var code = "passwrd"
-        render(<RouterProvider router={router}/>)
+    test("Test authentication failure", async () => {
+        render(<IsAuth/>)
 
-        expect(mockedNavigate).toHaveBeenCalledTimes(0)
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalledTimes(0)
+        })  
+
     })
 
-    //Not Working
-    test("Test Authetication success", () => {
-        const router = createMemoryRouter([{path: '/', element:<IsAuth/>}])
-        var code = lifx_code
-        render(<RouterProvider router={router}/>)
-        
-        expect(mockedNavigate).toHaveBeenCalledTimes(1)
-    })
+    test("Test authentication success", async () => {
+        render(<IsAuth entered_lifx_code={LIFX_CODE}/>)
 
-})*/
+        console.log(PORT)
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalled()
+            expect(mockedNavigate).toHaveBeenCalledTimes(1)
+            expect(mockedNavigate).toHaveBeenCalledWith('/lights_list/')
+        })  
+    })
+})
