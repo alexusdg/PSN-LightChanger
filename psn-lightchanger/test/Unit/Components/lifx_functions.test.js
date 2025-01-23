@@ -4,7 +4,6 @@ import { IsAuth, StoreAvailableLights } from "../../../src/Functions/lifx_functi
 require('dotenv').config()
 
 const LIFX_CODE = process.env.REACT_APP_LIFX
-const PORT = process.env.REACT_APP_BACKEND_PORT
 
 const mockedNavigate = jest.fn()
 
@@ -30,8 +29,8 @@ describe("Test StoreAvailableLights", () => {
     })
 })
 
-describe("Test Authentication isAuth", () => {
-    test("Test authentication failure", async () => {
+describe("Test Authentication IsAuth", () => {
+    test("Test Authentication Failure", async () => {
         render(<IsAuth/>)
 
         await waitFor(() => {
@@ -40,10 +39,10 @@ describe("Test Authentication isAuth", () => {
 
     })
 
-    test("Test authentication success", async () => {
+    test("Test Authentication success", async () => {
         render(<IsAuth entered_lifx_code={LIFX_CODE}/>)
 
-      await waitFor(() => {   
+        await waitFor(() => {   
             expect(mockedNavigate).toHaveBeenCalled()
             expect(mockedNavigate).toHaveBeenCalledTimes(1)
             expect(mockedNavigate).toHaveBeenCalledWith('/lights_list/')

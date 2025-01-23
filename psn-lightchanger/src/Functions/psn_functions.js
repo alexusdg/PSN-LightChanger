@@ -2,14 +2,13 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import axios from "axios"
 
-const PORT = process.env.REACT_APP_BACKEND_PORT
-
 /**
  * @function VerifyPsnUser Title component
  *
  * @returns an html that changes navigation to /lights_verify
  */
 export function VerifyPsnUser({entered_psn_code}) {
+  const PORT = process.env.REACT_APP_BACKEND_PORT
   const navigate = useNavigate()
 
   try {
@@ -29,7 +28,7 @@ export function VerifyPsnUser({entered_psn_code}) {
         navigate("/lights_verify/")
       })
       .catch((err) => {
-        console.log(err)
+        //console.log(err)
       })
   }, [entered_psn_code, navigate])
 
