@@ -43,11 +43,11 @@ describe("Test Authentication isAuth", () => {
     test("Test authentication success", async () => {
         render(<IsAuth entered_lifx_code={LIFX_CODE}/>)
 
-        console.log(PORT)
-        await waitFor(() => {
+      await waitFor(() => {   
             expect(mockedNavigate).toHaveBeenCalled()
             expect(mockedNavigate).toHaveBeenCalledTimes(1)
             expect(mockedNavigate).toHaveBeenCalledWith('/lights_list/')
+            expect(sessionStorage.getItem("lifx_token")).toBe(LIFX_CODE)
         })  
     })
 })

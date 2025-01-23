@@ -2,8 +2,6 @@ import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import axios from "axios"
 
-const PORT = process.env.REACT_APP_BACKEND_PORT
-
 /**
  *
  * @function StoreAvailableLights will store the list of lights returned
@@ -23,10 +21,8 @@ export function StoreAvailableLights(data) {
  * @returns nothing
  */
 export function IsAuth({ entered_lifx_code }) {
+  const PORT = process.env.REACT_APP_BACKEND_PORT
   const navigate = useNavigate()
-
-  console.log(entered_lifx_code)
-  //var entered_lifx_code = document.querySelector(".token_input").value
 
   try {
     entered_lifx_code = entered_lifx_code.replace(/\s/g, "")
@@ -48,11 +44,11 @@ export function IsAuth({ entered_lifx_code }) {
           navigate("/lights_list/")
         })
         .catch((err) => {
-          console.log(err)
+          //console.log(err)
         })
         .finally(() => {})
     }
   }, [entered_lifx_code, authToken, navigate])
 
-  return <p>""</p>
+  return <></>
 }
