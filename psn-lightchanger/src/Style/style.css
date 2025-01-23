@@ -230,7 +230,7 @@ body {
 
 .lights_label {
 
-    background-color: #6FFFE9;
+    /*background-color: #6FFFE9;*/
     color: #0B132B;
     height: calc(3vh + 2vw);
     width: calc(5vh + 15vw);
