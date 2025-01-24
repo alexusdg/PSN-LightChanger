@@ -1,7 +1,6 @@
 import { cleanup, fireEvent, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
-import { LightChosen } from "../../../src/Functions/list_functions.js"
 
 const RENDERS_TEST = "Renders"
 const CORRECT_TEXT_TEST = "Renders with Correct Text"

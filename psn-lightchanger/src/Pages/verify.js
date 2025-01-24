@@ -7,8 +7,8 @@ import {
   LoginInstruction,
   DoneButton,
 } from "../Components/interface.js"
-import "../Style/style.css"
 import { VerifyPsnUser } from "../Functions/psn_functions.js"
+
 
 /**
  * @function LifxVerify will implement a state hook to help determine
