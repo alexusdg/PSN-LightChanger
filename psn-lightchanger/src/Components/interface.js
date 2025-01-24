@@ -96,22 +96,19 @@ export function DoneButton({ authCheck }) {
  * @param {{string}} light_name - name of light assigned
  * @returns html for the light, implementing expected design
  */
-export function ListLights({ light_name, og_light_color, clicked_light_color }) {
+export function ListLights({ light_name }) {
 
-  const [color, setColor] = useState(og_light_color)
+  const [cl, setClass] = useState("")
 
-  function updateColor() {
-
-   color === og_light_color ? setColor(clicked_light_color) : setColor(og_light_color)
-
+  function updateClass() {
+    cl === "" ? setClass("lights_label_chosen") : setClass("")
   }
 
   return (
     <div
-      className="lights_label"
+      className={`lights_label ${cl}`}
       id={light_name}
-      onClick={updateColor}
-      style={{ backgroundColor: color }}
+      onClick={updateClass}
     >
       {light_name}
     </div>

@@ -20,24 +20,12 @@ export function ShowLights() {
       <ListLights
         key={lights_avail[i].label}
         light_name={lights_avail[i].label}
-        og_light_color={'#6FFFE9'}
-        clicked_light_color={'#FFFFFF'}
       />
     )
   }
 
   return <>{lights_avail_names}</>
 }
-
-/**
- * @function LightChosen will update the color of div clicked
- *           If light clicked add color, else/or remove the color
- * @returns nothing
-export function LightChosen(optionClicked) {
-  optionClicked.target.classList.contains("lights_label_chosen")
-    ? optionClicked.target.classList.remove("lights_label_chosen")
-    : optionClicked.target.classList.add("lights_label_chosen")
-}*/
 
 /**
  * @function CheckIfLightsChosen will use the list of available lights to determine

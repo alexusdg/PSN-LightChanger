@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react"
+import { cleanup, fireEvent, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
 import { LightChosen } from "../../../src/Functions/list_functions.js"
@@ -15,18 +15,13 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
   }))
 
-jest.mock('../../../src/Functions/list_functions.js', () => ({
-    ...jest.requireActual('../../../src/Functions/list_functions.js'),
-    LightChosen: jest.fn(),
-}))
-
 beforeEach(() => {
     mockedNavigate.mockReset()
 })
 
 afterEach(cleanup)
 
-describe("Title Renders", () => {
+describe("Title Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<Title/>)
     })
@@ -39,7 +34,7 @@ describe("Title Renders", () => {
     }) 
 })
 
-describe("Welcome Renders", () => {
+describe("Welcome Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<Welcome/>)
     })
@@ -53,7 +48,7 @@ describe("Welcome Renders", () => {
     })
 })
 
-describe("Header Renders", () => {
+describe("Header Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<Header/>)
     })
@@ -67,7 +62,7 @@ describe("Header Renders", () => {
     
 })
 
-describe("Get Started Button Renders", () => {
+describe("Get Started Button Component", () => {
     const router = createMemoryRouter([{path: '/',element:<GetStartedButton page='/test'/>}])
     test(`${RENDERS_TEST}`, () => {
         
@@ -83,24 +78,22 @@ describe("Get Started Button Renders", () => {
 
     test(`${NAVIGATE_TEXT_TEST}`, () => {
         render(<RouterProvider router={router} />)
-    
-        //useNavigate.mockReturnValue(mockedUsedNavigate);
         const elem = document.getElementById("get_started")
-        elem.click()
-        
+    
+        fireEvent.click(elem)
+
         expect(mockedNavigate).toHaveBeenCalledTimes(1)    
         expect(mockedNavigate).toHaveBeenCalledWith('/test')
 
     })
 })
 
-describe("Sub Header Renders", () => {
+describe("Sub Header Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<SubHeader/>)
     })
 
     test(`${CORRECT_TEXT_TEST}`, () => {
-
         render(<SubHeader title={"Fake Header"}/>)
         const elem = document.getElementById("sub_header")
 
@@ -108,7 +101,7 @@ describe("Sub Header Renders", () => {
     })
 })
 
-describe("Login Instruction Renders", () => {
+describe("Login Instruction Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<LoginInstruction/>)
     })
@@ -121,7 +114,7 @@ describe("Login Instruction Renders", () => {
     }) 
 })
 
-describe("Done Button Renders", () => {
+describe("Done Button Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<DoneButton/>)
     })
@@ -134,7 +127,7 @@ describe("Done Button Renders", () => {
     })
 })
 
-describe("Circle Step Renders", () => {
+describe("Circle Step Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<CircleStep/>)
     })
@@ -147,7 +140,7 @@ describe("Circle Step Renders", () => {
     })
 })
 
-describe("List Lights Renders", () => {
+describe("List Lights Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<ListLights/>)
     })
@@ -162,8 +155,14 @@ describe("List Lights Renders", () => {
     test(`${CORRECT_FUNCITON_CALLED}`, () => {
         render(<ListLights light_name={"Fake Light Name"}/>)
         const elem = document.querySelector(".lights_label")
-        elem.click()
+        
+        fireEvent.click(elem)
+        expect(elem.classList).toContain("lights_label_chosen")
 
-        expect(LightChosen).toHaveBeenCalledTimes(1)
+        fireEvent.click(elem)
+        expect(elem.classList).not.toContain("lights_label_chosen")
+
+
     })
+    
 })
