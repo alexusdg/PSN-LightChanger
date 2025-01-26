@@ -124,6 +124,15 @@ describe("Done Button Component", () => {
 
         expect(elem.textContent).toBe("Done") 
     })
+
+    test("Done Button Component function called onClick", () => {
+        const mockFunction = jest.fn()
+        render(<DoneButton authCheck={mockFunction}/>)
+        const elem = document.querySelector(".done_button")
+        fireEvent.click(elem)
+
+        expect(mockFunction).toHaveBeenCalled()
+    })
 })
 
 describe("Circle Step Component", () => {

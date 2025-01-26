@@ -44,7 +44,7 @@ export function IsAuth({ entered_lifx_code }) {
           navigate("/lights_list/")
         })
         .catch((err) => {
-          //console.log(err)
+          console.log(err)
         })
         .finally(() => {})
     }

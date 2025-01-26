@@ -16,7 +16,7 @@ import { VerifyPsnUser } from "../Functions/psn_functions.js"
  * @returns html that is used to authenticate Lifx user with token
  */
 
-export function LifxVerify() {
+export const LifxVerify = () => {
   const [Auth, setAuth] = useState(<></>)
   const [code, setCode] = useState("")
 
@@ -77,7 +77,7 @@ export function PSNVerify() {
   const [nav, setNav] = useState(<></>)
   const [code, setCode] = useState("")
 
-  function ToggleAuthCheck() {
+  const ToggleAuthCheck = () => {
     setNav(<VerifyPsnUser entered_psn_code={code}/>)
   }
 
