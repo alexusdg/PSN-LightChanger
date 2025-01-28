@@ -8,19 +8,19 @@
     "react-error-overlay": "6.0.9"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.26.5",
     "@craco/craco": "^7.1.0",
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "buffer": "^6.0.3",
     "child_process": "^1.0.2",
     "crypto": "^1.0.1",
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.4.5",
-    "eslint": "^8.57.0",
     "express": "^4.21.1",
     "fetch": "^1.1.0",
     "http-proxy-middleware": "^3.0.3",
@@ -32,8 +32,9 @@
     "prettier": "^3.4.2",
     "process": "^0.11.10",
     "psn-api": "^2.10.1",
-    "react": "^18.3.1",
-    "react-router-dom": "^6.25.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-router-dom": "^7.1.3",
     "react-scripts": "^5.0.1",
     "stream": "^0.0.3",
     "ts-node": "^10.9.2",
@@ -47,7 +48,7 @@
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --env=jsdom --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "vitest"
   },
   "eslintConfig": {
     "extends": [
@@ -75,9 +76,10 @@
     "babel-preset-react": "^6.24.1",
     "electron": "^31.2.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "jest": "^27.5.1",
+    "jest-environment-jsdom": "^29.7.0",
     "mocha-jsdom": "^2.0.0",
-    "react-test-renderer": "^18.3.1",
+    "react-test-renderer": "^19.0.0",
+    "vitest": "^3.0.4",
     "webpack-node-externals": "^3.0.0"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
