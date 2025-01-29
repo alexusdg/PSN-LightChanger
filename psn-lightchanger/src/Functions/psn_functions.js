@@ -16,6 +16,8 @@ export function VerifyPsnUser({entered_psn_code}) {
   } catch (e) {
     void 0
   }
+  console.log(entered_psn_code)
+
 
   useEffect(() => {
     axios
@@ -24,11 +26,11 @@ export function VerifyPsnUser({entered_psn_code}) {
       })
       .then((res) => {
         sessionStorage.setItem("psn_refresh_token", res.data.refresh_token)
-
+        console.log("HEREEEEEEEEEEE")
         navigate("/lights_verify/")
       })
       .catch((err) => {
-        console.log(err)
+        //console.log(err)
       })
   }, [entered_psn_code, navigate])
 

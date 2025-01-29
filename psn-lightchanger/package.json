@@ -19,7 +19,6 @@
     "child_process": "^1.0.2",
     "crypto": "^1.0.1",
     "crypto-browserify": "^3.12.0",
-    "enzyme": "^3.11.0",
     "eslint": "^8.57.0",
     "express": "^4.21.1",
     "fetch": "^1.1.0",
@@ -51,7 +50,7 @@
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "node server.js && jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
   "eslintConfig": {
     "extends": [
@@ -75,7 +74,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.25.9",
     "babel-jest": "^29.7.0",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^9.2.1",
     "babel-preset-react": "^6.24.1",
     "dotenv": "^16.4.7",
     "electron": "^31.2.0",
