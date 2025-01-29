@@ -10,7 +10,7 @@ Technologies used:
     - Node.js
     - Python
     - Electron 
-    - Jest (Testing Framework)
+    - Vitest (Testing Framework)
 
 Linters: Prettier and Pylint
 
