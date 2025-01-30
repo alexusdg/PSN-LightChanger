@@ -5,10 +5,12 @@ import { createMemoryRouter, RouterProvider } from "react-router-dom"
 require('dotenv').config()
 
 const RENDERS_TEST = "Renders"
+const ONCLICK_TEST = "State Changes and Onclick action is successful"
+const ONENTER_TEST = "State Changes and Enter Key action is successful"
 const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
+const LIFX_CODE = process.env.REACT_APP_LIFX
 
 const mockedNavigate = jest.fn()
-const VerifyPSNUser = jest.fn()
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -24,40 +26,64 @@ beforeEach(() => {
 afterEach(cleanup, jest.clearAllMocks, sessionStorage.clear())
 
 describe("PSNVerify Component", () => {
-    test(`${RENDERS_TEST}`, async () => {
-      
+    test(`${RENDERS_TEST}`, () => {
+        render(<PSNVerify/>)
+    })
+
+    test(`${ONCLICK_TEST}`, async () => {
         render(<PSNVerify/>)
 
-        var elem = document.querySelector(".done_button")
-        const elem_input = document.querySelector(".token_input")
+        const done_button_elem = document.querySelector(".done_button")
+        const input_elem = document.querySelector(".token_input")
    
-        fireEvent.change(elem_input, { target: { value: PSN_TOKEN } });
-        fireEvent.click(elem)
-
+        fireEvent.change(input_elem, { target: { value: PSN_TOKEN } });
+        fireEvent.click(done_button_elem)
         await waitFor(() => {
             expect(mockedNavigate).toHaveBeenCalled()
         })
     })
 
-    test(`${RENDERS_TEST} 2`, async () => {
-      
+    test(`${ONENTER_TEST}`, async () => {   
         render(<PSNVerify/>)
 
-        var elem = document.querySelector(".done_button")
-        const elem_input = document.querySelector(".token_input")
+        const input_elem = document.querySelector(".token_input")
    
-        fireEvent.change(elem_input, { target: { value: PSN_TOKEN } })
-        fireEvent.keyDown(elem_input, {key: 'Enter', code: 'Enter'})
-
+        fireEvent.change(input_elem, { target: { value: PSN_TOKEN } })
+        fireEvent.keyDown(input_elem, {key: 'Enter', code: 'Enter'})
         await waitFor(() => {
             expect(mockedNavigate).toHaveBeenCalled()
         })
     })
 })
 
-/*describe("LIFXVerify Component", () => {
+
+describe("LifxVerify Component", () => {
     test(`${RENDERS_TEST}`, () => {
-        //render(<LifxVerify/>)
-        expect(1).toBe(1)
+        render(<LifxVerify/>)
+    }) 
+    test(`${ONCLICK_TEST}`, async () => {
+        render(<LifxVerify/>)
+
+        var done_button_elem = document.querySelector(".done_button")
+        const input_elem = document.querySelector(".token_input")
+   
+        fireEvent.change(input_elem, { target: { value: LIFX_CODE } });
+        fireEvent.click(done_button_elem)
+
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalled()
+        })
     })
-})*/
+
+    test(`${ONENTER_TEST} 2`, async () => {   
+        render(<LifxVerify/>)
+
+        const input_elem = document.querySelector(".token_input")
+   
+        fireEvent.change(input_elem, { target: { value: LIFX_CODE } })
+        fireEvent.keyDown(input_elem, {key: 'Enter', code: 'Enter'})
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalled()
+        })
+    })
+})
