@@ -1,14 +1,14 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react"
 import { PSNVerify, LifxVerify } from "../../../src/Pages/verify"
-import { createMemoryRouter, RouterProvider } from "react-router-dom"
 
 require('dotenv').config()
+
+const LIFX_CODE = process.env.REACT_APP_LIFX
+const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 
 const RENDERS_TEST = "Renders"
 const ONCLICK_TEST = "State Changes and Onclick action is successful"
 const ONENTER_TEST = "State Changes and Enter Key action is successful"
-const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
-const LIFX_CODE = process.env.REACT_APP_LIFX
 
 const mockedNavigate = jest.fn()
 
