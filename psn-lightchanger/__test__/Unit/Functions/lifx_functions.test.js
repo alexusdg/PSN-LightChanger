@@ -39,6 +39,15 @@ describe("Test Authentication IsAuth", () => {
 
     })
 
+    test("Test Authentication Failure", async () => {
+        render(<IsAuth entered_lifx_code={""}/>)
+
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalledTimes(0)
+        })  
+
+    })
+
     test("Test Authentication success", async () => {
         render(<IsAuth entered_lifx_code={LIFX_CODE}/>)
 

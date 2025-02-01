@@ -3,6 +3,7 @@ import { cleanup, fireEvent, render } from "@testing-library/react"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import LifxList from "../../../src/Pages/list"
 import React from "react"
+import { CORRECT_FUNCITON_CALLED_ONCLICK_TEST, RENDERS_TEST } from "../../../constants"
 
 const setState = jest.fn()
 
@@ -12,13 +13,13 @@ beforeEach(() => {
 
 afterAll(cleanup)
 
-describe("Render", () => {
+describe("List Component", () => {
     const router = createMemoryRouter([{path: '/',element:<LifxList page='/test'/>}])
-    test('tst', async () => {
+    test(`${RENDERS_TEST}`, async () => {
         render(<RouterProvider router={router}/>)
     })
 
-    test('', async () => {
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, async () => {
         render(<RouterProvider router={router}/>)
         const spy = jest.spyOn(React, 'useState').mockImplementationOnce(initState => [initState, setState])
 

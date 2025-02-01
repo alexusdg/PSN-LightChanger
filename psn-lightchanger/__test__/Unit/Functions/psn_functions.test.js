@@ -1,5 +1,6 @@
 import { cleanup, render, waitFor } from "@testing-library/react"
 import { VerifyPsnUser } from "../../../src/Functions/psn_functions.js"
+import { AUTH_FAILURE, AUTH_SUCCESS } from "../../../constants.js"
 
 require('dotenv').config()
 
@@ -19,8 +20,8 @@ beforeEach(() => {
 afterEach(cleanup, 
     sessionStorage.clear())
 
-describe("Test Authentication VerifyPSNUser", () => {
-    test("Test Authentication Failure", async() => {
+describe("Verify PSN User Component", () => {
+    test(`${AUTH_FAILURE}`, async() => {
         render(<VerifyPsnUser/>)
 
         await waitFor(() => {
@@ -28,7 +29,7 @@ describe("Test Authentication VerifyPSNUser", () => {
         })
     })
 
-    test("Test Authentication Success", async() => {
+    test(`${AUTH_SUCCESS}`, async() => {
         render(<VerifyPsnUser entered_psn_code={PSN_TOKEN}/>)
 
         await waitFor(() => {

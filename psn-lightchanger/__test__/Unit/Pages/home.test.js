@@ -1,8 +1,7 @@
 import { cleanup, render } from "@testing-library/react"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import Home from "../../../src/Pages/home"
-
-const RENDERS_TEST = "Renders"
+import { RENDERS_TEST } from "../../../constants"
 
 afterAll(cleanup)
 

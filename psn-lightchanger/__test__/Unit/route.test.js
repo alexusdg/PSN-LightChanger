@@ -5,6 +5,7 @@ const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
 const { routeFunc } = require('../../route_functions')
 const { procFunc } = require('../../proc_functions')
+const constants = require('../../constants')
 
 require('dotenv').config()
 
@@ -12,8 +13,8 @@ const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 const LIFX_CODE = process.env.REACT_APP_LIFX
 const LIGHT_ID = process.env.REACT_APP_LIGHT_ID
 
-const TEST_SUCCESS = '200 OK response'
-const TEST_FAILURE = '500 ERR response'
+const TEST_SUCCESS = constants.API_SUCESS_TEST
+const TEST_FAILURE = constants.API_SERVER_ERR_TEST
 
 afterAll(cleanup)
 

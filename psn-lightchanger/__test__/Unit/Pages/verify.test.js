@@ -1,14 +1,11 @@
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react"
 import { PSNVerify, LifxVerify } from "../../../src/Pages/verify"
+import { RENDERS_TEST, CORRECT_FUNCITON_CALLED_ONCLICK_TEST, CORRECT_FUNCITON_CALLED_ONENTER_TEST } from "../../../constants"
 
 require('dotenv').config()
 
 const LIFX_CODE = process.env.REACT_APP_LIFX
 const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
-
-const RENDERS_TEST = "Renders"
-const ONCLICK_TEST = "State Changes and Onclick action is successful"
-const ONENTER_TEST = "State Changes and Enter Key action is successful"
 
 const mockedNavigate = jest.fn()
 
@@ -30,7 +27,7 @@ describe("PSNVerify Component", () => {
         render(<PSNVerify/>)
     })
 
-    test(`${ONCLICK_TEST}`, async () => {
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, async () => {
         render(<PSNVerify/>)
         
         const done_button_elem = document.querySelector(".done_button")
@@ -43,7 +40,7 @@ describe("PSNVerify Component", () => {
         })
     })
 
-    test(`${ONENTER_TEST}`, async () => {   
+    test(`${CORRECT_FUNCITON_CALLED_ONENTER_TEST}`, async () => {   
         render(<PSNVerify/>)
 
         const input_elem = document.querySelector(".token_input")
@@ -61,7 +58,7 @@ describe("LifxVerify Component", () => {
     test(`${RENDERS_TEST}`, () => {
         render(<LifxVerify/>)
     }) 
-    test(`${ONCLICK_TEST}`, async () => {
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, async () => {
         render(<LifxVerify/>)
 
         var done_button_elem = document.querySelector(".done_button")
@@ -75,7 +72,7 @@ describe("LifxVerify Component", () => {
         })
     })
 
-    test(`${ONENTER_TEST} 2`, async () => {   
+    test(`${CORRECT_FUNCITON_CALLED_ONENTER_TEST} 2`, async () => {   
         render(<LifxVerify/>)
 
         const input_elem = document.querySelector(".token_input")

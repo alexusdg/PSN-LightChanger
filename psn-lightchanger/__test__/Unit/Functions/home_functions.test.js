@@ -1,6 +1,7 @@
 import { cleanup, render } from "@testing-library/react"
 import { DirectToVerify } from "../../../src/Functions/home_functions"
 import { useNavigate } from "react-router-dom"
+import { RENDERS_TEST } from "../../../constants"
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -9,9 +10,9 @@ jest.mock('react-router-dom', () => ({
 
 afterEach(cleanup)
 
-describe("Test Navigation to Expected Page", ()=> {
+describe("Direct Verify Component", ()=> {
 
-    test("test", () => {
+    test(RENDERS_TEST, () => {
         render(<DirectToVerify/>)
         expect(useNavigate).toHaveBeenCalledTimes(1)
 

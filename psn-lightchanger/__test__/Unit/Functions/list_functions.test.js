@@ -1,11 +1,11 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { CheckIfLightsChosen, IsSetupComplete, ShowLights } from "../../../src/Functions/list_functions"
-import '@testing-library/jest-dom'
-import SetupComplete from "../../../src/Pages/complete"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
-import { ListLights } from "../../../src/Components/interface"
-import axios from "axios"
+import { CORRECT_FUNCITON_CALLED_ONCLICK_TEST, CORRECT_TEXT_TEST, EXPECTED_VALUES_IN_SESSION_STORAGE_TEST, RENDERS_TEST } from "../../../constants"
 import LifxList from "../../../src/Pages/list"
+import axios from "axios"
+
+import '@testing-library/jest-dom'
 
 const mockedNavigate = jest.fn()
 
@@ -20,28 +20,26 @@ beforeEach(() => {
 
 afterEach(cleanup, jest.clearAllMocks, sessionStorage.clear())
 
-describe("ShowLights Component", () => {
-    test("test2", () => {
-
+describe("Show Lights Component", () => {
+    test(`${RENDERS_TEST}`, () => {
         render(<ShowLights/>)
     })
 
-    test("test2", () => {
+    test(`${CORRECT_TEXT_TEST}`, () => {
         sessionStorage.setItem("lights_avail", JSON.stringify([{label : "label1"}, {label : "label2"}]))
 
         render(<ShowLights/>)
         const light_elem = screen.getByText("label1")
         const light_elem2 = screen.getByText("label2")
+
         expect(light_elem).toBeInTheDocument()
         expect(light_elem2).toBeInTheDocument()
-        //var light_elem = document.querySelector("#label1")
-        //fireEvent.click()
+
     })
 })
 
-describe("CheckIfLightsChosen Function", () => {
-
-    test("test 1", () => {
+describe("Check If Lights Chosen Component", () => {
+    test(`${EXPECTED_VALUES_IN_SESSION_STORAGE_TEST}`, () => {
         sessionStorage.setItem("lights_avail", JSON.stringify([{label : "label1", id : 1}, {label : "label2", id : 2}]))
         render(<ShowLights/>)
 
@@ -55,14 +53,14 @@ describe("CheckIfLightsChosen Function", () => {
     })
 })
 
-describe("Test IsSetupComplete Componenet", () => {
+describe("Is Setup Complete Component", () => {
     const router = createMemoryRouter([{path : '/', element : <IsSetupComplete/>}])
-    test("3", async() => {
+    test(`${RENDERS_TEST}`, async() => {
 
         render(<RouterProvider router={router}/>)
     })
 
-    test("test4", async () => {
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, async () => {
         sessionStorage.setItem("lights_avail", JSON.stringify([{label : "label1", id : 1}, {label : "label2", id : 2}]))
         const spy = jest.spyOn(axios, 'put').mockImplementation()
 

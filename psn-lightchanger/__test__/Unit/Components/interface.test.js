@@ -1,11 +1,7 @@
 import { cleanup, fireEvent, render } from "@testing-library/react"
 import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
-import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom"
-
-const RENDERS_TEST = "Renders"
-const CORRECT_TEXT_TEST = "Renders with Correct Text"
-const NAVIGATE_TEXT_TEST = "Navigates to The Correct Route"
-const CORRECT_FUNCITON_CALLED = "Onclick Triggers Correct Function"
+import { createMemoryRouter, RouterProvider } from "react-router-dom"
+import { RENDERS_TEST, CORRECT_TEXT_TEST, NAVIGATE_TEST, CORRECT_FUNCITON_CALLED_ONCLICK_TEST } from "../../../constants.js"
 
 const mockedNavigate = jest.fn()
 
@@ -75,7 +71,7 @@ describe("Get Started Button Component", () => {
         expect(elem.textContent).toBe("Get Started")
     })
 
-    test(`${NAVIGATE_TEXT_TEST}`, () => {
+    test(`${NAVIGATE_TEST}`, () => {
         render(<RouterProvider router={router} />)
         const elem = document.getElementById("get_started")
     
@@ -160,7 +156,7 @@ describe("List Lights Component", () => {
         expect(elem.textContent).toBe("Fake Light Name")
     })
 
-    test(`${CORRECT_FUNCITON_CALLED}`, () => {
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, () => {
         render(<ListLights light_name={"Fake Light Name"}/>)
         const elem = document.querySelector(".lights_label")
         
