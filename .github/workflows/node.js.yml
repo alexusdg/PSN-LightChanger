@@ -30,5 +30,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm i jest
       working-directory: ./psn-lightchanger
-    - run: npm test
+    - run: npm i jest
+      working-directory: ./psn-lightchanger
+    - run: npm ci
       working-directory: ./psn-lightchanger
