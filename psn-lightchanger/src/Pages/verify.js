@@ -74,7 +74,7 @@ export function PSNVerify() {
   const [nav, setNav] = useState(<></>)
   const [code, setCode] = useState("")
 
-  const ToggleAuthCheck = () => {
+  function ToggleAuthCheck() {
     setNav(<VerifyPsnUser entered_psn_code={code}/>)
   }
 
