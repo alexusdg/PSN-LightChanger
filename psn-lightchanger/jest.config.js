@@ -7,6 +7,8 @@ module.exports = {
   "collectCoverageFrom": [
       "src/**/*.js",
       "route.js",
-      "route_functions.js"
+      "route_functions.js",
+      "!src/App.js",
+      "!src/index.js"
     ]
 };

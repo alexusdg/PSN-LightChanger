@@ -3,7 +3,8 @@ jest.setTimeout(10000);
 const app = require('../../route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
-const { procFunc } = require('../../route_functions')
+const { routeFunc } = require('../../route_functions')
+const { procFunc } = require('../../proc_functions')
 
 require('dotenv').config()
 
@@ -116,7 +117,7 @@ describe('LIFX APIs', () => {
         const url = "/update_light/"
 
         test(TEST_FAILURE, async () => {
-            const spy = jest.spyOn(procFunc, 'updateLight')//.mockImplementation(jest.fn())
+            const spy = jest.spyOn(routeFunc, 'updateLight')//.mockImplementation(jest.fn())
 
             await request(app)
                 .put(url)
@@ -137,7 +138,7 @@ describe('LIFX APIs', () => {
         })
 
         test(TEST_SUCCESS, async () => {
-            const spy = jest.spyOn(procFunc, 'updateLight')//.mockImplementation(jest.fn())
+            const spy = jest.spyOn(routeFunc, 'updateLight')//.mockImplementation(jest.fn())
 
             await request(app)
                 .put(url)

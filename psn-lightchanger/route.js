@@ -4,8 +4,8 @@ const axios = require('axios').default
 const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
-const { procFunc } =  require("./route_functions")
-const { cloneElement } = require("react")
+const { routeFunc } =  require("./route_functions")
+const { procFunc } = require("./proc_functions")
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -155,7 +155,7 @@ app.put("/update_light/", (req, res) => {
   //console.log(color_data["hue"])
   res.status(200)
   //console.log(color_data["hue"])
-  procFunc.updateLight(res, authToken, id, color_data)  
+  routeFunc.updateLight(res, authToken, id, color_data)  
 })
 
 module.exports = app
