@@ -11,7 +11,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get("/", (req, res) => {
-  res.status(500).send("BROKEN")
+  res.status(200).send("OK")
 })
 
 /**

@@ -168,12 +168,12 @@ describe('LIFX APIs', () => {
 
 describe('API', () => {
 
-    test(TEST_FAILURE, async () => {
+    test(TEST_SUCCESS, async () => {
         const url = "/"
 
         await request(app)
             .get(url)
-            .expect(500)
+            .expect(200)
     })
 })
 

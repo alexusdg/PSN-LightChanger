@@ -9,13 +9,11 @@ import {
 } from "../Components/interface.js"
 import { VerifyPsnUser } from "../Functions/psn_functions.js"
 
-
 /**
  * @function LifxVerify will implement a state hook to help determine
  *           if the user has a real token registered with Lifx.
  * @returns html that is used to authenticate Lifx user with token
  */
-
 export const LifxVerify = () => {
   const [Auth, setAuth] = useState(<></>)
   const [code, setCode] = useState("")
@@ -72,7 +70,6 @@ export const LifxVerify = () => {
  *           if the user has a real account registed with Sony PlayStation
  * @returns html that is used to authenticate PSN user with nppso cookie
  */
-
 export function PSNVerify() {
   const [nav, setNav] = useState(<></>)
   const [code, setCode] = useState("")

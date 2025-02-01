@@ -6,7 +6,6 @@ module.exports = Object.freeze({
     API_SERVER_ERR_TEST : "500 ERR Response"
 })
 
-
 export const AUTH_SUCCESS = "Authentication Success"
 export const AUTH_FAILURE = "Authentication Failure"
 

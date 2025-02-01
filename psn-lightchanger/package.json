@@ -38,6 +38,7 @@
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "save-dev": "^0.0.1-security",
+    "start-server-and-test": "^2.0.10",
     "stream": "^0.0.3",
     "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
@@ -45,13 +46,15 @@
     "vm": "^0.1.0"
   },
   "scripts": {
+    "start-server": "npm start",
     "start-dev": "react-scripts start",
     "build-dev": "react-scripts build",
     "test-dev": "react-scripts test",
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\""
+    "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "ci": "start-server-and-test start-server http://localhost:3100 test"
   },
   "eslintConfig": {
     "extends": [
