@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { ListLights } from "../Components/interface"
 import axios from "axios"
-
-const PORT = process.env.REACT_APP_BACKEND_PORT
+import { useEffect } from "react"
 
 /**
  * @function ShowLights will use the lights available stored in
@@ -12,8 +11,10 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
  */
 export function ShowLights() {
   var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
-
   var lights_avail_names = []
+
+  if(lights_avail === null)
+    return <></>
 
   for (var i = 0; i < lights_avail.length; i++) {
     lights_avail_names.push(
@@ -35,7 +36,6 @@ export function ShowLights() {
  */
 export function CheckIfLightsChosen() {
   var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
-
   var lights_chosen = []
 
   for (var i = 0; i < lights_avail.length; i++) {
@@ -53,7 +53,7 @@ export function CheckIfLightsChosen() {
     }
   }
 
-  return lights_chosen
+  sessionStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
 }
 
 /**
@@ -65,23 +65,28 @@ export function CheckIfLightsChosen() {
  * @returns an empty html
  */
 export function IsSetupComplete() {
-  const navigate = useNavigate()
+  useEffect(() => {
+    const PORT = process.env.REACT_APP_BACKEND_PORT
 
-  var lights_chosen = CheckIfLightsChosen()
+    const navigate = useNavigate()
 
-  if (lights_chosen.length > 0) {
-    sessionStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
-
-    axios.put(`http://localhost:${PORT}/create_process/`, null, {
-      params: {
-        lifx_token: `${sessionStorage.getItem("lifx_token")}`,
-        psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
-        lifx_ids: `${lights_chosen}`,
-      }
-    })
-
-    navigate("/complete/")
-  }
-
+    CheckIfLightsChosen()
+  
+    var lights_chosen = sessionStorage.getItem("lights_chosen")
+    
+    if (lights_chosen.length > 0) {
+      axios.put(`http://localhost:3100/create_process/`, null, {
+        params: {
+          lifx_token: `${sessionStorage.getItem("lifx_token")}`,
+          psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
+          lifx_ids: `${lights_chosen}`,
+        }
+      })
+  
+      navigate("/complete/")
+    }
+  
+  })
+  
   return <></>
 }

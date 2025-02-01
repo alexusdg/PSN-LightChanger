@@ -62,7 +62,7 @@ describe("Header Component", () => {
 })
 
 describe("Get Started Button Component", () => {
-    const router = createMemoryRouter([{path: '/',element:<GetStartedButton page='/test'/>}])
+    const router = createMemoryRouter([{path: '/', element:<GetStartedButton page='/test'/>}])
     test(`${RENDERS_TEST}`, () => {
         
         render(<RouterProvider router={router}/>)

@@ -17,26 +17,26 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
   }))
 
-
-
 beforeEach(() => {
     mockedNavigate.mockReset()
 })
 
 afterEach(cleanup, jest.clearAllMocks, sessionStorage.clear())
 
+
 describe("PSNVerify Component", () => {
+
     test(`${RENDERS_TEST}`, () => {
         render(<PSNVerify/>)
     })
 
     test(`${ONCLICK_TEST}`, async () => {
         render(<PSNVerify/>)
-
+        
         const done_button_elem = document.querySelector(".done_button")
         const input_elem = document.querySelector(".token_input")
    
-        fireEvent.change(input_elem, { target: { value: PSN_TOKEN } });
+        fireEvent.change(input_elem, { target: { value: PSN_TOKEN } })
         fireEvent.click(done_button_elem)
         await waitFor(() => {
             expect(mockedNavigate).toHaveBeenCalled()

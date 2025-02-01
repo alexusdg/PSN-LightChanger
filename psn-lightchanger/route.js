@@ -149,10 +149,10 @@ app.put("/update_light/", (req, res) => {
   var id = req.query.light_id
   var color_data = req.body.color_data
 
-  console.log(color_data)
+  //console.log(color_data)
 
   //color_data = JSON.parse(color_data)
-  console.log(color_data["hue"])
+  //console.log(color_data["hue"])
   res.status(200)
   //console.log(color_data["hue"])
   procFunc.updateLight(res, authToken, id, color_data)  

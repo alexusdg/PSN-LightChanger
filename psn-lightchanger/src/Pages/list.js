@@ -9,7 +9,7 @@ import { ShowLights, IsSetupComplete } from "../Functions/list_functions"
  */
 
 function LifxList() {
-  const [Nav, setNav] = useState(<IsSetupComplete />)
+  const [Nav, setNav] = useState(<></>)
 
   function NavigateToComplete() {
     setNav(<IsSetupComplete />)
