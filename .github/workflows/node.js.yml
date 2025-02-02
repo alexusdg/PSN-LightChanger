@@ -21,10 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: create env file
-    - run: |
-        touch .env
-        echo REACT_APP_LIFX=${{ app_env.REACT_APP_LIFX }} >> .env
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
