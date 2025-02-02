@@ -28,6 +28,7 @@
     "jest-environment-node": "^29.7.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7",
+    "nohup": "^0.1.0",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "prettier": "^3.4.2",
