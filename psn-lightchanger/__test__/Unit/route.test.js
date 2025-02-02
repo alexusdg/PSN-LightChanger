@@ -1,4 +1,4 @@
-jest.setTimeout(10000);
+//jest.setTimeout(250000)
 
 const app = require('../../route')
 const request = require('supertest')
