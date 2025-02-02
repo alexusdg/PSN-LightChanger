@@ -1,9 +1,10 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { CheckIfLightsChosen, IsSetupComplete, ShowLights } from "../../../src/Functions/list_functions"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
-import { CORRECT_FUNCITON_CALLED_ONCLICK_TEST, CORRECT_TEXT_TEST, EXPECTED_VALUES_IN_SESSION_STORAGE_TEST, RENDERS_TEST } from "../../../constants"
+import { CORRECT_TEXT_TEST, EXPECTED_VALUES_IN_SESSION_STORAGE_TEST, RENDERS_TEST, CORRECT_FUNCITON_CALLED_ONCLICK_TEST} from "../../../constants"
 import LifxList from "../../../src/Pages/list"
 import axios from "axios"
+import * as constants from "../../../constants"
 
 import '@testing-library/jest-dom'
 

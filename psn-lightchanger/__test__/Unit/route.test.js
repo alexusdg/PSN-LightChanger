@@ -13,7 +13,7 @@ const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 const LIFX_CODE = process.env.REACT_APP_LIFX
 const LIGHT_ID = process.env.REACT_APP_LIGHT_ID
 
-const TEST_SUCCESS = constants.API_SUCESS_TEST
+const TEST_SUCCESS = constants.API_SUCCESS_TEST
 const TEST_FAILURE = constants.API_SERVER_ERR_TEST
 
 afterAll(cleanup)

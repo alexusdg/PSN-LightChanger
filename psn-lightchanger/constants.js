@@ -1,10 +1,6 @@
 //TEST CONSTANTS
-
-module.exports = Object.freeze({
-
-    API_SUCCESS_TEST : "200 OK Response",
-    API_SERVER_ERR_TEST : "500 ERR Response"
-})
+export const API_SUCCESS_TEST = "200 OK Response"
+export const API_SERVER_ERR_TEST = "500 ERR Response"
 
 export const AUTH_SUCCESS = "Authentication Success"
 export const AUTH_FAILURE = "Authentication Failure"
@@ -17,3 +13,6 @@ export const EXPECTED_VALUES_IN_SESSION_STORAGE_TEST = "Expected values are In S
 
 export const NAVIGATE_TEST = "Navigates to The Correct Route"
 export const RENDERS_TEST = "Renders"
+
+
+
