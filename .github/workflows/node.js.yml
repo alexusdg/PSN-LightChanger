@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: create env file
-      run: |
+    - run: |
         touch .env
         echo REACT_APP_LIFX=${{ app_env.REACT_APP_LIFX }} >> .env
         echo REACT_APP_PSN_TOKEN=${{ app_env.REACT_APP_PSN_TOKEN }} >> .env
