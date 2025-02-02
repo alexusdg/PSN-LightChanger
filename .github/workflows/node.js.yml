@@ -29,10 +29,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
       env:
-            REACT_APP_LIFX: ${{ secrets.REACT_APP_LIFX }}
-            REACT_APP_PSN_TOKEN: ${{ secrets.REACT_APP_PSN_TOKEN }}
-            REACT_APP_LIGHT_ID: ${{ secrets.REACT_APP_LIGHT_ID }}
-            REACT_APP_BACKEND_PORT: ${{ secrets.REACT_APP_BACKEND_PORT }}
+            REACT_APP_LIFX: ${{ app_env.REACT_APP_LIFX }}
+            REACT_APP_PSN_TOKEN: ${{ app_env.REACT_APP_PSN_TOKEN }}
+            REACT_APP_LIGHT_ID: ${{ app_env.REACT_APP_LIGHT_ID }}
+            REACT_APP_BACKEND_PORT: ${{ app_env.REACT_APP_BACKEND_PORT }}
     - run: npm i jest
       working-directory: ./psn-lightchanger
     - run: nohup node server.js &
