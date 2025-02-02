@@ -32,7 +32,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm i jest
       working-directory: ./psn-lightchanger
-    - run: nohup node server.js &
-      working-directory: ./psn-lightchanger
-    - run: npm run test
+    #- run: nohup node server.js &
+    #  working-directory: ./psn-lightchanger
+    - run: npm run ci
       working-directory: ./psn-lightchanger
