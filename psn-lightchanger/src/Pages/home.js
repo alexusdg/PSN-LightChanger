@@ -1,4 +1,4 @@
-import { Welcome, Title, GetStartedButton } from "../Components/interface"
+import { Welcome, Title, GetStartedButton, Info } from "../Components/interface"
 
 /**
  * @function Home will return an HTML of home layout
@@ -8,6 +8,7 @@ import { Welcome, Title, GetStartedButton } from "../Components/interface"
 function Home() {
   return (
     <div className="full_page" id="primary_color">
+       <Info/>
       <div className="welcome_content">
         <Title />
         <Welcome />

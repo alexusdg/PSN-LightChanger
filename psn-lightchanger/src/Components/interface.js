@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom"
 
 /**
@@ -6,6 +7,13 @@ import { useNavigate } from "react-router-dom"
  */
 export const Title = () => {
   return <div id="title">PSN Light Changer</div>
+}
+
+export const Info = () => {
+
+  return <div className="icon">
+    <AiOutlineInfoCircle id="info" size={"5vh"}/>
+  </div>
 }
 
 /**

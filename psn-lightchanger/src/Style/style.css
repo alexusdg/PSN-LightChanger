@@ -147,6 +147,27 @@ body {
 
 }
 
+.icon{
+    color: #6FFFE9;
+    position: fixed;
+    width: 5%;
+    margin-top: 1%;
+    margin-left: 93%;
+    display: flex;
+    justify-content: flex-end;
+
+    
+}
+
+#info{
+
+    &:hover{
+        cursor: pointer;
+        color: #FFFFFF;
+        transition: all .4s ease-in-out;
+    }
+}
+
 .number{
 
     height: 100%;
