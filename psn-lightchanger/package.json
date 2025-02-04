@@ -36,6 +36,7 @@
     "psn-api": "^2.10.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-icons": "^5.4.0",
     "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
     "save-dev": "^0.0.1-security",
@@ -55,7 +56,8 @@
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
     "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "ci": "start-server-and-test start-server http://localhost:3100 test"
+    "ci": "start-server-and-test start-server http://localhost:3100 test",
+    "dev": "start-server-and-test start-server http://localhost:3100 start-dev"
   },
   "eslintConfig": {
     "extends": [

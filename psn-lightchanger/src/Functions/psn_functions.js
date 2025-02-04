@@ -27,7 +27,7 @@ export function VerifyPsnUser({entered_psn_code}) {
         navigate("/lights_verify/")
       })
       .catch((err) => {
-        //console.log(err)
+        console.log(err)
       })
   }, [entered_psn_code, PORT, navigate])
 

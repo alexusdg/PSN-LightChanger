@@ -22,7 +22,9 @@ function LifxList() {
         <SubHeader title={"Choose Lights to Change"} />
       </div>
       <div className="sub_content">
-        <ShowLights />
+        <div className="all_lights">
+          <ShowLights />
+        </div>   
         <DoneButton authCheck={NavigateToComplete} />
         {Nav}
       </div>

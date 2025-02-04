@@ -33,8 +33,8 @@ body {
 
     height: 100%;
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 25%;
+    position: fixed;
 }
 
 #title {
@@ -94,12 +94,9 @@ body {
     width: 50%;
     left: 25%;
     top: 9%;
-    position: absolute;
+    position: fixed;
     color: #FFFFFF;
-    font-size: calc(1vh + 1.5vw);
-
-    position: absolute;
-
+    font-size: calc(2vh + 1vw);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -114,7 +111,7 @@ body {
     top: 20%;
     overflow: scroll;
 
-    position: absolute;
+    position: fixed;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
@@ -122,6 +119,15 @@ body {
 .sub_content::-webkit-scrollbar { /* WebKit */
     width: 0;
     height: 0;
+}
+
+.all_lights {
+
+    height: 75%;
+    overflow: scroll;
+}::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
 
 .circle_step {
@@ -133,6 +139,8 @@ body {
 
     color: #6FFFE9;
     font-size: calc(1vh + 1vw);
+    margin-bottom: 4.75vh;
+    margin-left: 2%;
 
     display: inline-block;
     position: relative;
@@ -157,20 +165,21 @@ body {
     display: inline-block;
     margin-bottom: 2%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: calc(0.75vh + 1vw);
+    font-size: calc(1vh + 1vw);
+    word-wrap: break-word;
+    overflow: none;
     position: relative;    
 }
 .token_input {
 
-    margin-left: 5.25vw; /* .circle_step width + #test margin-left*/
+    margin-left: 7vw; /* .circle_step width + #test margin-left*/
     height: calc(3vh + 1vw);
     width: 100%;
     background-color: #6FFFE9;
     position: relative;
     font-family: "Oxanium", serif;
-    font-size: 2.5vh;
+    font-size: calc(0.75vh + 1vw);
 }
 
 .done_button {
@@ -202,11 +211,13 @@ body {
 
 .sub_instruction {
     display: inline-block;
-    margin-left: 1vw;
+    margin-left: 7%;
     color: #FFFFFF;
-    width: 100%;
-
+    width: 55vw;
+    height: 9vh;
+    position: fixed;
     vertical-align: middle;
+    word-wrap: break-word;
 }
 
 #test2 {
@@ -224,7 +235,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: calc(1vh + 2.5vw);
+    font-size: calc(3vh + 2vw);
     position: fixed;
 }
 
