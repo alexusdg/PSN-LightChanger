@@ -168,6 +168,35 @@ body {
     }
 }
 
+#close {
+    color: #6FFFE9;
+    z-index: 2;
+     
+    &:hover{
+        cursor: pointer;
+    }
+
+}
+
+.info_popup {
+
+    height: 50%;
+    width: 50%;
+    background-color: #0B132B;
+    color: white;
+    position: fixed;
+    z-index: 1;
+
+    text-align: center;
+    vertical-align: middle;
+
+    font-size: calc(1.5vh + 1.5vw);
+    line-height:  calc(2.5vh + 2.5vw);
+
+    border-radius: calc(0.5vh + 0.5vw);
+    outline: calc(0.5vh + 0.25vw) solid #6FFFE9;
+}
+
 .number{
 
     height: 100%;

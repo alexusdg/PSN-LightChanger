@@ -1,6 +1,7 @@
 import React, { useState } from "react"
-import { AiOutlineInfoCircle } from "react-icons/ai";
+import { AiOutlineInfoCircle, AiOutlineClose } from "react-icons/ai"
 import { useNavigate } from "react-router-dom"
+
 
 /**
  * @returns the Title component
@@ -9,12 +10,36 @@ export const Title = () => {
   return <div id="title">PSN Light Changer</div>
 }
 
-export const Info = () => {
+export const closeInfo = () => {}
 
-  return <div className="icon">
+export const Info = ({setPopupWith, currentVal}) => {
+
+  function showPopUp(){
+
+    currentVal === "" ? setPopupWith(<Popup/>) : setPopupWith("")
+  }
+
+  const Popup = () => {
+    function closePopup(){
+      setPopupWith("")
+  
+    }
+  
+   return ( <div className="info_popup">
+      <AiOutlineClose id="close" onClick={closePopup}/>
+      <p>This is a web application that changes the color of your smart lights based on the game you are currently playing on PlayStation.</p>
+      <p>  Currently this application only supports LIFX lights. 
+      </p>
+    </div>)
+
+    }
+
+  return <div className="icon" onClick={showPopUp}>
     <AiOutlineInfoCircle id="info" size={"5vh"}/>
   </div>
 }
+
+
 
 /**
  * @returns the Welcome component
