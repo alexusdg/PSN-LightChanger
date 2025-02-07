@@ -10,7 +10,19 @@ export const Title = () => {
   return <div id="title">PSN Light Changer</div>
 }
 
-export const closeInfo = () => {}
+export const Feedback = () => {
+
+  function sendEmail(){
+    window.open("https://forms.gle/6w6SmEJqwwFL1n518");
+  }
+
+  return(
+
+    <div className="feedback" onClick={sendEmail}>
+      Send Feedback
+    </div>
+  )
+}
 
 export const Info = ({setPopupWith, currentVal}) => {
 

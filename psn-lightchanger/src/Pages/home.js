@@ -1,4 +1,4 @@
-import { Welcome, Title, GetStartedButton, Info } from "../Components/interface"
+import { Welcome, Title, GetStartedButton, Info, Feedback } from "../Components/interface"
 import { useState } from "react"
 
 /**
@@ -18,6 +18,7 @@ function Home() {
         <Welcome />
         <GetStartedButton page={"/psn_verify"} />
       </div>
+      <Feedback/>
     </div>
   )
 }

@@ -159,6 +159,28 @@ body {
     
 }
 
+.feedback{
+
+    height: 5%;
+    width: auto;
+    position: fixed;
+    bottom: 1%;
+    left: 1%;
+    
+    color: #6FFFE9;
+    font-weight: 500;
+    font-size: calc(2vh + 1vw);
+    text-align: justify;
+    opacity: 20%;
+
+    &:hover{
+        opacity: 100%;
+        cursor: pointer;
+        transition: all .4s ease-in-out;
+    }
+}
+
+
 #info{
 
     &:hover{

@@ -6,6 +6,7 @@ import {
   CircleStep,
   LoginInstruction,
   DoneButton,
+  Feedback,
 } from "../Components/interface.js"
 import { VerifyPsnUser } from "../Functions/psn_functions.js"
 
@@ -61,6 +62,7 @@ export const LifxVerify = () => {
           {Auth}
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }
@@ -118,6 +120,7 @@ export function PSNVerify() {
           </div>
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }

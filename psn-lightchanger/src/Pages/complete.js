@@ -1,4 +1,4 @@
-import { Header, SubHeader } from "../Components/interface"
+import { Header, SubHeader, Feedback } from "../Components/interface"
 
 /**
  * @function SetupComplete will return an HTML indicating setup is complete
@@ -15,6 +15,7 @@ function SetupComplete() {
           <SubHeader title={"Happy Gaming"} />
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }
