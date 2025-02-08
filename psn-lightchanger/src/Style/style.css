@@ -42,7 +42,7 @@ body {
     text-align: center;
     color: #6FFFE9;
     height: 20%;
-    width: 100%;
+    width: auto;
     font-size: calc(3vh + 2vw);
     padding-top: 10%;
     position: relative;
@@ -178,6 +178,13 @@ body {
         cursor: pointer;
         transition: all .4s ease-in-out;
     }
+}
+
+.not_working_exp{
+
+    height: 100%;
+    width: 100%;
+    margin-top: 10%;
 }
 
 

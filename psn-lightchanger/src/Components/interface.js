@@ -12,13 +12,13 @@ export const Title = () => {
 
 export const Feedback = () => {
 
-  function sendEmail(){
+  function openForm(){
     window.open("https://forms.gle/6w6SmEJqwwFL1n518");
   }
 
   return(
 
-    <div className="feedback" onClick={sendEmail}>
+    <div className="feedback" onClick={openForm}>
       Send Feedback
     </div>
   )
@@ -96,7 +96,7 @@ export const GetStartedButton = ({ page }) => {
  * @returns html for the sub header used across pages
  */
 export function SubHeader({ title }) {
-  return <div id="sub_header">{title}</div>
+  return <div id={`sub_header ${title}`}>{title}</div>
 }
 
 /**
@@ -158,4 +158,14 @@ export function ListLights({ light_name }) {
       {light_name}
     </div>
   )
+}
+
+
+export function NotWorking(){
+
+  return (<div className="not_working_exp">
+        <SubHeader title={"Not Working?"} />
+        <SubHeader title={"Make sure your PlayStation status is ONLINE "} />
+  </div>)
+
 }
