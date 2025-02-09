@@ -10,20 +10,24 @@ export const Title = () => {
   return <div id="title">PSN Light Changer</div>
 }
 
+/**
+ * @returns the Feedback component that opens a link to a form
+ */
 export const Feedback = () => {
-
   function openForm(){
-    window.open("https://forms.gle/6w6SmEJqwwFL1n518");
+    window.open("https://forms.gle/6w6SmEJqwwFL1n518")
   }
 
   return(
-
     <div className="feedback" onClick={openForm}>
       Send Feedback
     </div>
   )
 }
 
+/**
+ * @returns the FInfo component that triggers the popup component
+ */
 export const Info = ({setPopupWith, currentVal}) => {
 
   function showPopUp(){
@@ -50,8 +54,6 @@ export const Info = ({setPopupWith, currentVal}) => {
     <AiOutlineInfoCircle id="info" size={"5vh"}/>
   </div>
 }
-
-
 
 /**
  * @returns the Welcome component
@@ -96,7 +98,7 @@ export const GetStartedButton = ({ page }) => {
  * @returns html for the sub header used across pages
  */
 export function SubHeader({ title }) {
-  return <div id={`sub_header ${title}`}>{title}</div>
+  return <div className='sub_header'id={`${title}`}>{title}</div>
 }
 
 /**

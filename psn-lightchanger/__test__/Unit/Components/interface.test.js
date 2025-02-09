@@ -1,5 +1,5 @@
 import { cleanup, fireEvent, render } from "@testing-library/react"
-import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep } from "../../../src/Components/interface.js"
+import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep, Feedback } from "../../../src/Components/interface.js"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import { RENDERS_TEST, CORRECT_TEXT_TEST, NAVIGATE_TEST, CORRECT_FUNCITON_CALLED_ONCLICK_TEST } from "../../../constants.js"
 
@@ -27,6 +27,28 @@ describe("Title Component", () => {
 
         expect(elem.textContent).toBe("PSN Light Changer")
     }) 
+})
+
+describe("Feedback Component", () => {
+    test(`${RENDERS_TEST}`, () => {
+        render(<Feedback/>)
+    })
+
+    test(`${CORRECT_TEXT_TEST}`, () => {
+        render(<Feedback/>)
+        const elem = document.querySelector(".feedback")
+
+        expect(elem.textContent).toBe("Send Feedback")
+    })
+
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, () => {
+        const spy = jest.spyOn(window, "open").mockImplementation()
+        render(<Feedback/>)
+        const elem = document.querySelector(".feedback")
+
+        fireEvent.click(elem)
+        expect(spy).toHaveBeenCalled()
+    })
 })
 
 describe("Welcome Component", () => {
@@ -90,7 +112,7 @@ describe("Sub Header Component", () => {
 
     test(`${CORRECT_TEXT_TEST}`, () => {
         render(<SubHeader title={"Fake Header"}/>)
-        const elem = document.getElementById("sub_header")
+        const elem = document.querySelector(".sub_header")
 
         expect(elem.textContent).toBe("Fake Header")
     })

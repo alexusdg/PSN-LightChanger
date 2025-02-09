@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { ListLights } from "../Components/interface"
 import axios from "axios"
 import { useEffect } from "react"
+import { PORT } from "../../constants"
 
 /**
  * @function ShowLights will use the lights available stored in
@@ -65,10 +66,10 @@ export function CheckIfLightsChosen() {
  * @returns an empty html
  */
 export function IsSetupComplete() {
+
   const navigate = useNavigate()
 
   useEffect(() => {
-    const PORT = process.env.REACT_APP_BACKEND_PORT
 
     CheckIfLightsChosen()
   

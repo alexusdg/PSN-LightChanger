@@ -6,6 +6,7 @@ import LifxList from "../../../src/Pages/list"
 import axios from "axios"
 
 import '@testing-library/jest-dom'
+import { session } from "electron"
 
 const mockedNavigate = jest.fn()
 
@@ -62,6 +63,7 @@ describe("Is Setup Complete Component", () => {
 
     test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, async () => {
         sessionStorage.setItem("lights_avail", JSON.stringify([{label : "label1", id : 1}, {label : "label2", id : 2}]))
+        
         const spy = jest.spyOn(axios, 'put').mockImplementation()
 
         render(<LifxList/>)

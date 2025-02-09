@@ -1,3 +1,4 @@
+export const PORT = 3100
 //TEST CONSTANTS
 export const API_SUCCESS_TEST = "200 OK Response"
 export const API_SERVER_ERR_TEST = "500 ERR Response"
