@@ -55,7 +55,7 @@
     "eject-dev": "react-scripts eject",
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
-    "test": "jest --coverage --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "test": "jest --coverage --setupFiles dotenv/config --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "ci": "start-server-and-test start-server http://localhost:3100 test",
     "dev": "start-server-and-test start-server http://localhost:3100 start-dev"
   },

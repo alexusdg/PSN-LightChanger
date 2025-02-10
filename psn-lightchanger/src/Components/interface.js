@@ -97,8 +97,8 @@ export const GetStartedButton = ({ page }) => {
  * @param {{ string }} title - title used for subheader
  * @returns html for the sub header used across pages
  */
-export function SubHeader({ title }) {
-  return <div className='sub_header'id={`${title}`}>{title}</div>
+export function SubHeader({ id, title }) {
+  return <div className='sub_header'id={`${id}`}>{title}</div>
 }
 
 /**
@@ -166,8 +166,8 @@ export function ListLights({ light_name }) {
 export function NotWorking(){
 
   return (<div className="not_working_exp">
-        <SubHeader title={"Not Working?"} />
-        <SubHeader title={"Make sure your PlayStation status is ONLINE "} />
+        <SubHeader id={"NW"} title={"Not Working?"} />
+        <SubHeader id= {"ON"} title={"Make sure your PlayStation status is ONLINE "} />
   </div>)
 
 }

@@ -1,5 +1,6 @@
 import { cleanup, fireEvent, render } from "@testing-library/react"
-import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep, Feedback } from "../../../src/Components/interface.js"
+import { Title, Welcome, Header, GetStartedButton, SubHeader, LoginInstruction, DoneButton, ListLights, CircleStep, Feedback, Info } from "../../../src/Components/interface.js"
+import Home from "../../../src/Pages/home.js"
 import { createMemoryRouter, RouterProvider } from "react-router-dom"
 import { RENDERS_TEST, CORRECT_TEXT_TEST, NAVIGATE_TEST, CORRECT_FUNCITON_CALLED_ONCLICK_TEST } from "../../../constants.js"
 
@@ -48,6 +49,34 @@ describe("Feedback Component", () => {
 
         fireEvent.click(elem)
         expect(spy).toHaveBeenCalled()
+    })
+})
+
+describe("Info Component", () => {
+    test(`${RENDERS_TEST}`, () => {
+        render(<Info/>)
+    })
+
+    test(`${CORRECT_FUNCITON_CALLED_ONCLICK_TEST}`, () => {
+        render(<Home/>)
+        const info_icon_elem = document.querySelector(".icon")
+        const popup_elem = document.querySelector(".info_popup")
+
+        expect(info_icon_elem).toBeInTheDocument
+        expect(popup_elem).not.toBeInTheDocument
+
+        fireEvent.click(info_icon_elem)
+        expect(popup_elem).toBeInTheDocument
+
+        fireEvent.click(info_icon_elem)
+        expect(popup_elem).not.toBeInTheDocument
+
+        fireEvent.click(info_icon_elem)
+        const cancel_icon_elem = document.getElementById("close")
+
+        fireEvent.click(cancel_icon_elem)
+        expect(popup_elem).not.toBeInTheDocument
+
     })
 })
 

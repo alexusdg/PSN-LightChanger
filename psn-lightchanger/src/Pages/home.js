@@ -11,6 +11,7 @@ function Home() {
 
   return (
     <div className="full_page" id="primary_color">
+       <meta id=">This is a web application that changes the color of your smart lights based on the game you are currently playing on PlayStation"/>
        <Info setPopupWith={setPopup} currentVal={popup} />
       <div className="welcome_content">
         <Title />

@@ -1,6 +1,7 @@
 // jest.config.js
 module.exports = {
   testTimeout: 2500000,
+  setupFiles: ["src/jest.setup.js"],
   "moduleDirectories": [
       "node_modules",
       "src"

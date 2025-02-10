@@ -48,7 +48,7 @@ export function IsAuth({ entered_lifx_code }) {
         })
         .finally(() => {})
     }
-  }, [entered_lifx_code, authToken, navigate])
+  }, [PORT, entered_lifx_code, authToken, navigate])
 
   return <></>
 }
