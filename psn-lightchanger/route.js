@@ -149,11 +149,17 @@ app.put("/update_light/", (req, res) => {
   var id = req.query.light_id
   var color_data = req.body.color_data
 
-  //console.log(color_data)
 
-  //color_data = JSON.parse(color_data)
-  //console.log(color_data["hue"])
+  //writing this to work with jest & postman testing along with python calls
+  try{
+    color_data = JSON.parse(color_data)
+  }catch{
+    color_data = req.body.color_data
+  }
+  
+
   res.status(200)
+
   //console.log(color_data["hue"])
   routeFunc.updateLight(res, authToken, id, color_data)  
 })

@@ -86,13 +86,16 @@ def main():
     json.dumps(games_dict)
 
     procs = []
-    for id in light_ids:
+    for light_id in light_ids:
+        id = light_id.strip("[]")
+        id  = id.replace("\\", "")
+        id = id.strip('"')
         proc = Process(target=update_light_temp,
                        args=(lifx_token,
                              psn_token,
                              games_dict,
                              id,
-                             len(id)/LIFX_REFRESH_RATE))
+                             len(light_ids)/LIFX_REFRESH_RATE))
         proc.start()
 
     for p in procs:
