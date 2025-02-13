@@ -161,13 +161,3 @@ export function ListLights({ light_name }) {
     </div>
   )
 }
-
-
-export function NotWorking(){
-
-  return (<div className="not_working_exp">
-        <SubHeader id={"NW"} title={"Not Working?"} />
-        <SubHeader id= {"ON"} title={"Make sure your PlayStation status is ONLINE "} />
-  </div>)
-
-}
