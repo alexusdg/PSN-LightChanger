@@ -3,7 +3,7 @@ import LifxList from './Pages/list'
 import { Routes, Route, HashRouter } from 'react-router-dom'
 import SetupComplete from './Pages/complete'
 import Home from './Pages/home'
-
+import "../src/Style/style.css"
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path='/complete/' element={<SetupComplete/>}/>
       </Routes>
     </HashRouter>
-);
+)
 }
 
 export default App;

@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { ListLights } from "../Components/interface"
 import axios from "axios"
-
-const PORT = process.env.REACT_APP_BACKEND_PORT
+import { useEffect } from "react"
 
 /**
  * @function ShowLights will use the lights available stored in
@@ -11,9 +10,11 @@ const PORT = process.env.REACT_APP_BACKEND_PORT
  * @returns an html 9f the available lights
  */
 export function ShowLights() {
-  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
-
+  var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
   var lights_avail_names = []
+
+  if(lights_avail === null)
+    return <></>
 
   for (var i = 0; i < lights_avail.length; i++) {
     lights_avail_names.push(
@@ -28,25 +29,13 @@ export function ShowLights() {
 }
 
 /**
- * @function LightChosen will update the color of div clicked
- *           If light clicked add color, else/or remove the color
- * @returns nothing
- */
-export function LightChosen(optionClicked) {
-  optionClicked.target.classList.contains("lights_label_chosen")
-    ? optionClicked.target.classList.remove("lights_label_chosen")
-    : optionClicked.target.classList.add("lights_label_chosen")
-}
-
-/**
  * @function CheckIfLightsChosen will use the list of available lights to determine
  *           if the div that contains the respective label as an id contains "lights_label_chosen"
  *           indicating it has been clicked.
  * @returns a list of lights that were chosen, in their original object form
  */
 export function CheckIfLightsChosen() {
-  var lights_avail = JSON.parse(localStorage.getItem("lights_avail"))
-
+  var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
   var lights_chosen = []
 
   for (var i = 0; i < lights_avail.length; i++) {
@@ -64,7 +53,7 @@ export function CheckIfLightsChosen() {
     }
   }
 
-  return lights_chosen
+  sessionStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
 }
 
 /**
@@ -77,22 +66,25 @@ export function CheckIfLightsChosen() {
  */
 export function IsSetupComplete() {
   const navigate = useNavigate()
+  const PORT = process.env.REACT_APP_BACKEND_PORT
 
-  var lights_chosen = CheckIfLightsChosen()
+  useEffect(() => {
 
-  if (lights_chosen.length > 0) {
-    localStorage.setItem("lights_chosen", JSON.stringify(lights_chosen))
-
-    axios.put(`http://localhost:${PORT}/create_process/`, null, {
-      params: {
-        lifx_token: `${localStorage.getItem("lifx_token")}`,
-        psn_token: `${localStorage.getItem("psn_refresh_token")}`,
-        lifx_ids: `${lights_chosen}`,
-      }
-    })
-
-    navigate("/complete/")
-  }
-
+    CheckIfLightsChosen()
+  
+    var lights_chosen = sessionStorage.getItem("lights_chosen")
+    
+    if (lights_chosen.length > 0) {
+      axios.put(`http://localhost:${PORT}/create_process/`, null, {
+        params: {
+          lifx_token: `${sessionStorage.getItem("lifx_token")}`,
+          psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
+          lifx_ids: `${lights_chosen}`,
+        }
+      })
+  
+      navigate("/complete/")
+    }
+  }, [PORT, navigate]) 
   return <></>
 }

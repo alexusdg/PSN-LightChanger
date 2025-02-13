@@ -1,4 +1,4 @@
-import { Header, SubHeader } from "../Components/interface"
+import { Header, Feedback } from "../Components/interface"
 
 /**
  * @function SetupComplete will return an HTML indicating setup is complete
@@ -11,10 +11,15 @@ function SetupComplete() {
       <Header />
       <div className="sub_content">
         <div className="setup_complete">
-          <SubHeader title={"Setup Complete"} />
-          <SubHeader title={"Happy Gaming"} />
+          <p>Setup Complete <br/>
+              Happy Gaming </p>
+            <p>This app is still in development. <br/>This app will update light colors for the next 30 minutes.</p>
+          <p>Not Working? <br/>
+          Make sure your PlayStation status is ONLINE
+          </p>
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }

@@ -5,11 +5,11 @@ import axios from "axios"
 /**
  *
  * @function StoreAvailableLights will store the list of lights returned
- *           in local storage
+ *           in sessionstorage
  * @returns nothing
  */
 export function StoreAvailableLights(data) {
-  localStorage.setItem("lights_avail", JSON.stringify(data))
+  sessionStorage.setItem("lights_avail", JSON.stringify(data))
 }
 
 /**
@@ -20,10 +20,9 @@ export function StoreAvailableLights(data) {
  *           otherwise it will do nothing
  * @returns nothing
  */
-export function IsAuth() {
+export function IsAuth({ entered_lifx_code }) {
+  const PORT = process.env.REACT_APP_BACKEND_PORT
   const navigate = useNavigate()
-
-  var entered_lifx_code = document.querySelector(".token_input").value
 
   try {
     entered_lifx_code = entered_lifx_code.replace(/\s/g, "")
@@ -31,27 +30,25 @@ export function IsAuth() {
     void 0
   }
 
-  const authToken = "Bearer ".concat(entered_lifx_code)
+  const authToken = entered_lifx_code
 
   useEffect(() => {
     if (entered_lifx_code !== "") {
       axios
-        .get("https://api.lifx.com/v1/lights/all", {
-          headers: {
-            Authorization: authToken,
-          }
+        .get(`http://localhost:${PORT}/lifx_auth/`, {
+          params: { lifx_token : authToken}
         })
         .then((response) => {
-          localStorage.setItem("lifx_token", entered_lifx_code)
+          sessionStorage.setItem("lifx_token", entered_lifx_code)
           StoreAvailableLights(response["data"])
           navigate("/lights_list/")
         })
         .catch((err) => {
-          console.log(err)
+          //console.log(err)
         })
         .finally(() => {})
     }
-  }, [entered_lifx_code, authToken, navigate])
+  }, [PORT, entered_lifx_code, authToken, navigate])
 
-  return <p>""</p>
+  return <></>
 }

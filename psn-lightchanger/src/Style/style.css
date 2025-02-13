@@ -1,4 +1,10 @@
-/*Shared*/
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Oxanium:wght@200..800&display=swap');
+
+body {
+    margin: 0;
+    background-color: #0B132B;
+}
 
 #primary_color {
 
@@ -20,27 +26,25 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    
+    font-family: "Oxanium", serif;
 }
 
 .welcome_content{
 
     height: 100%;
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    padding-left: 25%;
+    position: fixed;
 }
 
 #title {
   
     text-align: center;
     color: #6FFFE9;
-    height: 10%;
-    width: 100%;
-    font-size: 6vh;
-    text-align: center;
-    padding-top: 20%;
+    height: 20%;
+    width: auto;
+    font-size: calc(3vh + 2vw);
+    padding-top: 10%;
     position: relative;
 }
 
@@ -52,7 +56,7 @@
     line-height: 10vh;
     color: #FFFFFF;
     text-align: center;
-    font-size: 5vh;
+    font-size: calc(2vh + 1.5vw);
 
 }
 
@@ -64,7 +68,7 @@
     height: 8vh;
     color: #0B132B;
     text-align: center;
-    font-size: 3vh;
+    font-size: calc(1vh + 1vw);
     margin-top: 35%;
     line-height: 8vh;
 
@@ -83,19 +87,16 @@
     
 }
 
-#sub_header {
+.sub_header {
 
     background-color: #0B132B;
     height: 10%;
     width: 50%;
     left: 25%;
     top: 9%;
-    position: absolute;
+    position: fixed;
     color: #FFFFFF;
-    font-size: 3vh;
-
-    position: absolute;
-
+    font-size: calc(2vh + 1vw);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -104,10 +105,10 @@
 .sub_content {
 
     background-color: #0B132B;
-    height: 90%;
-    width: 50%;
-    left: 25%;
-    top: 18%;
+    height: 80%;
+    width: 60%;
+    left: 20%;
+    top: 20%;
     overflow: scroll;
 
     position: fixed;
@@ -120,18 +121,112 @@
     height: 0;
 }
 
+.all_lights {
+
+    height: 75%;
+    overflow: scroll;
+}::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
 .circle_step {
 
-    border: 2px solid #6FFFE9;
-    height: 4.25vw;
-    width: 4.25vw;
+    border: 0.2vh solid #6FFFE9;
+    height: 4vw;
+    width: 4vw;
     border-radius: 50%;
 
     color: #6FFFE9;
-    font-size: 3vh;
+    font-size: calc(1vh + 1vw);
+    margin-bottom: 4.75vh;
+    margin-left: 2%;
 
     display: inline-block;
+    position: relative;
 
+}
+
+.icon{
+    color: #6FFFE9;
+    position: fixed;
+    width: 5%;
+    margin-top: 1%;
+    margin-left: 93%;
+    display: flex;
+    justify-content: flex-end;
+
+    
+}
+
+.feedback{
+
+    height: 5%;
+    width: auto;
+    position: fixed;
+    bottom: 1%;
+    left: 1%;
+    
+    color: #6FFFE9;
+    font-weight: 500;
+    font-size: calc(2vh + 1vw);
+    text-align: justify;
+    opacity: 20%;
+
+    &:hover{
+        opacity: 100%;
+        cursor: pointer;
+        transition: all .4s ease-in-out;
+    }
+}
+
+.not_working_exp{
+
+    height: 100%;
+    width: 100%;
+    margin-top: 10%;
+}
+
+
+#info{
+
+    &:hover{
+        cursor: pointer;
+        color: #FFFFFF;
+        transition: all .4s ease-in-out;
+    }
+}
+
+#close {
+    color: #6FFFE9;
+    z-index: 2;
+    margin-top: 3%;
+    margin-left: 90%;
+    position: relative;
+    &:hover{
+        cursor: pointer;
+        color: #FFFFFF;
+        transition: all .4s ease-in-out;
+    }
+
+}
+
+.info_popup {
+
+    height: 50%;
+    width: 50%;
+    background-color: #0B132B;
+    color: white;
+    position: fixed;
+    z-index: 1;
+
+    text-align: center;
+    vertical-align: middle;
+
+    font-size: calc(1.5vh + 1.5vw);
+
+    border-radius: calc(0.5vh + 0.5vw);
+    outline: calc(0.5vh + 0.25vw) solid #6FFFE9;
 }
 
 .number{
@@ -152,36 +247,37 @@
     display: inline-block;
     margin-bottom: 2%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.75vh;
-    
+    font-size: calc(1vh + 1vw);
+    word-wrap: break-word;
+    overflow: none;
+    position: relative;    
 }
 .token_input {
 
-    margin-left: 5.25vw; /* .circle_step width + #test margin-left*/
-    height: 5vh;
+    margin-left: 7vw; /* .circle_step width + #test margin-left*/
+    height: calc(3vh + 1vw);
     width: 100%;
     background-color: #6FFFE9;
     position: relative;
-
-    font-size: 2.5vh;
+    font-family: "Oxanium", serif;
+    font-size: calc(0.75vh + 1vw);
 }
 
 .done_button {
 
-    height: 5vh;
-    width: 20vh;
-    font-size: 2.5vh;
+    height: calc(2vw + 2vh);
+    width: calc(9vw + 5vh);
+    font-size: calc(1vh + 0.75vw);
     background-color: #6FFFE9;
 
     margin-left: auto;
     margin-right: auto;
   
     margin-top: 10%;
-    line-height: 5vh;
+    line-height: calc(2vw + 2vh);
     text-align: center;
-    border-radius: 1vh;
+    border-radius: calc(0.5vh + 0.5vw);
 }
 
 .done_button:hover{
@@ -197,12 +293,13 @@
 
 .sub_instruction {
     display: inline-block;
-    margin-left: 1vw;
-    font-size: 150%;
+    margin-left: 7%;
     color: #FFFFFF;
-    width: 100%;
-
+    width: 55vw;
+    height: 9vh;
+    position: fixed;
     vertical-align: middle;
+    word-wrap: break-word;
 }
 
 #test2 {
@@ -214,27 +311,29 @@
 .header {
 
     height: 9%;
+    width: 100%;
+    
     color: #0B132B;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 4vh;
+    font-size: calc(3vh + 2vw);
+    position: fixed;
 }
 
 .lights_label {
 
     background-color: #6FFFE9;
     color: #0B132B;
-    height: 7vh;
-    width: 30vh;
-    font-size: 2.5vh;
+    height: calc(3vh + 2vw);
+    width: calc(5vh + 15vw);
+    font-size: calc(1vh + 0.75vw);
 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: calc(3vh + 1vw);
     text-align: center;
-    line-height: 7vh;
+    line-height: calc(3vh + 2vw);
 
     border-radius: 1vh;
     cursor: pointer;
@@ -255,7 +354,7 @@
 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 25%;
+    margin-top: 15%;
     height: auto;
     width: auto;
     text-align: center;

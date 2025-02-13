@@ -58,7 +58,8 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
  
         requests.put(post_url, params={"lifx_token" : lifx_token, 
                                        "light_id" : light_id,
-                                       "color_data" : color})
+                                       },
+                                       json={"color_data" : color})
         time.sleep(nap_time)
 
 def main():
@@ -85,13 +86,16 @@ def main():
     json.dumps(games_dict)
 
     procs = []
-    for id in light_ids:
+    for light_id in light_ids:
+        id = light_id.strip("[]")
+        id  = id.replace("\\", "")
+        id = id.strip('"')
         proc = Process(target=update_light_temp,
                        args=(lifx_token,
                              psn_token,
                              games_dict,
                              id,
-                             len(id)/LIFX_REFRESH_RATE))
+                             len(light_ids)/LIFX_REFRESH_RATE))
         proc.start()
 
     for p in procs:

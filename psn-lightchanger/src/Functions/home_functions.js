@@ -1,4 +1,4 @@
-import { redirect} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 /**
  * 
@@ -6,8 +6,8 @@ import { redirect} from "react-router-dom"
  *           
  * @returns the url to redirect to
  */
-export async function DirectToVerify(){
+export function DirectToVerify(){
     
-    return redirect("/lights_verify")
+    return useNavigate("/lights_verify")
 
 }

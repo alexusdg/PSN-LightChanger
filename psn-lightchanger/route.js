@@ -1,16 +1,17 @@
-const { spawn } = require("child_process")
 const cors = require("cors")
 const psnapi = require("psn-api")
-const axios = require("axios")
+const axios = require('axios').default
 const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
+const { routeFunc } =  require("./route_functions")
+const { procFunc } = require("./proc_functions")
 
 app.use(cors())
 app.use(bodyParser.json())
 
-app.get("/", () => {
-  throw new Error("BROKEN")
+app.get("/", (req, res) => {
+  res.status(200).send("OK")
 })
 
 /**
@@ -59,8 +60,8 @@ app.get("/ps_game_playing/", (req, res) => {
       res.status(200)
         .send({"title" : response.basicPresence.gameTitleInfoList[0].titleName})
     } catch (err) {
-        
-        if("basicPresence" in response)
+
+        if(response !== undefined && "basicPresence" in response)
           res.status(200)
               .send({"title" : ""})
         else {
@@ -86,33 +87,31 @@ app.put("/create_process/", (req, res) => {
   const psn_token = req.query.psn_token
   const lifx_ids = req.query.lifx_ids
 
-  const pyProg = spawn(
-    "python",
-    ["create_process.py"].concat(
-      lifx_token,
-      psn_token,
-      lifx_ids
-    ),
-  )
+  procFunc.createProcess(lifx_token, psn_token, lifx_ids)
 
-  // Collect data from script and print to console
-  var data = ""
-  pyProg.stdout.on("data", (stdout) => {
-    data += stdout.toString()
-  })
+  res.status(200).send("ok")
+})
 
-  // Print errors to console, if any
-  pyProg.stderr.on("data", (stderr) => {
-    console.log(`stderr: ${stderr}`)
-  })
+/**
+ * @api /lifx_auth is used to verify token and send light data
+ *        back to user
+ * @param {string} lifx_token lifx access token
+ * @sends a json containing lifx light data
+ */
+app.get("/lifx_auth/", (req, res) => {
+  const authToken = "Bearer ".concat(req.query.lifx_token)
 
-  // When script is finished, print collected data
-  pyProg.on("close", (code) => {
-    console.log(`child process exited with code ${code}`)
-    console.log(data)
-  })
-
-  res.status(200)
+  axios.get("https://api.lifx.com/v1/lights/all", {
+      headers: {
+        Authorization: authToken
+      }
+    })
+    .then((response) => {
+      res.status(200).send(response.data)
+    })
+    .catch((err) => {
+      res.status(500).send({error : err})
+    })
 })
 
 /**
@@ -123,7 +122,7 @@ app.put("/create_process/", (req, res) => {
  * @param {string} id lifx light id
  * @sends a json containing the color data
  */
-app.get("/light_color/", (req, res) => {
+/**app.get("/light_color/", (req, res) => {
   const authToken = req.query.lifx_token
   const id = req.query.id
 
@@ -136,7 +135,7 @@ app.get("/light_color/", (req, res) => {
     .then((response) => {
       res.status(200).send({ color: response.data[0].color })
     })
-})
+})*/
 
 /**
  * @api /update_light will update the color of the lifx light based on
@@ -148,33 +147,21 @@ app.get("/light_color/", (req, res) => {
 app.put("/update_light/", (req, res) => {
   const authToken = "Bearer ".concat(req.query.lifx_token)
   var id = req.query.light_id
-  var color_data = req.query.color_data
+  var color_data = req.body.color_data
 
-  color_data = JSON.parse(color_data)
-  id = JSON.parse(id)
 
-  
-  const options = {
-    method: "PUT",
-    url: `https://api.lifx.com/v1/lights/${id}/state`,
-    headers: {
-      accept: "text/plain",
-      "content-type": "application/json",
-      Authorization: authToken,
-    },
-    data: {
-      color: `hue:${color_data.hue} saturation:${color_data.saturation} kelvin:${color_data.kelvin}`,
-      duration: "1",
-    }
+  //writing this to work with jest & postman testing along with python calls
+  try{
+    color_data = JSON.parse(color_data)
+  }catch{
+    color_data = req.body.color_data
   }
-  axios
-    .request(options)
-    .then((res) => {})
-    .catch((err) => console.error(err))
+  
 
-  res.status(200).send("ok")
+  res.status(200)
+
+  //console.log(color_data["hue"])
+  routeFunc.updateLight(res, authToken, id, color_data)  
 })
 
-app.listen(3100, () => {
-  console.log("Server is Running")
-})
+module.exports = app

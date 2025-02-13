@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { DoneButton, Header, SubHeader } from "../Components/interface"
+import { DoneButton, Header, SubHeader, Feedback} from "../Components/interface"
 import { ShowLights, IsSetupComplete } from "../Functions/list_functions"
 
 /**
@@ -9,7 +9,7 @@ import { ShowLights, IsSetupComplete } from "../Functions/list_functions"
  */
 
 function LifxList() {
-  const [Nav, setNav] = useState(<IsSetupComplete />)
+  const [Nav, setNav] = useState(<></>)
 
   function NavigateToComplete() {
     setNav(<IsSetupComplete />)
@@ -22,10 +22,13 @@ function LifxList() {
         <SubHeader title={"Choose Lights to Change"} />
       </div>
       <div className="sub_content">
-        <ShowLights />
+        <div className="all_lights">
+          <ShowLights />
+        </div>   
         <DoneButton authCheck={NavigateToComplete} />
         {Nav}
       </div>
+      <Feedback/>
     </div>
   )
 }

@@ -6,8 +6,8 @@ import {
   CircleStep,
   LoginInstruction,
   DoneButton,
+  Feedback,
 } from "../Components/interface.js"
-import "../Style/style.css"
 import { VerifyPsnUser } from "../Functions/psn_functions.js"
 
 /**
@@ -15,17 +15,17 @@ import { VerifyPsnUser } from "../Functions/psn_functions.js"
  *           if the user has a real token registered with Lifx.
  * @returns html that is used to authenticate Lifx user with token
  */
-
-export function LifxVerify() {
+export const LifxVerify = () => {
   const [Auth, setAuth] = useState(<></>)
+  const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setAuth(<IsAuth />)
+    setAuth(<IsAuth entered_lifx_code={code}/>)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setAuth(<IsAuth />)
+      setAuth(<IsAuth entered_lifx_code={code}/>)
     }
   }
 
@@ -52,6 +52,7 @@ export function LifxVerify() {
             <input
               className="token_input"
               type="text"
+              onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}
             ></input>
           </div>
@@ -61,6 +62,7 @@ export function LifxVerify() {
           {Auth}
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }
@@ -70,17 +72,17 @@ export function LifxVerify() {
  *           if the user has a real account registed with Sony PlayStation
  * @returns html that is used to authenticate PSN user with nppso cookie
  */
-
 export function PSNVerify() {
   const [nav, setNav] = useState(<></>)
+  const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setNav(<VerifyPsnUser />)
+    setNav(<VerifyPsnUser entered_psn_code={code}/>)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setNav(<VerifyPsnUser />)
+      setNav(<VerifyPsnUser entered_psn_code={code}/>)
     }
   }
 
@@ -100,7 +102,7 @@ export function PSNVerify() {
           <div className="instructions">
             <CircleStep number={2} />
             <div className="sub_instruction">
-              Enter Auth token found at the link below
+              Enter Auth token found at this link: 
               https://ca.account.sony.com/api/v1/ssocookie
             </div>
           </div>
@@ -108,6 +110,7 @@ export function PSNVerify() {
             <input
               className="token_input"
               type="text"
+              onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => ToggleAuthCheckFromEnter(e)}
             ></input>
           </div>
@@ -117,6 +120,7 @@ export function PSNVerify() {
           </div>
         </div>
       </div>
+      <Feedback/>
     </div>
   )
 }
