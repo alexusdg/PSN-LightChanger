@@ -1,10 +1,10 @@
 const cors = require("cors")
 const psnapi = require("psn-api")
-const axios = require('axios').default
+const axios = require("axios").default
 const express = require("express"),
   bodyParser = require("body-parser")
 const app = express()
-const { routeFunc } =  require("./route_functions")
+const { routeFunc } = require("./route_functions")
 const { procFunc } = require("./proc_functions")
 
 app.use(cors())
@@ -45,7 +45,7 @@ app.get("/ps_auth/", (req, res) => {
  *      being played
  * @param {string} refresh_token token provied by psn from /ps_auth
  * @sends status 200 along with the title of the game being played
- *        status 500 
+ *        status 500
  */
 app.get("/ps_game_playing/", (req, res) => {
   const code = req.query.refresh_token //this is the refresh token
@@ -57,16 +57,15 @@ app.get("/ps_game_playing/", (req, res) => {
 
       response = await psnapi.getBasicPresence(authorization, "me")
 
-      res.status(200)
-        .send({"title" : response.basicPresence.gameTitleInfoList[0].titleName})
+      res
+        .status(200)
+        .send({ title: response.basicPresence.gameTitleInfoList[0].titleName })
     } catch (err) {
-
-        if(response !== undefined && "basicPresence" in response)
-          res.status(200)
-              .send({"title" : ""})
-        else {
-          res.status(500).send(err)
-        }
+      if (response !== undefined && "basicPresence" in response)
+        res.status(200).send({ title: "" })
+      else {
+        res.status(500).send(err)
+      }
     }
   }
 
@@ -101,16 +100,17 @@ app.put("/create_process/", (req, res) => {
 app.get("/lifx_auth/", (req, res) => {
   const authToken = "Bearer ".concat(req.query.lifx_token)
 
-  axios.get("https://api.lifx.com/v1/lights/all", {
+  axios
+    .get("https://api.lifx.com/v1/lights/all", {
       headers: {
-        Authorization: authToken
-      }
+        Authorization: authToken,
+      },
     })
     .then((response) => {
       res.status(200).send(response.data)
     })
     .catch((err) => {
-      res.status(500).send({error : err})
+      res.status(500).send({ error: err })
     })
 })
 
@@ -119,12 +119,13 @@ app.get("/lifx_auth/", (req, res) => {
  * @api /light_color is used to GET the current Light color information of the LIFX
  *      light
  * @param {string} lifx_token lifx access token
- * @param {string} id lifx light id
+ * @param {string} light_id lifx light id
  * @sends a json containing the color data
  */
-/**app.get("/light_color/", (req, res) => {
-  const authToken = req.query.lifx_token
-  const id = req.query.id
+/**
+app.get("/light_color/", (req, res) => {
+  const authToken =  "Bearer ".concat(req.query.lifx_token)
+  const id = req.query.light_id
 
   axios
     .get(`https://api.lifx.com/v1/lights/${id}`, {
@@ -135,13 +136,16 @@ app.get("/lifx_auth/", (req, res) => {
     .then((response) => {
       res.status(200).send({ color: response.data[0].color })
     })
+    .catch((err) => {
+      res.status(500).send({ error : err})
+    })
 })*/
 
 /**
  * @api /update_light will update the color of the lifx light based on
  *      requests
  * @param {string} light_id - lifx light ids
- * @param {json} color_data - json containing the color data 
+ * @param {json} color_data - json containing the color data
  * @sends a response code
  */
 app.put("/update_light/", (req, res) => {
@@ -149,19 +153,17 @@ app.put("/update_light/", (req, res) => {
   var id = req.query.light_id
   var color_data = req.body.color_data
 
-
   //writing this to work with jest & postman testing along with python calls
-  try{
+  try {
     color_data = JSON.parse(color_data)
-  }catch{
+  } catch {
     color_data = req.body.color_data
   }
-  
 
   res.status(200)
 
   //console.log(color_data["hue"])
-  routeFunc.updateLight(res, authToken, id, color_data)  
+  routeFunc.updateLight(res, authToken, id, color_data)
 })
 
 module.exports = app

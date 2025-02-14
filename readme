@@ -5,6 +5,13 @@ Description:
 Application that changes the color of smart lights based on the game playing. 
 
 
+Commands from psn-lightchanger:
+    npm run start-dev - start app
+    node server.js - start server
+    npm run ci - tests
+    npm review - prettier 
+
+
 Technologies used:
     - JS + ReactJS
     - Node.js
@@ -18,4 +25,9 @@ NOTES:
 
     User has to be ONLINE to read game data
 
-Understand npm and webpack
+Games that have been accounted for:
+
+Marvel Rivals
+Marvel's Spider-Man 2
+Mortal Kombat 11
+Ultimate Chicken Horse

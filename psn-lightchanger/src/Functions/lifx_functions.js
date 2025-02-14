@@ -36,7 +36,7 @@ export function IsAuth({ entered_lifx_code }) {
     if (entered_lifx_code !== "") {
       axios
         .get(`http://localhost:${PORT}/lifx_auth/`, {
-          params: { lifx_token : authToken}
+          params: { lifx_token: authToken },
         })
         .then((response) => {
           sessionStorage.setItem("lifx_token", entered_lifx_code)

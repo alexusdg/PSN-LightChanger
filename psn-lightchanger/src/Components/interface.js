@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { AiOutlineInfoCircle, AiOutlineClose } from "react-icons/ai"
 import { useNavigate } from "react-router-dom"
 
-
 /**
  * @returns the Title component
  */
@@ -14,11 +13,11 @@ export const Title = () => {
  * @returns the Feedback component that opens a link to a form
  */
 export const Feedback = () => {
-  function openForm(){
+  function openForm() {
     window.open("https://forms.gle/6w6SmEJqwwFL1n518")
   }
 
-  return(
+  return (
     <div className="feedback" onClick={openForm}>
       Send Feedback
     </div>
@@ -28,31 +27,33 @@ export const Feedback = () => {
 /**
  * @returns the FInfo component that triggers the popup component
  */
-export const Info = ({setPopupWith, currentVal}) => {
-
-  function showPopUp(){
-
-    currentVal === "" ? setPopupWith(<Popup/>) : setPopupWith("")
+export const Info = ({ setPopupWith, currentVal }) => {
+  function showPopUp() {
+    currentVal === "" ? setPopupWith(<Popup />) : setPopupWith("")
   }
 
   const Popup = () => {
-    function closePopup(){
+    function closePopup() {
       setPopupWith("")
-  
-    }
-  
-   return ( <div className="info_popup">
-      <AiOutlineClose id="close" onClick={closePopup}/>
-      <p>This is a web application that changes the color of your smart lights based on the game you are currently playing on PlayStation.</p>
-      <p>  Currently this application only supports LIFX lights. 
-      </p>
-    </div>)
-
     }
 
-  return <div className="icon" onClick={showPopUp}>
-    <AiOutlineInfoCircle id="info" size={"5vh"}/>
-  </div>
+    return (
+      <div className="info_popup">
+        <AiOutlineClose id="close" onClick={closePopup} />
+        <p>
+          This is a web application that changes the color of your smart lights
+          based on the game you are currently playing on PlayStation.
+        </p>
+        <p> Currently this application only supports LIFX lights.</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="icon" onClick={showPopUp}>
+      <AiOutlineInfoCircle id="info" size={"5vh"} />
+    </div>
+  )
 }
 
 /**
@@ -98,7 +99,11 @@ export const GetStartedButton = ({ page }) => {
  * @returns html for the sub header used across pages
  */
 export function SubHeader({ id, title }) {
-  return <div className='sub_header'id={`${id}`}>{title}</div>
+  return (
+    <div className="sub_header" id={`${id}`}>
+      {title}
+    </div>
+  )
 }
 
 /**
@@ -144,7 +149,6 @@ export function DoneButton({ authCheck }) {
  * @returns html for the light, implementing expected design
  */
 export function ListLights({ light_name }) {
-
   const [cl, setClass] = useState("")
 
   function updateClass() {
@@ -152,11 +156,7 @@ export function ListLights({ light_name }) {
   }
 
   return (
-    <div
-      className={`lights_label ${cl}`}
-      id={light_name}
-      onClick={updateClass}
-    >
+    <div className={`lights_label ${cl}`} id={light_name} onClick={updateClass}>
       {light_name}
     </div>
   )

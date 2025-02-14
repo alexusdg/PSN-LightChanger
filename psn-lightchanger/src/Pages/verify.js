@@ -20,12 +20,12 @@ export const LifxVerify = () => {
   const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setAuth(<IsAuth entered_lifx_code={code}/>)
+    setAuth(<IsAuth entered_lifx_code={code} />)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setAuth(<IsAuth entered_lifx_code={code}/>)
+      setAuth(<IsAuth entered_lifx_code={code} />)
     }
   }
 
@@ -62,7 +62,7 @@ export const LifxVerify = () => {
           {Auth}
         </div>
       </div>
-      <Feedback/>
+      <Feedback />
     </div>
   )
 }
@@ -77,12 +77,12 @@ export function PSNVerify() {
   const [code, setCode] = useState("")
 
   function ToggleAuthCheck() {
-    setNav(<VerifyPsnUser entered_psn_code={code}/>)
+    setNav(<VerifyPsnUser entered_psn_code={code} />)
   }
 
   function ToggleAuthCheckFromEnter(e) {
     if (e.key === "Enter") {
-      setNav(<VerifyPsnUser entered_psn_code={code}/>)
+      setNav(<VerifyPsnUser entered_psn_code={code} />)
     }
   }
 
@@ -102,7 +102,7 @@ export function PSNVerify() {
           <div className="instructions">
             <CircleStep number={2} />
             <div className="sub_instruction">
-              Enter Auth token found at this link: 
+              Enter Auth token found at this link:
               https://ca.account.sony.com/api/v1/ssocookie
             </div>
           </div>
@@ -120,7 +120,7 @@ export function PSNVerify() {
           </div>
         </div>
       </div>
-      <Feedback/>
+      <Feedback />
     </div>
   )
 }

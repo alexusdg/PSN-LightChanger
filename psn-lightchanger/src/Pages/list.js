@@ -1,5 +1,10 @@
 import { useState } from "react"
-import { DoneButton, Header, SubHeader, Feedback} from "../Components/interface"
+import {
+  DoneButton,
+  Header,
+  SubHeader,
+  Feedback,
+} from "../Components/interface"
 import { ShowLights, IsSetupComplete } from "../Functions/list_functions"
 
 /**
@@ -24,11 +29,11 @@ function LifxList() {
       <div className="sub_content">
         <div className="all_lights">
           <ShowLights />
-        </div>   
+        </div>
         <DoneButton authCheck={NavigateToComplete} />
         {Nav}
       </div>
-      <Feedback/>
+      <Feedback />
     </div>
   )
 }

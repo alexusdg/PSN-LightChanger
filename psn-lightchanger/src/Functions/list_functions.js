@@ -13,15 +13,14 @@ export function ShowLights() {
   var lights_avail = JSON.parse(sessionStorage.getItem("lights_avail"))
   var lights_avail_names = []
 
-  if(lights_avail === null)
-    return <></>
+  if (lights_avail === null) return <></>
 
   for (var i = 0; i < lights_avail.length; i++) {
     lights_avail_names.push(
       <ListLights
         key={lights_avail[i].label}
         light_name={lights_avail[i].label}
-      />
+      />,
     )
   }
 
@@ -69,22 +68,21 @@ export function IsSetupComplete() {
   const PORT = process.env.REACT_APP_BACKEND_PORT
 
   useEffect(() => {
-
     CheckIfLightsChosen()
-  
+
     var lights_chosen = sessionStorage.getItem("lights_chosen")
-    
+
     if (lights_chosen.length > 0) {
       axios.put(`http://localhost:${PORT}/create_process/`, null, {
         params: {
           lifx_token: `${sessionStorage.getItem("lifx_token")}`,
           psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
           lifx_ids: `${lights_chosen}`,
-        }
+        },
       })
-  
+
       navigate("/complete/")
     }
-  }, [PORT, navigate]) 
+  }, [PORT, navigate])
   return <></>
 }
