@@ -7,7 +7,7 @@ import axios from "axios"
  *
  * @returns an html that changes navigation to /lights_verify
  */
-export function VerifyPsnUser({entered_psn_code}) {
+export function VerifyPsnUser({ entered_psn_code }) {
   const PORT = process.env.REACT_APP_BACKEND_PORT
   const navigate = useNavigate()
 

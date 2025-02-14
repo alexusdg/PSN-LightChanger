@@ -35,17 +35,15 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
         nothing
     '''
 
-    t_end = time.time() + 60 * 0.5
+    t_end = time.time() + 60 * 15
     while time.time() < t_end:
 
         psn_url = f"http://localhost:{BACKEND_PORT}/ps_game_playing/"
 
         game_title = requests.get(psn_url, params={"refresh_token" : psn_token})
-    
+
         game_title = json.loads(game_title.text)
         game_title = game_title["title"]
-
-        print(game_title)
 
         if game_title == "":
             continue
@@ -55,10 +53,9 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
 
         #This API requests prevents the while loop from working continuosly
         post_url = f"http://localhost:{BACKEND_PORT}/update_light/"
- 
+
         requests.put(post_url, params={"lifx_token" : lifx_token, 
-                                       "light_id" : light_id,
-                                       },
+                                       "light_id" : light_id,},
                                        json={"color_data" : color})
         time.sleep(nap_time)
 
