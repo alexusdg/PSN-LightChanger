@@ -34,7 +34,7 @@ def update_light_temp(lifx_token, psn_token, games_dict, light_id, nap_time):
     Returns:
         nothing
     '''
-
+    
     t_end = time.time() + 60 * 15
     while time.time() < t_end:
 
