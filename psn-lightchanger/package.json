@@ -2,8 +2,8 @@
   "name": "psn-lightchanger",
   "version": "0.1.0",
   "private": true,
-  "main": "public/index.html",
-  "homepage": "https://psn-lightchanger.netlify.app/./",
+  "main": "src/index.js",
+  "homepage": "https://psn-lightchanger.netlify.app",
   "overrides": {
     "react-error-overlay": "6.0.9"
   },
