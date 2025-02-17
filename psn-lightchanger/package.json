@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/electron.js",
-  "homepage": "https://./",
+  "homepage": "https://psn-lightchanger.netlify.app/",
   "overrides": {
     "react-error-overlay": "6.0.9"
   },
