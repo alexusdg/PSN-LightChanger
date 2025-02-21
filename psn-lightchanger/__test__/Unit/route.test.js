@@ -1,10 +1,10 @@
 jest.setTimeout(10000)
 
-const app = require('../../route')
+const app = require('../../backend/route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
-const { routeFunc } = require('../../route_functions')
-const { procFunc } = require('../../proc_functions')
+const { routeFunc } = require('../../backend/route_functions')
+const { procFunc } = require('../../backend/proc_functions')
 const constants = require('../../constants')
 
 require('dotenv').config()
@@ -128,7 +128,7 @@ describe('LIFX APIs', () => {
                     light_id : LIGHT_ID
                 })
                 .send({
-                    color_data : {hue :181.88, saturation : 0.8842, kelvin : 2500}
+                    color_data : { hue :181.88, saturation : 0.8842, kelvin : 2500}
                 })
                 .expect(500)
 
@@ -149,7 +149,7 @@ describe('LIFX APIs', () => {
                     light_id : LIGHT_ID
                 })
                 .send({
-                    color_data : {hue :181.88, saturation : 0.8842, kelvin : 2500}
+                    color_data : {hue : 181.88, saturation : 0.8842, kelvin : 2500}
                 })
                 .expect(200)
 

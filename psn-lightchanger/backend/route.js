@@ -160,10 +160,9 @@ app.put("/update_light/", (req, res) => {
     color_data = req.body.color_data
   }
 
-  res.status(200)
-
-  //console.log(color_data["hue"])
   routeFunc.updateLight(res, authToken, id, color_data)
+
+  //res.status(stat).send({info : info})
 })
 
 module.exports = app

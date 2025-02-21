@@ -2,7 +2,7 @@
   "name": "psn-lightchanger",
   "version": "0.1.0",
   "private": true,
-  "main": "public/electron.js",
+  "main": "src/index.js",
   "homepage": "https://./",
   "overrides": {
     "react-error-overlay": "6.0.9"
@@ -56,7 +56,7 @@
     "build-elect": "craco build",
     "start-elect": "npm run build-elect && electron .",
     "test": "jest --coverage --setupFiles dotenv/config --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
-    "ci": "start-server-and-test start-server http://localhost:3100 test",
+    "ci": "start-server-and-test start-server tcp:3100 test",
     "dev": "start-server-and-test start-server http://localhost:3100 start-dev",
     "review": "prettier --write --no-semi *.js && prettier --write --no-semi src/**/*.js"
   },

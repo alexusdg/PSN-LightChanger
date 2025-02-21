@@ -2,6 +2,9 @@ const axios = require("axios").default
 
 const routeFunc = {
   updateLight(res, authToken, light_id, color_data) {
+    var stat 
+    var info
+
     const options = {
       method: "PUT",
       url: `https://api.lifx.com/v1/lights/${light_id}/state`,
@@ -23,6 +26,8 @@ const routeFunc = {
       .catch((err) => {
         res.status(500).send({ error: err })
       })
+
+      
   },
 }
 
