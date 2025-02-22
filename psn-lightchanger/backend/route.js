@@ -85,8 +85,10 @@ app.put("/create_process/", (req, res) => {
   const lifx_token = req.query.lifx_token
   const psn_token = req.query.psn_token
   const lifx_ids = req.query.lifx_ids
+  const url = req.query.backend_url
+  const port = req.query.backend_port
 
-  procFunc.createProcess(lifx_token, psn_token, lifx_ids)
+  procFunc.createProcess(lifx_token, psn_token, lifx_ids, url, port)
 
   res.status(200).send("ok")
 })
