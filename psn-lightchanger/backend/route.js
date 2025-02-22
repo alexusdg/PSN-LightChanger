@@ -7,6 +7,9 @@ const app = express()
 const { routeFunc } = require("./route_functions")
 const { procFunc } = require("./proc_functions")
 
+const BACKEND_PORT = process.env.REACT_APP_BACKEND_PORT
+const back_port = process.env.PORT || BACKEND_PORT
+
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -86,7 +89,7 @@ app.put("/create_process/", (req, res) => {
   const psn_token = req.query.psn_token
   const lifx_ids = req.query.lifx_ids
   const url = req.query.backend_url
-  const port = req.query.backend_port
+  const port = back_port
 
   procFunc.createProcess(lifx_token, psn_token, lifx_ids, url, port)
 

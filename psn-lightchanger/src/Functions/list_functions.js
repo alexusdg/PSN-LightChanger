@@ -80,7 +80,6 @@ export function IsSetupComplete() {
           psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
           lifx_ids: `${lights_chosen}`,
           backend_url: BASE_URL,
-          backend_port: PORT,
         },
       })
 
