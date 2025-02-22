@@ -1,1 +1,1 @@
-web: cd psn-lightchanger\backend\ && node server.js
+web: cd psn-lightchanger && cd backend && node server.js
