@@ -1,10 +1,10 @@
 jest.setTimeout(10000)
 
-const app = require('../../route')
+const app = require('../../backend/route')
 const request = require('supertest')
 const { cleanup } = require("@testing-library/react")
-const { routeFunc } = require('../../route_functions')
-const { procFunc } = require('../../proc_functions')
+const { routeFunc } = require('../../backend/route_functions')
+const { procFunc } = require('../../backend/proc_functions')
 const constants = require('../../constants')
 
 require('dotenv').config()
@@ -12,6 +12,9 @@ require('dotenv').config()
 const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 const LIFX_CODE = process.env.REACT_APP_LIFX
 const LIGHT_ID = process.env.REACT_APP_LIGHT_ID
+const BASE_URL = process.env.REACT_APP_BASE_URL
+const PORT = process.env.REACT_APP_BACKEND_PORT
+
 
 const TEST_SUCCESS = constants.API_SUCCESS_TEST
 const TEST_FAILURE = constants.API_SERVER_ERR_TEST
@@ -83,7 +86,9 @@ describe('PSN APIs', () => {
                 .send({
                     lifx_token : LIFX_CODE,
                     psn_token : PSN_TOKEN,
-                    lifx_ids : fake_id
+                    lifx_ids : fake_id,
+                    backend_url : BASE_URL,
+                    backend_port : PORT
                 }).expect(200)
 
             expect(spy).toHaveBeenCalled()
@@ -128,7 +133,7 @@ describe('LIFX APIs', () => {
                     light_id : LIGHT_ID
                 })
                 .send({
-                    color_data : {hue :181.88, saturation : 0.8842, kelvin : 2500}
+                    color_data : { hue :181.88, saturation : 0.8842, kelvin : 2500}
                 })
                 .expect(500)
 
@@ -149,7 +154,7 @@ describe('LIFX APIs', () => {
                     light_id : LIGHT_ID
                 })
                 .send({
-                    color_data : {hue :181.88, saturation : 0.8842, kelvin : 2500}
+                    color_data : {hue : 181.88, saturation : 0.8842, kelvin : 2500}
                 })
                 .expect(200)
 

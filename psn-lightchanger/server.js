@@ -1,4 +1,4 @@
-const app = require("../psn-lightchanger/route")
+const app = require("./backend/route")
 
 require("dotenv").config()
 

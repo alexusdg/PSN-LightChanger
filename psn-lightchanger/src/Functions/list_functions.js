@@ -66,6 +66,7 @@ export function CheckIfLightsChosen() {
 export function IsSetupComplete() {
   const navigate = useNavigate()
   const PORT = process.env.REACT_APP_BACKEND_PORT
+  const BASE_URL = process.env.REACT_APP_BASE_URL
 
   useEffect(() => {
     CheckIfLightsChosen()
@@ -73,16 +74,18 @@ export function IsSetupComplete() {
     var lights_chosen = sessionStorage.getItem("lights_chosen")
 
     if (lights_chosen.length > 0) {
-      axios.put(`http://localhost:${PORT}/create_process/`, null, {
+      axios.put(`${BASE_URL}${PORT}/create_process/`, null, {
         params: {
           lifx_token: `${sessionStorage.getItem("lifx_token")}`,
           psn_token: `${sessionStorage.getItem("psn_refresh_token")}`,
           lifx_ids: `${lights_chosen}`,
+          backend_url: BASE_URL,
+          backend_port: PORT,
         },
       })
 
       navigate("/complete/")
     }
-  }, [PORT, navigate])
+  }, [PORT, navigate, BASE_URL])
   return <></>
 }

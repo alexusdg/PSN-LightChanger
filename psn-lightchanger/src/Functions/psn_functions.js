@@ -9,6 +9,7 @@ import axios from "axios"
  */
 export function VerifyPsnUser({ entered_psn_code }) {
   const PORT = process.env.REACT_APP_BACKEND_PORT
+  const BASE_URL = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
 
   try {
@@ -19,7 +20,7 @@ export function VerifyPsnUser({ entered_psn_code }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:${PORT}/ps_auth/`, {
+      .get(`${BASE_URL}${PORT}/ps_auth/`, {
         params: { npsso: `${entered_psn_code}` },
       })
       .then((res) => {
@@ -29,7 +30,7 @@ export function VerifyPsnUser({ entered_psn_code }) {
       .catch((err) => {
         console.log(err)
       })
-  }, [entered_psn_code, PORT, navigate])
+  }, [entered_psn_code, PORT, BASE_URL, navigate])
 
   return <></>
 }

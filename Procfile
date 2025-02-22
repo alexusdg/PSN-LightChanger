@@ -1,0 +1,1 @@
+web: cd psn-lightchanger && cd backend && node server.js
