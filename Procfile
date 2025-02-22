@@ -1,1 +1,1 @@
-web: node .\psn-lightchanger\backend\server.js
+web: cd .\psn-lightchanger\backend\ && node server.js
