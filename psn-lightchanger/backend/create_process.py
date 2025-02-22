@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from multiprocessing import Process
 
 load_dotenv()
-BACKEND_PORT = os.getenv('REACT_APP_BACKEND_PORT')
+BACKEND_PORT = os.getenv('PORT') or os.getenv('REACT_APP_BACKEND_PORT')
 
 LIFX_REQUESTS = 120
 LIFX_SECONDS = 60

@@ -21,8 +21,8 @@ export function StoreAvailableLights(data) {
  * @returns nothing
  */
 export function IsAuth({ entered_lifx_code }) {
-  const PORT = process.env.NODE_ENV.REACT_APP_BACKEND_PORT
-  const BASE_URL = process.env.NODE_ENV.REACT_APP_BASE_URL
+  const PORT = process.env.REACT_APP_BACKEND_PORT
+  const BASE_URL = process.env.REACT_APP_BASE_URL
   const navigate = useNavigate()
 
   try {
@@ -36,7 +36,7 @@ export function IsAuth({ entered_lifx_code }) {
   useEffect(() => {
     if (entered_lifx_code !== "") {
       axios
-        .get(`http://${BASE_URL}:${PORT}/lifx_auth/`, {
+        .get(`${BASE_URL}${PORT}/lifx_auth/`, {
           params: { lifx_token: authToken },
         })
         .then((response) => {
@@ -49,7 +49,7 @@ export function IsAuth({ entered_lifx_code }) {
         })
         .finally(() => {})
     }
-  }, [PORT, entered_lifx_code, authToken, navigate])
+  }, [PORT, entered_lifx_code, BASE_URL, authToken, navigate])
 
   return <></>
 }
