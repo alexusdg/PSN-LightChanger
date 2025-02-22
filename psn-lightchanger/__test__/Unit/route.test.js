@@ -12,6 +12,9 @@ require('dotenv').config()
 const PSN_TOKEN = process.env.REACT_APP_PSN_TOKEN
 const LIFX_CODE = process.env.REACT_APP_LIFX
 const LIGHT_ID = process.env.REACT_APP_LIGHT_ID
+const BASE_URL = process.env.REACT_APP_BASE_URL
+const PORT = process.env.REACT_APP_BACKEND_PORT
+
 
 const TEST_SUCCESS = constants.API_SUCCESS_TEST
 const TEST_FAILURE = constants.API_SERVER_ERR_TEST
@@ -83,7 +86,9 @@ describe('PSN APIs', () => {
                 .send({
                     lifx_token : LIFX_CODE,
                     psn_token : PSN_TOKEN,
-                    lifx_ids : fake_id
+                    lifx_ids : fake_id,
+                    backend_url : BASE_URL,
+                    backend_port : PORT
                 }).expect(200)
 
             expect(spy).toHaveBeenCalled()

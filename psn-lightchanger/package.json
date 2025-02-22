@@ -58,7 +58,7 @@
     "test": "jest --coverage --setupFiles dotenv/config --env=jsdom --verbose --transformIgnorePatterns \"node_modules/(?!axios)/\"",
     "ci": "start-server-and-test start-server tcp:3100 test",
     "dev": "start-server-and-test start-server http://localhost:3100 start-dev",
-    "review": "prettier --write --no-semi *.js && prettier --write --no-semi src/**/*.js"
+    "review": "prettier --write --no-semi *.js && prettier --write --no-semi src/**/*.js && prettier --write --no-semi backend/*.js"
   },
   "eslintConfig": {
     "extends": [

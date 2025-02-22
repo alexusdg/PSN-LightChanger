@@ -2,7 +2,7 @@ const axios = require("axios").default
 
 const routeFunc = {
   updateLight(res, authToken, light_id, color_data) {
-    var stat 
+    var stat
     var info
 
     const options = {
@@ -26,8 +26,6 @@ const routeFunc = {
       .catch((err) => {
         res.status(500).send({ error: err })
       })
-
-      
   },
 }
 
