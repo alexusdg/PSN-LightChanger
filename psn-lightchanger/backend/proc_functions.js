@@ -4,7 +4,7 @@ const { spawn } = require("child_process")
 const procFunc = {
   createProcess(lifx_token, psn_token, lifx_ids, url, port) {
     const pyProg = spawn(
-      "python3",
+      "python",
       ["create_process.py"].concat(lifx_token, psn_token, lifx_ids, url, port),
     )
 
