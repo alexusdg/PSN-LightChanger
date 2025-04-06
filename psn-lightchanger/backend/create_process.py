@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 from multiprocessing import Process
 
 load_dotenv()
-BACKEND_PORT = os.getenv('PORT') or os.getenv('REACT_APP_BACKEND_PORT')
+BACKEND_PORT = os.getenv('REACT_APP_BACKEND_PORT') or ""
 BASE_URL = os.getenv('REACT_APP_BASE_URL')
 
 LIFX_REQUESTS = 120
@@ -95,7 +95,7 @@ def main():
                              psn_token,
                              games_dict,
                              id,
-                             len(light_ids)/LIFX_REFRESH_RATE, url, port))
+                             len(light_ids)/LIFX_REFRESH_RATE, url, BACKEND_PORT))
         proc.start()
 
     for p in procs:
